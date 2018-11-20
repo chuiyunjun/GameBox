@@ -79,6 +79,12 @@ public class SlidingTileGame extends Game implements Serializable {
         }
         Collections.shuffle(tiles);
         this.board = new Board(tiles, complexity);
+        SolvabilityAlgorithm solvability = new SolvabilityAlgorithm(this.board);
+        while (!solvability.solvable()) {
+            Collections.shuffle(tiles);
+            this.board = new Board(tiles, complexity);
+            solvability = new SolvabilityAlgorithm(this.board);
+        }
     }
 
 
