@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -63,8 +64,16 @@ public class LoadOrSaveGameActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     if(state) {
-                        Game game = localCenter.loadGame(localCenter.getCurGameName(),button.getId());
-                        switchToGame(game);
+                        try {
+                            Game game = localCenter.loadGame(localCenter.getCurGameName(), button.getId());
+                            switchToGame(game);
+                        } catch (IndexOutOfBoundsException e) {
+                        Toast toast = Toast.makeText(getApplicationContext(),
+                                "There is no saved game for this block yet!",
+                                Toast.LENGTH_SHORT);
+
+                        toast.show();
+                    }
                     } else {
                         String timeStamp = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
                                 .format(Calendar.getInstance().getTime());
@@ -101,14 +110,13 @@ public class LoadOrSaveGameActivity extends AppCompatActivity {
     }
 
     private void switchToGame(Game game) {
+            Intent tmp = new Intent(this, GameActivity.class);
+            tmp.putExtra("GlobalCenter", globalCenter);
+            tmp.putExtra("slidingTileGame", (SlidingTileGame) game);
+            localCenter.setCurGame(game);
+            startActivity(tmp);
 
-        Intent tmp = new Intent(this, GameActivity.class);
-        tmp.putExtra("GlobalCenter", globalCenter);
-        tmp.putExtra("slidingTileGame", (SlidingTileGame)game);
-        localCenter.setCurGame(game);
-        startActivity(tmp);
-
-        finish();
+            finish();
     }
 
     private void initButtonLabel(Button button, List<Object> slot) {
