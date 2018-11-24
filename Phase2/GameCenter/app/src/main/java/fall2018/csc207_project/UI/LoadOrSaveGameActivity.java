@@ -21,7 +21,6 @@ import fall2018.csc207_project.GameCenter.LocalGameCenter;
 import fall2018.csc207_project.R;
 import fall2018.csc207_project.SlidingTileGame.GameActivity;
 import fall2018.csc207_project.SlidingTileGame.SlidingTileGame;
-import fall2018.csc207_project.SlidingTileGame.StartingActivity;
 
 public class LoadOrSaveGameActivity extends AppCompatActivity {
 

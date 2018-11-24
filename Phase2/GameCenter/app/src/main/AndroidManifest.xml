@@ -20,9 +20,10 @@
         <activity android:name="fall2018.csc207_project.UI.LocalCenterActivity"></activity>
         <activity android:name="fall2018.csc207_project.UI.AddDeleteGameActivity"></activity>
         <activity android:name="fall2018.csc207_project.UI.LoadOrSaveGameActivity"></activity>
-        <activity android:name="fall2018.csc207_project.SlidingTileGame.StartingActivity"></activity>
+        <activity android:name="fall2018.csc207_project.UI.StartingActivity"></activity>
         <activity android:name="fall2018.csc207_project.SlidingTileGame.ComplexityActivity"></activity>
         <activity android:name="fall2018.csc207_project.SlidingTileGame.GameActivity"></activity>
+        <activity android:name="fall2018.csc207_project.game2048.GameActivity"></activity>
     </application>
 
 </manifest>

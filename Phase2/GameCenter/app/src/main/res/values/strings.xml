@@ -18,6 +18,7 @@
     <string name="snake">Snake</string>
     <string name="mineSweeperGame">Minesweeper</string>
     <string name="sliding_tile_band">Welcome To Sliding Tiles \nA Puzzle Game where you must arrange the numbers in the correct order</string>
+    <string name="game_2048_band">Welcome To 2048 \n Joining the tile and get the 2048 tile</string>
     <string name="new_game">New Game</string>
     <string name="load_saved_game">Load Saved Game</string>
     <string name="save_game">Save Game</string>

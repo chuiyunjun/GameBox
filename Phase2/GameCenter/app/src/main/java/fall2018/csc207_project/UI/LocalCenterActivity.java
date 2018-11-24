@@ -8,10 +8,8 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import fall2018.csc207_project.GameCenter.Account;
 import fall2018.csc207_project.GameCenter.GlobalCenter;
 import fall2018.csc207_project.GameCenter.LocalGameCenter;
-import fall2018.csc207_project.SlidingTileGame.StartingActivity;
 
 import java.util.Set;
 
@@ -54,7 +52,7 @@ public class LocalCenterActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         localCenter.setCurGameName(slidingTileGame);
-                        slidingTileLaunch();
+                        gameLaunch();
                     }
                 });
             }
@@ -63,7 +61,8 @@ public class LocalCenterActivity extends AppCompatActivity {
                 tmp.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
+                        localCenter.setCurGameName(game2048);
+                        gameLaunch();
                     }
                 });
             }
@@ -108,7 +107,7 @@ public class LocalCenterActivity extends AppCompatActivity {
         });
     }
 
-    private void slidingTileLaunch() {
+    private void gameLaunch() {
         Intent tmp = new Intent(this, StartingActivity.class);
         tmp.putExtra("GlobalCenter", globalCenter);
         startActivity(tmp);
