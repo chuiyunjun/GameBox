@@ -15,6 +15,7 @@ public class MovementController {
     public static final int LEFT = 3;
     public static final int RIGHT = 4;
     public static final int TARGET = 2048;
+    public static final int COMPLEXITY = 4;
 
 
     MovementController(int complexity){
@@ -37,19 +38,11 @@ public class MovementController {
         }
 
         if(!hasMoved){
-            //TODO: NOT RIGHT: CHANGE LATER
-            Toast.makeText(context, "GAME OVER!", Toast.LENGTH_SHORT).show();
+            if(!game.movesAvailable()){Toast.makeText(context, "GAME OVER!", Toast.LENGTH_SHORT).show();}
         }
 
-        //TODO: CHANGE LATER
-        boolean has2048 = false;
-        for (int y = 0; y < game.getBoard().getBoardSize(); y++) {
-            for (int x = 0; x < game.getBoard().getBoardSize(); x++) {
-                if (game.getBoard().getTileTable()[x][y].getNum() == TARGET) {
-                    has2048 = true;
-                }
-            }
-        }
+        boolean has2048 = game.getHighestTile() >= TARGET;
+
         if(has2048){
             Toast.makeText(context, "YOU WIN!", Toast.LENGTH_SHORT).show();
         }

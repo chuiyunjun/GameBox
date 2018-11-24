@@ -26,6 +26,8 @@ public class Game2048 implements Serializable {
         this.score = 0;
     }
 
+    public int getHighestTile(){return highestTile;}
+
     public int getComplexity() {
         return complexity;
     }
@@ -121,7 +123,7 @@ public class Game2048 implements Serializable {
     }
 
 
-    private boolean movesAvailable(){
+    public boolean movesAvailable(){
         moveAvailable = true;
         boolean hasMoves = touchUp() || touchDown() || touchLeft() || touchRight();
         moveAvailable = false;
