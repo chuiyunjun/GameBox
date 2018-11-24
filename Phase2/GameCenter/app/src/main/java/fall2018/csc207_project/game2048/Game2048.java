@@ -1,8 +1,11 @@
 package fall2018.csc207_project.game2048;
 
 import java.io.Serializable;
+import java.util.List;
 
-public class Game2048 implements Serializable {
+import fall2018.csc207_project.GameCenter.Game;
+
+public class Game2048 extends Game implements Serializable {
 
     private static final long serialVersionUID = 772895212901L;
 
@@ -24,6 +27,12 @@ public class Game2048 implements Serializable {
         this.board = new Board(complexity);
         this.complexity = complexity;
         this.score = 0;
+    }
+
+    @Override
+    public List<Object> getSetting() {
+        //TODO: LATER
+        return null;
     }
 
     public int getHighestTile(){return highestTile;}
