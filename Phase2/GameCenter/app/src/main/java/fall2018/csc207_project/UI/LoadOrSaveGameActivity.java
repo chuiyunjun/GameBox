@@ -21,7 +21,7 @@ import fall2018.csc207_project.GameCenter.LocalGameCenter;
 import fall2018.csc207_project.R;
 import fall2018.csc207_project.SlidingTileGame.GameActivity;
 import fall2018.csc207_project.SlidingTileGame.SlidingTileGame;
-import fall2018.csc207_project.SlidingTileGame.StartingActivity;
+import fall2018.csc207_project.game2048.Game2048;
 
 public class LoadOrSaveGameActivity extends AppCompatActivity {
 
@@ -110,13 +110,22 @@ public class LoadOrSaveGameActivity extends AppCompatActivity {
     }
 
     private void switchToGame(Game game) {
-            Intent tmp = new Intent(this, GameActivity.class);
+
+        if(game instanceof SlidingTileGame) {
+            Intent tmp = new Intent(this, fall2018.csc207_project.SlidingTileGame.GameActivity.class);
             tmp.putExtra("GlobalCenter", globalCenter);
             tmp.putExtra("slidingTileGame", (SlidingTileGame) game);
             localCenter.setCurGame(game);
             startActivity(tmp);
+        } else if(game instanceof Game2048) {
+            Intent tmp = new Intent(this, fall2018.csc207_project.game2048.GameActivity.class);
+            tmp.putExtra("GlobalCenter", globalCenter);
+            tmp.putExtra("game2048", (Game2048) game);
+            localCenter.setCurGame(game);
+            startActivity(tmp);
+        }
 
-            finish();
+        finish();
     }
 
     private void initButtonLabel(Button button, List<Object> slot) {

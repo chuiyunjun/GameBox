@@ -13,6 +13,7 @@ import java.util.LinkedList;
 import fall2018.csc207_project.GameCenter.GlobalCenter;
 import fall2018.csc207_project.GameCenter.LocalGameCenter;
 import fall2018.csc207_project.R;
+import fall2018.csc207_project.UI.StartingActivity;
 
 /**
  * The setting for SlidingTileGame activity.
