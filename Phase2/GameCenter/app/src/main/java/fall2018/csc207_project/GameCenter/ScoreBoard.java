@@ -13,6 +13,8 @@ import java.util.TreeMap;
 public abstract class ScoreBoard extends Observable implements Serializable {
     private static final long serialVersionUID = 4L;
 
+    private String gameName;
+
     /**
      * fixed length top scores among all users
      */
