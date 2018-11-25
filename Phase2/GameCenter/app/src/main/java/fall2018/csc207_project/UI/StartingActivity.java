@@ -7,13 +7,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import fall2018.csc207_project.GameCenter.Game;
 import fall2018.csc207_project.GameCenter.GlobalCenter;
 import fall2018.csc207_project.GameCenter.LocalGameCenter;
 import fall2018.csc207_project.R;
 import fall2018.csc207_project.SlidingTileGame.ComplexityActivity;
-import fall2018.csc207_project.UI.LoadOrSaveGameActivity;
-import fall2018.csc207_project.UI.LocalCenterActivity;
 import fall2018.csc207_project.game2048.GameActivity;
 
 public class StartingActivity extends AppCompatActivity {

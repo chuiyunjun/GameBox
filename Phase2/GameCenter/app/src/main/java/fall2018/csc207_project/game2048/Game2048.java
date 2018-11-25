@@ -1,6 +1,7 @@
 package fall2018.csc207_project.game2048;
 
 import java.io.Serializable;
+import java.util.LinkedList;
 import java.util.List;
 
 import fall2018.csc207_project.GameCenter.Game;
@@ -11,22 +12,40 @@ public class Game2048 extends Game implements Serializable {
 
     private Board board;
     private int complexity;
-    private int undoSteps;
+    private int undoStep;
     private int score;
     private int highestTile;
     private boolean moveAvailable;
+    private LinkedList<Board> undoList = new LinkedList<>();
 
-//    Game2048(Board board){
-//        this.board = board;
-//        this.complexity = board.getBoardSize();
-//        this.score = 0;
-//        //TODO: LATER
-//    }
 
     Game2048(int complexity){
         this.board = new Board(complexity);
         this.complexity = complexity;
         this.score = 0;
+    }
+
+    int getUndoListSize(){
+        return this.undoList.size();
+    }
+
+    void setUndoStep(int undoStep) {
+        this.undoStep = undoStep;
+    }
+
+    private void addToUndoList(Board board){
+        if (this.undoList.size() < this.undoStep){
+            this.undoList.add(board);
+        }else{
+            this.undoList.removeFirst();
+            this.undoList.add(board);
+        }
+    }
+
+    void undo(){
+        if (this.undoList.size() != 0) {
+            this.board = undoList.removeLast();
+        }
     }
 
     @Override

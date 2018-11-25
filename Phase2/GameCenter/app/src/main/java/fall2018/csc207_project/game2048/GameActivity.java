@@ -11,6 +11,7 @@ import fall2018.csc207_project.UI.StartingActivity;
 
 public class GameActivity extends AppCompatActivity {
     private GlobalCenter globalCenter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,7 +22,6 @@ public class GameActivity extends AppCompatActivity {
 //        addRestartButtonListener();
 //        addUndoButtonListener();
 //        initTextView();
-
     }
 
     private void addRestartButtonListener(){

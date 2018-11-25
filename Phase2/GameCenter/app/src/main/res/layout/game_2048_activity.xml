@@ -97,6 +97,8 @@
             android:layout_weight="1"
             />
 
+
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -106,6 +108,18 @@
             android:textColor="@color/orange"
             android:textStyle="bold"
             android:text="Undo" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textSize="22sp"
+            android:gravity="center"
+            android:textColor="@color/orange"
+            android:textStyle="bold"
+            android:text="(0)"
+
+            />
+
 
     </LinearLayout>
 
