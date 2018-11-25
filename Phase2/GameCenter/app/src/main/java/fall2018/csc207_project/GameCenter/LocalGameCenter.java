@@ -20,6 +20,10 @@ public class LocalGameCenter implements Serializable {
 
     private String curGameName;
 
+    public Map getLocalGames(){
+        return localGames;
+    }
+
     public LocalGameCenter() {
         curGame = null;
         curGameName = null;

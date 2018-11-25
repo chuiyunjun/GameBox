@@ -187,4 +187,17 @@ public abstract class ScoreBoard extends Observable implements Serializable {
             }
         }
     }
+
+    public HashMap<String, Integer[]> getTopUserScores(){
+        return topUserScores;
+    }
+
+    public int getUserTopScore(String curUserName){
+        Integer[] topFiveScores = getPlayerScore(curUserName);
+        int max = topFiveScores[0];
+        for(int i = 1; i != perUser; i++){
+            if(max < topFiveScores[1]){max = topFiveScores[1];}
+        }
+        return max;
+    }
 }

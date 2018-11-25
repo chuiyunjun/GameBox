@@ -25,6 +25,10 @@ public class GlobalCenter implements Serializable, Observer{
         return accounts;
     }
 
+    public Map getScoreBoards(){
+        return scoreboards;
+    }
+
     public Boolean signIn(String username, String password){
 
         if (accounts.containsKey(username)){
