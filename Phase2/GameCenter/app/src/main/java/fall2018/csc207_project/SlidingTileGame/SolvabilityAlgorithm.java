@@ -38,6 +38,7 @@ class SolvabilityAlgorithm {
             // if the blank tile is found, assign its bottom row order to bottomOrder
             if (tile.getId() == width * width) {
                 bottomOrder = width - ((tileID.size() - 1) / width);
+                tileID.remove(tileID.size() - 1);
             }
         }
     }
@@ -62,7 +63,7 @@ class SolvabilityAlgorithm {
      * return whether the game is solvable
      * @return whether the game is solvable
      */
-    public boolean solvable() {
+    boolean solvable() {
         boolean result = false;
         int numOfInversion = countInversion();
         if ((width % 2 != 0) && (numOfInversion % 2 == 0)) {
