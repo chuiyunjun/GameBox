@@ -2,6 +2,7 @@ package fall2018.csc207_project.game2048;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Observable;
 
 import fall2018.csc207_project.GameCenter.Game;
 
@@ -44,7 +45,7 @@ public class Game2048 extends Game implements Serializable {
     public Board getBoard(){
         return board;
     }
-
+    public int getScore(){return score;}
     private boolean doMove(int countDownFrom, int yDirection, int xDirection) {
         boolean moved = false;
         int target = 2048;
