@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import fall2018.csc207_project.GameCenter.GlobalCenter;
 import fall2018.csc207_project.GameCenter.LocalGameCenter;
+import fall2018.csc207_project.GameCenter.ScoreBoard;
 import fall2018.csc207_project.R;
 import fall2018.csc207_project.SlidingTileGame.ComplexityActivity;
 import fall2018.csc207_project.game2048.GameActivity;
@@ -32,6 +33,8 @@ public class StartingActivity extends AppCompatActivity {
         addNewGameButtonListener();
         addLoadGameButtonListener();
         addSaveGameButtonListener();
+        addMyScoreButtonListener();
+        addGlobalScoreButtonListener();
 
     }
 
@@ -84,6 +87,34 @@ public class StartingActivity extends AppCompatActivity {
                 switchToGameSlot(false);
             }
         });
+    }
+
+    public void addMyScoreButtonListener() {
+        Button button = findViewById(R.id.my_score_button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switchToScoreBoard(true);
+            }
+        });
+    }
+
+    public void addGlobalScoreButtonListener() {
+        Button button = findViewById(R.id.global_score_button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switchToScoreBoard(false);
+            }
+        });
+    }
+
+    public void switchToScoreBoard(Boolean state) {
+        Intent tmp = new Intent(this, ScoreBoardActivity.class);
+        tmp.putExtra("GlobalCenter", globalCenter);
+        tmp.putExtra("perPlayer?", state);
+        startActivity(tmp);
+        finish();
     }
 
     public void switchToComplexity() {

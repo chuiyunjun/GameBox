@@ -18,7 +18,7 @@ public abstract class ScoreBoard extends Observable implements Serializable {
     /**
      * fixed length top scores among all users
      */
-    public static int[] topScores = new int[10];
+    private int[] topScores;
 
     /**
      * maps index in topScores to matching userName
@@ -28,7 +28,7 @@ public abstract class ScoreBoard extends Observable implements Serializable {
     /**
      * maps userName to array of highest scores
      */
-    public static HashMap<String, Integer[]> topUserScores = new HashMap<String, Integer[]>();
+    private HashMap<String, Integer[]> topUserScores = new HashMap<String, Integer[]>();
 
     /**
      * highest scores keep per user
@@ -116,7 +116,7 @@ public abstract class ScoreBoard extends Observable implements Serializable {
      * return highest scores among all users of the game
      * @return a HashMap maps userName of users achieve top scores to their scores
      */
-    public HashMap getGameScore() {
+    private HashMap<String, Integer> getGameScore() {
         HashMap<String, Integer> globalTops = new HashMap<String, Integer>();
         for (int i = 0; i < topScores.length; i++) {
             String user = indexList.get(i);

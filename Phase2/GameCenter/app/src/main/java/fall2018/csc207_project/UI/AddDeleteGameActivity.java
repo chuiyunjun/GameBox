@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import fall2018.csc207_project.GameCenter.GlobalCenter;
 import fall2018.csc207_project.GameCenter.LocalGameCenter;
+import fall2018.csc207_project.GameCenter.SlidingTileScoreBoard;
 import fall2018.csc207_project.R;
 
 import java.util.Set;
@@ -72,6 +73,7 @@ public class AddDeleteGameActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 localCenter.addGame("slidingTileGame");
+                globalCenter.addScoreBoard("slidingTileGame", new SlidingTileScoreBoard());
                 button.setVisibility(View.GONE);
             }
         });

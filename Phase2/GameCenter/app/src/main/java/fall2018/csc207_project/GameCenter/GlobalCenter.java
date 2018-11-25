@@ -77,7 +77,7 @@ public class GlobalCenter implements Serializable, Observer{
         return localCenters.get(username);
     }
 
-    private void addScoreBoard(String gameName, ScoreBoard scoreboard){
+    public void addScoreBoard(String gameName, ScoreBoard scoreboard){
         if (!scoreboards.containsKey(gameName)){
             scoreboards.put(gameName, scoreboard);
         }

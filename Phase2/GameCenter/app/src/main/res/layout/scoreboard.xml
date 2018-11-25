@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/score_board_canvas"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -19,37 +20,21 @@
         >
 
         <TextView
+            android:id="@+id/score_board_band"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:textSize="22sp"
-            android:gravity="center"
-            android:textStyle="bold"
-            android:layout_weight="1"
-            android:text="NO."/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="Player"
+            android:text="Player Score:"
             android:textStyle="bold"
             android:textSize="22sp"
             android:gravity="center"
             android:layout_weight="1" />
 
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:textSize="22sp"
-            android:gravity="center"
-            android:textStyle="bold"
-            android:layout_weight="1"
-            android:text="Score" />
-
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
         android:layout_height="wrap_content">
 
         <TextView
@@ -58,8 +43,8 @@
             android:textSize="22sp"
             android:gravity="center"
             android:textStyle="bold"
-            android:layout_weight="1"
-            android:text="NO."/>
+            android:layout_weight="1.5"
+            android:text="#"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -68,7 +53,7 @@
             android:textStyle="bold"
             android:textSize="22sp"
             android:gravity="center"
-            android:layout_weight="1" />
+            android:layout_weight="0.6" />
 
         <TextView
             android:layout_width="wrap_content"
