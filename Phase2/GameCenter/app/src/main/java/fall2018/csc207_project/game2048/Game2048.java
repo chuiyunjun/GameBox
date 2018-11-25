@@ -11,13 +11,13 @@ public class Game2048 extends Game implements Serializable {
 
     private static final long serialVersionUID = 772895212901L;
 
-    private Board board;
+    private Board board;  // settings index 0
     private int complexity;
-    private int undoStep;
-    private int score;
+    private int undoStep; // settings index 2
+    private int score;     // settings index 1
     private int highestTile;
     private boolean moveAvailable;
-    private LinkedList<Board> undoList = new LinkedList<>();
+    private LinkedList<Board> undoList = new LinkedList<>(); // setting index 3
 
 
     Game2048(int complexity){
@@ -33,6 +33,10 @@ public class Game2048 extends Game implements Serializable {
     void setUndoStep(int undoStep) {
         this.undoStep = undoStep;
     }
+
+    public int getUndoStep(){return undoStep;}
+
+    public LinkedList<Board> getUndoList(){return undoList;}
 
     private void addToUndoList(Board board){
         if (this.undoList.size() < this.undoStep){
