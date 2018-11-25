@@ -32,19 +32,19 @@ public class GameActivity extends AppCompatActivity implements Observer {
         globalCenter = (GlobalCenter) (getIntent().getSerializableExtra("GlobalCenter"));
         LocalGameCenter localGameCenter = globalCenter.getLocalGameCenter(globalCenter.getCurrentPlayer().getUsername());
         LinkedList<Object> settings = new LinkedList<>();
-        game = (Game2048)localGameCenter.newGame("Game2048", settings);
-        game.addObserver(this);
+        game = (Game2048) localGameCenter.newGame("Game2048", settings);
+        game = new Game2048(4);
         localGameCenter.setCurGameName("Game2048");
         setContentView(R.layout.game_2048_activity);
 //        addRestartButtonListener();
 //        addUndoButtonListener();
 //        initTextView();
         scoreButton = findViewById(R.id.current_score);
-        scoreButton.setText(game.getScore());
+        scoreButton.setText("" + game.getScore());
         highestScoreButton = findViewById(R.id.highest_score);
         //TODO according to scoreboard
 
-
+        game.addObserver(this);
     }
 
     private void addRestartButtonListener(){
@@ -92,7 +92,7 @@ public class GameActivity extends AppCompatActivity implements Observer {
         curGameSettings.set(3, game.getUndoList());
 
 //TODO update scoreboard of 2048
-        
+
 
     }
 }
