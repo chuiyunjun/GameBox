@@ -4,12 +4,13 @@ package fall2018.csc207_project.game2048;
 import android.content.Context;
 import android.widget.Toast;
 
+import java.io.Serializable;
 
 
-public class MovementController {
+public class MovementController implements Serializable {
 
     private Game2048 game;
-
+    public static final long SERIALIZATIONID = 78273L;
     public static final int UP = 1;
     public static final int DOWN = 2;
     public static final int LEFT = 3;
@@ -48,4 +49,8 @@ public class MovementController {
         }
         return hasMoved;
     }
+
+
+    private void saveToFile(){};
+    private void loadFromFile(){};
 }
