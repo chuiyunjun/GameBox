@@ -12,7 +12,7 @@ public class LocalGameCenter implements Serializable {
 
     private final int SAVESLOTNUM = 3;
 
-    private final int AUTOSAVEINDEX = 3;
+    public final int AUTOSAVEINDEX = 3;
 
     private Map<String, LinkedList<List<Object>>> localGames;
 
