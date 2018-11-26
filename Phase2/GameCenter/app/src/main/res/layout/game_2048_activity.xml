@@ -41,7 +41,10 @@
             android:background="@color/tileHolderBackground"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
+            android:textSize="20sp"
+            android:textStyle="bold"
             android:clickable="false"
+            android:gravity="center"
             android:textColor="@color/backgroundMain"
             android:layout_weight="2"/>
 
@@ -49,6 +52,9 @@
             android:id="@+id/highest_score"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:textStyle="bold"
             android:clickable="false"
             android:textColor="@color/backgroundMain"
             android:background="@color/tileHolderBackground"
@@ -102,6 +108,7 @@
 
 
         <Button
+            android:id="@+id/undo_button_2048"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:textSize="22sp"
@@ -112,6 +119,7 @@
             android:text="Undo" />
 
         <TextView
+            android:id="@+id/undo_step_left_2048"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:textSize="22sp"

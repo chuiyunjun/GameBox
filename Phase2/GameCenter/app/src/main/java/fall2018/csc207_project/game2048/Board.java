@@ -15,7 +15,6 @@ public class Board implements Serializable {
     private int boardSize;
     private Tile[][] tileTable;
     private List<Integer> blankTileList = new LinkedList<>();
-    //private List<Point> emptyPoints = new ArrayList<>();
 
 
     Board(int complexity){
@@ -57,6 +56,16 @@ public class Board implements Serializable {
 
     private void addTile(int num, int x, int y) {
         tileTable[x][y].setNum(num);
+    }
+
+    public void syncBoard(List<Integer> list) {
+        int count = 0;
+        for(int y=0;y<boardSize;y++) {
+            for (int x=0;x<boardSize;x++) {
+                tileTable[x][y].setNum(list.get(count));
+                count+=1;
+            }
+        }
     }
 
 

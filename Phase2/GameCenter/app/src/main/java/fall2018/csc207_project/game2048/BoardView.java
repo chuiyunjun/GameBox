@@ -75,7 +75,7 @@ public class BoardView extends GridLayout {
         }
     }
 
-    private void updateDisplay() {
+    public void updateDisplay() {
         Board board = mController.getGame().getBoard();
         for(int y = 0; y < complexity; y++) {
             for(int x = 0; x < complexity; x++) {
