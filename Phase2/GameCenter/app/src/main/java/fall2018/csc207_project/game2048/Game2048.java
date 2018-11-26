@@ -55,6 +55,16 @@ public class Game2048 extends Game implements Serializable {
 
     public LinkedList<LinkedList<Integer>> getUndoList(){return undoList;}
 
+    public void restart(){
+        this.board = new Board(complexity);
+        this.undoStep = 3;
+        this.score = 0;
+        this.undoList.clear();
+        addToUndoList();
+        setChanged();
+        notifyObservers();
+    }
+
     private void addToUndoList(){
         if(this.undoList.size()<this.undoStep+1)
             this.undoList.add(record(board));

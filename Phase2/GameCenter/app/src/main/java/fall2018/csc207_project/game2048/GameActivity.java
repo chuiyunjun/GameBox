@@ -40,7 +40,7 @@ public class GameActivity extends AppCompatActivity implements Observer {
         game.addObserver(this);
 
         setUndoButtonListener();
-
+        setRestartButtonListener();
         initTextView();
 
 
@@ -70,6 +70,16 @@ public class GameActivity extends AppCompatActivity implements Observer {
             @Override
             public void onClick(View v) {
                 game.undo();
+            }
+        });
+
+    }
+    public void setRestartButtonListener() {
+        Button button = findViewById(R.id.restart);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                game.restart();
             }
         });
 
