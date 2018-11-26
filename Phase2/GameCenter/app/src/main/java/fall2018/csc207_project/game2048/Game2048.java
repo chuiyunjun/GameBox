@@ -20,10 +20,21 @@ public class Game2048 extends Game implements Serializable {
     private LinkedList<Board> undoList = new LinkedList<>(); // setting index 3
 
 
-    Game2048(int complexity){
-        this.board = new Board(complexity);
-        this.complexity = complexity;
-        this.score = 0;
+    public Game2048(List<Object> settings) {
+        if(settings.size() == 1) {
+            this.complexity = (Integer) settings.get(0);
+            this.board = new Board(complexity);
+            this.score = 0;
+        } else {
+            this.board = (Board) settings.get(0);
+            this.complexity = (Integer) settings.get(1);
+            this.undoStep = (Integer) settings.get(2);
+            this.score = (Integer) settings.get(3);
+            this.highestTile = (Integer) settings.get(4);
+            this.moveAvailable = (Boolean) settings.get(5);
+            this.undoList = (LinkedList<Board>) settings.get(6);
+        }
+
     }
 
     int getUndoListSize(){
@@ -52,6 +63,8 @@ public class Game2048 extends Game implements Serializable {
             this.board = undoList.removeLast();
         }
     }
+
+
 
     @Override
     public List<Object> getSetting() {
@@ -134,8 +147,11 @@ public class Game2048 extends Game implements Serializable {
 
         }
 
-        System.out.println("Your Score: -----------------------------> "+score+"!!!!!!!!!!!!!!!!!!!");
+        setChanged();
+        notifyObservers();
 
+        System.out.println("Your Score: -----------------------------> "+score+"!!!!!!!!!!!!!!!!!!!");
+        
         return moved;
     }
 

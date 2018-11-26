@@ -19,8 +19,8 @@ public class MovementController implements Serializable {
     public static final int COMPLEXITY = 4;
 
 
-    MovementController(int complexity){
-        this.game = new Game2048(complexity);
+    MovementController(Game2048 game){
+        this.game = game;
     }
 
     public Game2048 getGame(){
@@ -50,7 +50,7 @@ public class MovementController implements Serializable {
         return hasMoved;
     }
 
-
-    private void saveToFile(){};
-    private void loadFromFile(){};
+    public void setGame(Game2048 game) {
+        this.game = game;
+    }
 }

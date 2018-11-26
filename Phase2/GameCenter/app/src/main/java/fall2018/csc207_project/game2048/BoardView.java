@@ -10,6 +10,7 @@ import android.widget.FrameLayout;
 import android.widget.GridLayout;
 import android.widget.TextView;
 
+import fall2018.csc207_project.GameCenter.Game;
 import fall2018.csc207_project.R;
 
 
@@ -19,6 +20,7 @@ public class BoardView extends GridLayout {
     private MovementController mController;
     private static final int DEFAULT_WIDTH = 245;
     private int complexity = 4;
+    private Game2048 game;
 
 
     public BoardView(Context context) {
@@ -40,6 +42,12 @@ public class BoardView extends GridLayout {
         label.setTextSize(32);
         label.setBackgroundColor(getResources().getColor(R.color.tileHolder));
         label.setGravity(Gravity.CENTER);
+    }
+
+    public void setGame(Game2048 game) {
+        this.game = game;
+        mController.setGame(game);
+        initViewTable();
     }
 
 
@@ -78,12 +86,9 @@ public class BoardView extends GridLayout {
 
     private void initBoardView(final Context context) {
 
-        mController = new MovementController(complexity);
-
         setColumnCount(complexity);
-        //setBackgroundColor(getResources().getColor(R.color.tileHolderBackground));
         tileLabel = new TextView[complexity][complexity];
-        initViewTable();
+        mController = new MovementController(game);
 
         setOnTouchListener(new View.OnTouchListener(){
             private float startX,startY,offsetX,offsetY;

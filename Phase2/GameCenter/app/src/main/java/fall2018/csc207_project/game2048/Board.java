@@ -5,6 +5,7 @@ import android.graphics.Point;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Board implements Serializable {
@@ -13,7 +14,8 @@ public class Board implements Serializable {
 
     private int boardSize;
     private Tile[][] tileTable;
-    private List<Point> emptyPoints = new ArrayList<>();
+    private List<Integer> blankTileList = new LinkedList<>();
+    //private List<Point> emptyPoints = new ArrayList<>();
 
 
     Board(int complexity){
@@ -57,19 +59,17 @@ public class Board implements Serializable {
         tileTable[x][y].setNum(num);
     }
 
+
     public void addRandomTile() {
+        blankTileList.clear();
 
-        emptyPoints.clear();
-
-        for (int y=0;y<boardSize;y++) {
-            for (int x=0;x<boardSize;x++) {
-                if(tileTable[x][y].getNum() <= 0)
-                    emptyPoints.add(new Point(x,y));
-            }
+        for(int i=0;i < boardSize*boardSize;i++) {
+            if(tileTable[i/boardSize][i%boardSize].getNum() <= 0)
+                blankTileList.add(i);
         }
-
-        Point p = emptyPoints.remove((int)(Math.random()*emptyPoints.size()));
-        tileTable[p.x][p.y].setNum(Math.random()>0.1?2:4);
+        int randomIndex = (int)(Math.random()*blankTileList.size());
+        int point = blankTileList.get(randomIndex);
+        tileTable[point/boardSize][point%boardSize].setNum(Math.random()>0.1?2:4);
     }
 
 

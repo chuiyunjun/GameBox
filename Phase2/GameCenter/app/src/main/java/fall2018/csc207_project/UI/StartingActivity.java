@@ -7,11 +7,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.LinkedList;
+
 import fall2018.csc207_project.GameCenter.GlobalCenter;
 import fall2018.csc207_project.GameCenter.LocalGameCenter;
 import fall2018.csc207_project.GameCenter.ScoreBoard;
 import fall2018.csc207_project.R;
 import fall2018.csc207_project.SlidingTileGame.ComplexityActivity;
+import fall2018.csc207_project.SlidingTileGame.SlidingTileGame;
+import fall2018.csc207_project.game2048.Game2048;
 import fall2018.csc207_project.game2048.GameActivity;
 
 public class StartingActivity extends AppCompatActivity {
@@ -125,7 +129,11 @@ public class StartingActivity extends AppCompatActivity {
     }
 
     public void switchTo2048() {
-        Intent tmp = new Intent(this, GameActivity.class);
+        LinkedList<Object> settings = new LinkedList<>();
+        settings.add(4);
+        Game2048 game = (Game2048) localCenter.newGame("game2048", settings);
+        Intent tmp = new Intent(this, fall2018.csc207_project.game2048.GameActivity.class);
+        localCenter.setCurGame(game);
         tmp.putExtra("GlobalCenter", globalCenter);
         startActivity(tmp);
         finish();
