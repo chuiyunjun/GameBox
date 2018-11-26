@@ -24,6 +24,7 @@ public class LocalCenterActivity extends AppCompatActivity {
         setContentView(fall2018.csc207_project.R.layout.local_center);
         globalCenter = (GlobalCenter) (getIntent().getSerializableExtra("GlobalCenter"));
         localCenter = globalCenter.getLocalGameCenter(globalCenter.getCurrentPlayer().getUsername());
+        localCenter.setCurGame(null);
 
         TextView welcome = findViewById(fall2018.csc207_project.R.id.welcome);
         welcome.setText("Welcome!\nuser: " + globalCenter.getCurrentPlayer().getUsername());

@@ -131,11 +131,15 @@ public class LoadOrSaveGameActivity extends AppCompatActivity {
     private void initButtonLabel(Button button, List<Object> slot) {
         if(slot.size() == 0) {
             button.setText("(Blank Slot)");
-        }
-        else {
-            int complexity = (Integer) slot.get(0);
-            String time = (String) slot.get(5);
+        } else if(localCenter.getCurGameName().equals("slidingTileGame")){
+            int complexity = (Integer) ((LinkedList<Object>) slot).getFirst();;
+            String time = (String) ((LinkedList<Object>) slot).getLast();
             button.setText("Complexity: " + complexity + "x" + complexity +"\n" + "Save Time: "+time);
+        } else if(localCenter.getCurGameName().equals("game2048")) {
+            //TODO:
+            int score = (Integer) slot.get(3);
+            String time = (String) ((LinkedList<Object>) slot).getLast();
+            button.setText("Score: "+score+"\n" + "Save Time: "+time);
         }
     }
 

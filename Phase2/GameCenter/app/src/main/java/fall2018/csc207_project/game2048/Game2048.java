@@ -1,6 +1,7 @@
 package fall2018.csc207_project.game2048;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Observable;
@@ -30,17 +31,33 @@ public class Game2048 extends Game implements Serializable {
             addToUndoList();
 
         } else {
-            this.board = (Board) settings.get(0);
+            this.board = new Board((Board)settings.get(0));
             this.complexity = (Integer) settings.get(1);
             this.undoStep = (Integer) settings.get(2);
             this.score = (Integer) settings.get(3);
             this.highestTile = (Integer) settings.get(4);
             this.moveAvailable = (Boolean) settings.get(5);
-            this.undoList = (LinkedList<LinkedList<Integer>>) settings.get(6);
+            this.undoList = new LinkedList<>();
+            this.undoList.addAll((LinkedList)settings.get(6));
+
 
             addToUndoList();
         }
 
+    }
+
+    @Override
+    public List<Object> getSetting() {
+        LinkedList<Object> result = new LinkedList<>();
+        result.add(new Board(board));
+        result.add(complexity);
+        result.add(undoStep);
+        result.add(score);
+        result.add(highestTile);
+        result.add(moveAvailable);
+        result.add(undoList);
+
+        return result;
     }
 
     int getUndoListSize(){
@@ -89,13 +106,6 @@ public class Game2048 extends Game implements Serializable {
         }
     }
 
-
-
-    @Override
-    public List<Object> getSetting() {
-        //TODO: LATER
-        return null;
-    }
 
     public int getHighestTile(){return highestTile;}
 

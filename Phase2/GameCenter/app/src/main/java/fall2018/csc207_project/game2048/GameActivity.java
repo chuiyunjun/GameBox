@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -42,8 +44,12 @@ public class GameActivity extends AppCompatActivity implements Observer {
         setUndoButtonListener();
 
         initTextView();
+    }
 
-
+    private void autoSave() {
+        String timeStamp = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
+                .format(Calendar.getInstance().getTime());
+        globalCenter.getLocalGameCenter(globalCenter.getCurrentPlayer().getUsername()).autoSave(timeStamp);
     }
 
 
@@ -82,5 +88,6 @@ public class GameActivity extends AppCompatActivity implements Observer {
         score.setText("Score\n"+game.getScore());
         undoStepLeft.setText("("+game.getUndoStep()+")");
         gameView.updateDisplay();
+        autoSave();
     }
 }

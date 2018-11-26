@@ -23,11 +23,26 @@ public class Board implements Serializable {
         addTiles();
         addRandomTile();
         addRandomTile();
+    }
 
+    Board(Board board) {
+        this.boardSize = board.getBoardSize();
+        tileTable = new Tile[boardSize][boardSize];
+        for(int y=0;y<boardSize;y++) {
+            for(int x=0;x<boardSize;x++) {
+                tileTable[x][y] = new Tile(board.getTile(x,y).getNum());
+            }
+        }
+        blankTileList = new LinkedList<>();
+        blankTileList.addAll(board.getBlankTileList());
     }
 
     public void setTileTable(Tile[][] newTiles){
         this.tileTable = newTiles;
+    }
+
+    public List<Integer> getBlankTileList() {
+        return this.blankTileList;
     }
 
     public Tile[][] getTileTable(){

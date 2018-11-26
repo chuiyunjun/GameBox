@@ -101,7 +101,7 @@ public class SlidingTileGame extends Game implements Serializable {
      */
     @Override
     public List<Object> getSetting(){
-        ArrayList<Object> result = new ArrayList<>();
+        LinkedList<Object> result = new LinkedList<>();
         result.add(this.complexity);
         result.add(this.board);
         result.add(this.numSteps);
