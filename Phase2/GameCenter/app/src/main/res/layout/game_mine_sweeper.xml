@@ -33,8 +33,7 @@
         android:layout_height="wrap_content"
         android:text="@string/help" />
 
-    <toosimple.tooyoung.mmmm.BoardView xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <fall2018.csc207_project.MineSweeper.BoardView xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/grid"
         android:layout_width="445dp"
         android:layout_height="410dp"
@@ -46,7 +45,7 @@
         android:layout_marginBottom="60dp"
         android:background="@color/white">
 
-    </toosimple.tooyoung.mmmm.BoardView>
+    </fall2018.csc207_project.MineSweeper.BoardView>
 
 
 </LinearLayout>
