@@ -103,6 +103,16 @@ public class BoardView extends GridLayout {
         }
     }
 
+    public void setTileImage(int index) {
+        Board board = movementController.getGame().getBoard();
+        Tile[][] boardTable = board.getTileTable();
+        int boardSize = board.getBoardSize();
+        int row = index / boardSize;
+        int col = index%boardSize;
+        Tile tile = boardTable[row][col];
+        tileTable[row][col].setBackgroundResource(tile.getTileImage());
+    }
+
 
 
 

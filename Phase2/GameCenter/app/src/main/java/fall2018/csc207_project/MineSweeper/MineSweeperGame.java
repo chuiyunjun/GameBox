@@ -28,14 +28,15 @@ public class MineSweeperGame extends Observable {
             if(row<boardSize-1&&col<boardSize-1&&!board.getTileTable()[row+1][col+1].isFliped()){flipTile(row+1,col+1);}
         }
         setChanged();
-        notifyObservers();
+        notifyObservers(row*boardSize+col);
     }
 
 
     public void labelTile(int row, int col){
         board.getTileTable()[row][col].setLabeled(!board.getTileTable()[row][col].isLabeled());
         setChanged();
-        notifyObservers();
+        int boardSize = board.getBoardSize();
+        notifyObservers(row*boardSize+col);
     }
 }
 
