@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.GridLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import fall2018.csc207_project.R;
 
@@ -39,7 +40,7 @@ public class BoardView extends GridLayout {
         tileTable = new Button[boardSize][boardSize];
         movementController = new MovementController();
         FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(-1,-1);
-        params.setMargins(10,10,10,10);
+        params.setMargins(1,1,1,1);
 
         for(int x = 0;x < boardSize; x++){
             for(int y = 0; y < boardSize; y++){
@@ -50,14 +51,14 @@ public class BoardView extends GridLayout {
                 button.setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View v){
-                        movementController.flip(getContext(),row, col);
+                        movementController.flip(getContext(), row, col);
 
                     }
                 });
                 button.setOnLongClickListener(new View.OnLongClickListener(){
                     @Override
                     public boolean onLongClick(View v){
-                        movementController.changeLabelState(row, col);
+                        movementController.changeLabelState(getContext(), row, col);
                         return  true;
                     }
                 });
@@ -103,18 +104,15 @@ public class BoardView extends GridLayout {
         }
     }
 
-    public void setTileImage(int index) {
+    public void setTileImage(int index){
         Board board = movementController.getGame().getBoard();
         Tile[][] boardTable = board.getTileTable();
         int boardSize = board.getBoardSize();
         int row = index / boardSize;
-        int col = index%boardSize;
+        int col = index % boardSize;
         Tile tile = boardTable[row][col];
         tileTable[row][col].setBackgroundResource(tile.getTileImage());
     }
-
-
-
 
     public void setGame(MineSweeperGame game) {
         this.game = game;
@@ -122,4 +120,3 @@ public class BoardView extends GridLayout {
 
     }
 }
-

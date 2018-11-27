@@ -1,41 +1,48 @@
 package fall2018.csc207_project.MineSweeper;
 
+import java.io.Serializable;
+
 import fall2018.csc207_project.R;
 
-public class Tile {
-    private int num = 0;
+
+class Tile implements Serializable {
+
+    private static final long serialVersionUID = 24575L;
+
+    private int num;
     private boolean fliped = false;
     private boolean labeled = false;
+    private boolean boom = false;
 
-    Tile(){}
+    Tile(int num){this.num = num;}
 
-    Tile(int n){this.num = n;}
-
-    public void setNum(int num) {
+    void setNum(int num) {
         this.num = num;
     }
 
-    public void setLabeled(boolean labeled) {
+    void setLabeled(boolean labeled) {
         this.labeled = labeled;
     }
 
-    public void setFliped(boolean fliped) {
-        this.fliped = fliped;
+    void setFliped() {
+        this.fliped = true;
     }
 
-    public int getNum() {
+    void setBoom() {this.boom = true;}
+
+    int getNum() {
         return num;
     }
 
-    public boolean isLabeled() {
+    boolean isLabeled() {
         return labeled;
     }
 
-    public boolean isFliped() {
+    boolean isFliped() {
         return fliped;
     }
 
-    public int getTileImage(){
+    int getTileImage(){
         int ret;
         if(!isFliped()){
             if(isLabeled()){
@@ -52,11 +59,15 @@ public class Tile {
             else if(num == 6){ret = R.drawable.number_6;}
             else if(num == 7){ret = R.drawable.number_7;}
             else if(num == 8){ret = R.drawable.number_8;}
-            else {ret = R.drawable.bomb_exploded;} // num = 10
-
-
+            else {
+                // num >= 10
+                if (boom) {
+                    ret = R.drawable.bomb_exploded;
+                } else {
+                    ret = R.drawable.bomb_normal;
+                }
+            }
         }
         return ret;
     }
 }
-

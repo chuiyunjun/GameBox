@@ -39,4 +39,14 @@
     <string name="default_complexity">3</string>
     <string name="custom_slot">Customized save slot:</string>
     <string name="global_score_band">Global Score:</string>
+    <string name="app_name_sweepMine">SweepMine</string>
+    <string name="Welcome_To_Sweep_Mine_Game">Welcome To Sweep Mine Game!</string>
+    <string name="_10_BOMBS">10 BOMBS</string>
+    <string name="_15_BOMBS">15 BOMBS</string>
+    <string name="_20_BOMBS">20 BOMBS</string>
+    <string name="Asking">Please choose the number of bombs as you like</string>
+    <string name="choose">Please choose bomb number as you like!</string>
+    <string name="time">0</string>
+    <string name="flag">0</string>
+    <string name="help">help</string>
 </resources>

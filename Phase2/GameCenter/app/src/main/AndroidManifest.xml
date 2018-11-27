@@ -25,6 +25,9 @@
         <activity android:name="fall2018.csc207_project.SlidingTileGame.GameActivity"></activity>
         <activity android:name="fall2018.csc207_project.game2048.GameActivity"></activity>
         <activity android:name="fall2018.csc207_project.UI.ScoreBoardActivity"></activity>
+        <activity android:name="fall2018.csc207_project.MineSweeper.GameActivity"></activity>
+        <activity android:name="fall2018.csc207_project.MineSweeper.GameComplexityActivity"></activity>
+        <activity android:name="fall2018.csc207_project.MineSweeper.SplashActivity"></activity>
     </application>
 
 </manifest>
