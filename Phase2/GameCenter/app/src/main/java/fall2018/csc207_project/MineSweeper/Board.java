@@ -14,6 +14,7 @@ public class Board{
         tileTable = new Tile[boardSize][boardSize];
         addTiles();
         addBombs(bombNum);
+        
     }
 
 
