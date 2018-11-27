@@ -7,10 +7,12 @@ import android.view.Gravity;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.Map;
+
 import fall2018.csc207_project.GameCenter.GlobalCenter;
 import fall2018.csc207_project.GameCenter.LocalGameCenter;
 import fall2018.csc207_project.GameCenter.ScoreBoard;
-import fall2018.csc207_project.GameCenter.SlidingTileScoreBoard;
+import fall2018.csc207_project.SlidingTileGame.SlidingTileScoreBoard;
 import fall2018.csc207_project.R;
 
 public class ScoreBoardActivity extends AppCompatActivity {
@@ -26,7 +28,7 @@ public class ScoreBoardActivity extends AppCompatActivity {
         globalCenter = (GlobalCenter) (getIntent().getSerializableExtra("GlobalCenter"));
         state = getIntent().getBooleanExtra("perPlayer?", true);
         LocalGameCenter localCenter = globalCenter.getLocalGameCenter(globalCenter.getCurrentPlayer().getUsername());
-        scoreboard = (SlidingTileScoreBoard) globalCenter.getScoreBoards().get(localCenter.getCurGameName());
+        scoreboard = (ScoreBoard) globalCenter.getScoreBoards().get(localCenter.getCurGameName());
         canvas = findViewById(R.id.score_board_canvas);
 
         TextView band = findViewById(R.id.score_board_band);
@@ -41,24 +43,41 @@ public class ScoreBoardActivity extends AppCompatActivity {
     public void displayPlayerScore() {
         Integer[] playerScorers = scoreboard.getPlayerScore(globalCenter.getCurrentPlayer().getUsername());
         for(int x=0;x<playerScorers.length;x++) {
-            LinearLayout ll = new LinearLayout(this);
-            ll.setOrientation(LinearLayout.HORIZONTAL);
+            scoreColumnView((x+1)+"",
+                    globalCenter.getCurrentPlayer().getUsername(),
+                    playerScorers[x] == null? "-":playerScorers[x]+"");
 
-            TextView rank = new TextView(this);
-            TextView name = new TextView(this);
-            TextView score = new TextView(this);
-
-            generateTextView(rank,"1");
-            generateTextView(name, "Admin");
-            generateTextView(score,"2345");
-
-            ll.addView(rank);
-            ll.addView(name);
-            ll.addView(score);
-
-            canvas.addView(ll);
         }
     }
+
+    public void displayGlobalScore() {
+        Map<Integer, String> indexList = scoreboard.getIndexList();
+        int[] topScores = scoreboard.getTopScores();
+
+        for(int x=0;x<topScores.length;x++) {
+            scoreColumnView((x+1)+"",indexList.get(x)==null?"-":indexList.get(x),topScores[x] == 0? "-":topScores[x]+"");
+        }
+    }
+
+    private void scoreColumnView(String rankNum, String user, String topScores) {
+        LinearLayout ll = new LinearLayout(this);
+        ll.setOrientation(LinearLayout.HORIZONTAL);
+
+        TextView rank = new TextView(this);
+        TextView name = new TextView(this);
+        TextView score = new TextView(this);
+
+        generateTextView(rank,rankNum);
+        generateTextView(name, user);
+        generateTextView(score,topScores);
+
+        ll.addView(rank);
+        ll.addView(name);
+        ll.addView(score);
+
+        canvas.addView(ll);
+    }
+
 
     private void generateTextView(TextView view, String text) {
         LinearLayout.LayoutParams param = new LinearLayout.LayoutParams(
@@ -66,16 +85,13 @@ public class ScoreBoardActivity extends AppCompatActivity {
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 1.0f
         );
+        param.setMargins(0,20,0,0);
         view.setText(text);
         view.setTextSize(21);
         view.setGravity(Gravity.CENTER);
         view.setLayoutParams(param);
     }
 
-
-    public void displayGlobalScore() {
-
-    }
 
     public void onBackPressed() {
         Intent tmp = new Intent(this, StartingActivity.class);

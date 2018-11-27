@@ -10,8 +10,9 @@ import android.widget.TextView;
 
 import fall2018.csc207_project.GameCenter.GlobalCenter;
 import fall2018.csc207_project.GameCenter.LocalGameCenter;
-import fall2018.csc207_project.GameCenter.SlidingTileScoreBoard;
+import fall2018.csc207_project.SlidingTileGame.SlidingTileScoreBoard;
 import fall2018.csc207_project.R;
+import fall2018.csc207_project.game2048.Game2048ScoreBoard;
 
 import java.util.Set;
 
@@ -85,6 +86,7 @@ public class AddDeleteGameActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 localCenter.addGame("game2048");
+                globalCenter.addScoreBoard("game2048", new Game2048ScoreBoard());
                 button.setVisibility(View.GONE);
             }
         });

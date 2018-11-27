@@ -27,6 +27,7 @@ public class MovementController implements Serializable {
         return this.game;
     }
     public boolean processMovement(Context context, int direction){
+        System.out.println(game.getPlayer());
         boolean hasMoved = false;
         if(direction == UP){
             hasMoved = game.touchUp();
@@ -39,13 +40,17 @@ public class MovementController implements Serializable {
         }
 
         if(!hasMoved){
-            if(!game.movesAvailable()){Toast.makeText(context, "GAME OVER!", Toast.LENGTH_SHORT).show();}
+            if(!game.movesAvailable()){
+                Toast.makeText(context, "GAME OVER!", Toast.LENGTH_SHORT).show();
+                game.notifyScoreBoard();
+            }
         }
 
         boolean has2048 = game.getHighestTile() >= TARGET;
 
         if(has2048){
             Toast.makeText(context, "YOU WIN!", Toast.LENGTH_SHORT).show();
+            game.notifyScoreBoard();
         }
         return hasMoved;
     }

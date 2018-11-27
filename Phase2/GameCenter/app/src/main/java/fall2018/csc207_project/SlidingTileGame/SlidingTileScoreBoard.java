@@ -1,22 +1,30 @@
-package fall2018.csc207_project.GameCenter;
+package fall2018.csc207_project.SlidingTileGame;
 
 
 import java.io.Serializable;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Observable;
+
+import fall2018.csc207_project.GameCenter.ScoreBoard;
 
 /**
  * The SlidingTileScoreBoard
  */
 
 public class SlidingTileScoreBoard extends ScoreBoard implements Serializable {
-    private static final long serialVersionUID = 6666L;
+    private static final long serialVersionUID = 8271927480642L;
+
+    public SlidingTileScoreBoard() {
+        super();
+    }
+
     /**
      * calculate scores based on setting
      * @param  setting the boardSize at index 0 and moves at index 1 of slidingTileGame
      * @return score based on setting
      * Precondition: boardSize need to be at index 0 and number of moves took should at index 1
      */
-
     @Override
     public int calculateScore(List<Object> setting) {
         int maxScore = 1000;
@@ -36,5 +44,12 @@ public class SlidingTileScoreBoard extends ScoreBoard implements Serializable {
         else {
             return 300;
         }
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        LinkedList<Object> temp = (LinkedList<Object>)arg;
+        int score = calculateScore((List<Object>)(temp.getLast()));
+        this.addNewScore((String)temp.getFirst(),score);
     }
 }

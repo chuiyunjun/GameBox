@@ -86,7 +86,7 @@ public class GlobalCenter implements Serializable, Observer{
     public void saveAll(Context context){
         ObjectOutputStream out = null;
         try {
-            FileOutputStream fileOut = context.openFileOutput("dataBase2.ser", Activity.MODE_PRIVATE);
+            FileOutputStream fileOut = context.openFileOutput("dataBase10.ser", Activity.MODE_PRIVATE);
             out = new ObjectOutputStream(fileOut);
             out.writeObject(this);
             fileOut.getFD().sync();

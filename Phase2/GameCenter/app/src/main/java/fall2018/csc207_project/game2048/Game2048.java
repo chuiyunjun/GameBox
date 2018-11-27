@@ -11,6 +11,8 @@ import fall2018.csc207_project.GameCenter.Game;
 public class Game2048 extends Game implements Serializable {
 
     private static final long serialVersionUID = 772895212901L;
+    private String player;
+    public static final String GAMENAME = "game2048";
 
     private Board board;  // settings index 0
     private int complexity;
@@ -62,6 +64,14 @@ public class Game2048 extends Game implements Serializable {
 
     int getUndoListSize(){
         return this.undoList.size();
+    }
+
+    public void setPlayer(String playerName) {
+        this.player = playerName;
+    }
+
+    public String getPlayer() {
+        return player;
     }
 
     void setUndoStep(int undoStep) {
@@ -182,25 +192,23 @@ public class Game2048 extends Game implements Serializable {
         }
 
 
-        if (moved) {
-
-            if (highestTile < target) {
-                board.clearMerged();
-                board.addRandomTile();
-
-                addToUndoList();
-                setChanged();
-                notifyObservers();
-
-                if (!movesAvailable()) {
-                    System.out.println("Game Over!");
-                }
-            } else if (highestTile == target)
-                System.out.println("You Won!");
-
+        if (moved && highestTile < target) {
+            board.clearMerged();
+            board.addRandomTile();
+            addToUndoList();
+            setChanged();
+            notifyObservers();
         }
         
         return moved;
+    }
+
+    public void notifyScoreBoard() {
+        setChanged();
+        LinkedList info = new LinkedList<>();
+        info.add(player);
+        info.add(this.getSetting());
+        notifyObservers(info);
     }
 
     public boolean touchUp() {

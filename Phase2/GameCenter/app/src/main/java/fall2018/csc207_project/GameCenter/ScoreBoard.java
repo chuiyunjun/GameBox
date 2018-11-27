@@ -8,9 +8,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Observable;
+import java.util.Observer;
 import java.util.TreeMap;
 
-public abstract class ScoreBoard extends Observable implements Serializable {
+public abstract class ScoreBoard implements Observer, Serializable {
     private static final long serialVersionUID = 4L;
 
     private String gameName;
@@ -33,7 +34,7 @@ public abstract class ScoreBoard extends Observable implements Serializable {
     /**
      * highest scores keep per user
      */
-    private int perUser = 5;
+    private int perUser = 10;
 
     /**
      * number of highest scores to keep among all users
@@ -43,10 +44,18 @@ public abstract class ScoreBoard extends Observable implements Serializable {
     /**
      * initialize a default ScoreBoard
      */
-    ScoreBoard() {
+    public ScoreBoard() {
         // each user only appear one time on top board
         this.topScores = new int[totalLength];
         this.indexList = new HashMap<Integer, String>();
+    }
+
+    public Map<Integer, String> getIndexList() {
+        return indexList;
+    }
+
+    public int[] getTopScores() {
+        return topScores;
     }
 
     /**
@@ -87,6 +96,9 @@ public abstract class ScoreBoard extends Observable implements Serializable {
             Arrays.sort(userScores, Collections.<Integer>reverseOrder());
         } else {
             Integer[] scoreArray = new Integer[perUser];
+            for(int i=0;i<scoreArray.length;i++) {
+                scoreArray[i] = 0;
+            }
             scoreArray[0] = score;
             topUserScores.put(userName, scoreArray);
             // update topScores after a new score is added
@@ -109,7 +121,7 @@ public abstract class ScoreBoard extends Observable implements Serializable {
 
         } //Can use getOrDefault here instead
 
-        return new Integer[5];
+        return new Integer[perUser];
     }
 
     /**
@@ -149,7 +161,7 @@ public abstract class ScoreBoard extends Observable implements Serializable {
      * @param setting information needed for calculate socres
      * @return scores based on setting
      */
-    abstract int calculateScore(List<Object> setting);
+    public abstract int calculateScore(List<Object> setting);
 
     /**
      * comparator for map values
