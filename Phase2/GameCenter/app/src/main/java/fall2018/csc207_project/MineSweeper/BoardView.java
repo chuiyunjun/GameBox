@@ -65,7 +65,6 @@ public class BoardView extends GridLayout {
 
                 tileTable[x][y] = button;
                 FrameLayout fl = new FrameLayout(getContext());
-                tileTable[x][y].setBackgroundResource(R.drawable.button);
                 fl.addView(tileTable[x][y], params);
                 addView(fl, DEFAULT_WIDTH, DEFAULT_WIDTH);
             }

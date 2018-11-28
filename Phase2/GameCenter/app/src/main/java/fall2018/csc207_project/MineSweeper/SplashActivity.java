@@ -7,7 +7,9 @@ import android.os.Bundle;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import fall2018.csc207_project.GameCenter.GlobalCenter;
 import fall2018.csc207_project.R;
+import fall2018.csc207_project.UI.StartingActivity;
 
 /**
  *
@@ -19,9 +21,13 @@ import fall2018.csc207_project.R;
  */
 
 public class SplashActivity extends Activity {
+
+    private GlobalCenter globalCenter;
+
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+        globalCenter = (GlobalCenter) (getIntent().getSerializableExtra("GlobalCenter"));
 
         Timer timer = new Timer();
         TimerTask timerTask=new TimerTask() {
@@ -29,10 +35,18 @@ public class SplashActivity extends Activity {
             public void run() {
                 Intent intent = new Intent(SplashActivity.this,
                         GameComplexityActivity.class);
+                intent.putExtra("GlobalCenter", globalCenter);
                 startActivity(intent);
                 SplashActivity.this.finish();
             }
         };
         timer.schedule(timerTask, 1000*2);
+    }
+
+    public void onBackPressed() {
+        Intent tmp = new Intent(this, StartingActivity.class);
+        tmp.putExtra("GlobalCenter", globalCenter);
+        startActivity(tmp);
+        finish();
     }
 }
