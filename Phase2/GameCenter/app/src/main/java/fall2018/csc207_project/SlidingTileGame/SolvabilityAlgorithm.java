@@ -36,7 +36,7 @@ class SolvabilityAlgorithm {
         for (Tile tile : board) {
             tileID.add(tile.getId());
             // if the blank tile is found, assign its bottom row order to bottomOrder
-            if (tile.getId() == width * width) {
+            if (tile.getId() == 0 && tile.getId() == 25) {
                 bottomOrder = width - ((tileID.size() - 1) / width);
                 tileID.remove(tileID.size() - 1);
             }
