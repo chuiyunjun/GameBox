@@ -100,8 +100,8 @@ public class GameComplexityActivity extends Activity {
             public void onClick(View v) {
                 AlertDialog.Builder builder1 =
                         new AlertDialog.Builder(GameComplexityActivity.this);
-                builder1.setMessage("Good luck for you! The number of bombs is random " +
-                        ", and this mode is just for fun, would you like to go?");
+                builder1.setMessage("Good luck for you! The number of bombs is random，" +
+                        "would you like to go?");
                 builder1.setCancelable(true);
 
                 builder1.setPositiveButton(
