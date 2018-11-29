@@ -72,7 +72,9 @@ public class GameActivity extends AppCompatActivity implements Observer {
 
         addHelpButtonListener();
 
-        startTimer();
+        if (secondsPassed < 999) {
+            startTimer();
+        }
     }
 
     /**
@@ -109,6 +111,10 @@ public class GameActivity extends AppCompatActivity implements Observer {
             // notify to call back after 1 seconds
             // basically to remain in the timer loop
             timer.postDelayed(updateTimeElasped, 1000);
+
+            if (secondsPassed >= 999) {
+                stopTimer();
+            }
         }
     };
 
