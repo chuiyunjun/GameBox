@@ -28,23 +28,14 @@ class MovementController {
                 Toast.makeText(context, "GAME OVER!", Toast.LENGTH_SHORT).show();
             }
         }
-        game.checkEnd();
-        if (game.getWin() && game.hasAnnouncedInverted()) {
-            Toast.makeText(context, "YOU WIN!", Toast.LENGTH_SHORT).show();
-            game.setAnnounced();
-            game.notifyScoreBoard();
-        }
+        checkIfEnd(context);
     }
 
     void changeLabelState(Context context, int row, int col) {
         if (!game.getGameOver()) {
             game.labelTile(row, col);
         }
-        game.checkEnd();
-        if (game.getWin() && game.hasAnnouncedInverted()) {
-            Toast.makeText(context, "YOU WIN!", Toast.LENGTH_SHORT).show();
-            game.setAnnounced();
-        }
+        checkIfEnd(context);
     }
 
     void helpPressed(){
@@ -58,5 +49,14 @@ class MovementController {
 
     void changeTime(int newTime){
         game.setSecondPassed(newTime);
+    }
+
+    private void checkIfEnd(Context context) {
+        game.checkEnd();
+        if (game.getWin() && game.hasAnnouncedInverted()) {
+            Toast.makeText(context, "YOU WIN!", Toast.LENGTH_SHORT).show();
+            game.setAnnounced();
+            game.notifyScoreBoard();
+        }
     }
 }
