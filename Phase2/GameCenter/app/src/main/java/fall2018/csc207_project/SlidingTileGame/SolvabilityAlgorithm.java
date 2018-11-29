@@ -93,10 +93,10 @@ class SolvabilityAlgorithm {
         if (width % 2 == 1) {
             return numOfInversion % 2 == 0;
         } else {
-            if (pos % 2 ==1) {
-                result = numOfInversion % 2 == 1;
-            } else {
+            if (pos % 2 == 1) {
                 result = numOfInversion % 2 == 0;
+            } else {
+                result = numOfInversion % 2 == 1;
             }
         }
         return result;
