@@ -49,7 +49,8 @@ public class GameActivity extends AppCompatActivity implements Observer {
         setContentView(R.layout.game_mine_sweeper);
 
         globalCenter = (GlobalCenter) (getIntent().getSerializableExtra("GlobalCenter"));
-        localCenter = globalCenter.getLocalGameCenter(globalCenter.getCurrentPlayer().getUsername());
+        localCenter = globalCenter.getLocalGameCenter(globalCenter.
+                getCurrentPlayer().getUsername());
         game = (MineSweeperGame) localCenter.getCurGame();
         gameView = findViewById(R.id.grid);
         gameView.setGame(game);
@@ -66,7 +67,8 @@ public class GameActivity extends AppCompatActivity implements Observer {
 
         timerCountText.setText(String.valueOf(secondsPassed));
         mineCountText.setText(String.valueOf(flagsLeft));
-        helpLeft.setText(String.valueOf(game.getHelp() ? 1 : 0));
+        String helpAvailable = "(" + String.valueOf(game.getHelp() ? 1 : 0) + ")";
+        helpLeft.setText(helpAvailable);
 
         addHelpButtonListener();
 
@@ -129,7 +131,8 @@ public class GameActivity extends AppCompatActivity implements Observer {
     private void autoSave() {
         String timeStamp = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
                 .format(Calendar.getInstance().getTime());
-        globalCenter.getLocalGameCenter(globalCenter.getCurrentPlayer().getUsername()).autoSave(timeStamp);
+        globalCenter.getLocalGameCenter(globalCenter.getCurrentPlayer().getUsername()).
+                autoSave(timeStamp);
     }
 
     public void addHelpButtonListener(){
@@ -137,13 +140,13 @@ public class GameActivity extends AppCompatActivity implements Observer {
         helpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (game.getHelp()) {
-                    helpLeft.setText(String.valueOf(0));
-                    game.help();
-                } else {
-                    if (!game.getGameOver()) {
-                        Toast.makeText(getApplicationContext(), "Help used up!",
-                                Toast.LENGTH_SHORT).show();
+                if (!game.getGameOver()) {
+                    if (game.getHelp()) {
+                        helpLeft.setText("(0)");
+                        game.help();
+                    } else {
+                            Toast.makeText(getApplicationContext(), "Help used up!",
+                                    Toast.LENGTH_SHORT).show();
                     }
                 }
             }
