@@ -111,7 +111,7 @@ public class SlidingTileGame extends Game implements Serializable {
         result.add(this.undoList);
         return result;
    }
-    public void setPlayer(String name) {
+    void setPlayer(String name) {
         this.player = name;
     }
 
@@ -141,7 +141,7 @@ public class SlidingTileGame extends Game implements Serializable {
 
     }
 
-    public void notifyScoreBoard() {
+    void notifyScoreBoard() {
         setChanged();
         LinkedList info = new LinkedList<>();
         info.add(player);

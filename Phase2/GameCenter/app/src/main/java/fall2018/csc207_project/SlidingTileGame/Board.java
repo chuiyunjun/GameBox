@@ -89,7 +89,7 @@ public class Board extends Observable implements Serializable, Iterable<Tile> {
      * Return the Tiles
      * @return Tiles
      */
-    public Tile[][] getTiles() {
+    Tile[][] getTiles() {
         return tiles;
     }
 

@@ -66,11 +66,11 @@ public class Game2048 extends Game implements Serializable {
         return this.undoList.size();
     }
 
-    public void setPlayer(String playerName) {
+    void setPlayer(String playerName) {
         this.player = playerName;
     }
 
-    public String getPlayer() {
+    String getPlayer() {
         return player;
     }
 
@@ -78,7 +78,7 @@ public class Game2048 extends Game implements Serializable {
         this.undoStep = undoStep;
     }
 
-    public int getUndoStep(){return undoStep;}
+    int getUndoStep(){return undoStep;}
 
     public LinkedList<LinkedList<Integer>> getUndoList(){return undoList;}
 
@@ -127,7 +127,7 @@ public class Game2048 extends Game implements Serializable {
     }
 
 
-    public int getHighestTile(){return highestTile;}
+    int getHighestTile(){return highestTile;}
 
     public int getComplexity() {
         return complexity;
@@ -203,7 +203,7 @@ public class Game2048 extends Game implements Serializable {
         return moved;
     }
 
-    public void notifyScoreBoard() {
+    void notifyScoreBoard() {
         setChanged();
         LinkedList info = new LinkedList<>();
         info.add(player);
@@ -211,24 +211,24 @@ public class Game2048 extends Game implements Serializable {
         notifyObservers(info);
     }
 
-    public boolean touchUp() {
+    boolean touchUp() {
         return doMove(0,-1,0);
     }
 
-    public boolean touchDown() {
+    boolean touchDown() {
         return doMove(complexity * complexity - 1,1,0);
     }
 
-    public boolean touchLeft() {
+    boolean touchLeft() {
         return doMove(0,0,-1);
     }
 
-    public boolean touchRight() {
+    boolean touchRight() {
         return doMove(complexity * complexity - 1, 0, 1);
     }
 
 
-    public boolean movesAvailable(){
+    boolean movesAvailable(){
         moveAvailable = true;
         boolean hasMoves = touchUp() || touchDown() || touchLeft() || touchRight();
         moveAvailable = false;

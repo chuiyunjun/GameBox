@@ -15,19 +15,19 @@ public class Tile implements Serializable {
         this.mergedState = false;
     }
 
-    public void setNum(int number){
+    void setNum(int number){
         this.num = number;
     }
 
-    public int getNum(){
+    int getNum(){
         return this.num;
     }
 
-    public void setMergedState(boolean bool){
-        this.mergedState = bool;
+    void setMergedState(){
+        this.mergedState = false;
     }
 
-    public boolean getMergedState(){
+    boolean getMergedState(){
         return this.mergedState;
     }
 
@@ -39,7 +39,7 @@ public class Tile implements Serializable {
             return super.equals(o);
     }
 
-    public int merge(Tile tile) {
+    int merge(Tile tile) {
         if(this.equals(tile)) {
             this.mergedState = true;
             this.setNum(num *= 2);

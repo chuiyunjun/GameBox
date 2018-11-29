@@ -8,7 +8,7 @@ public class MovementController {
 
     private SlidingTileGame slidingTileGame = null;
 
-    public MovementController() {
+    MovementController() {
     }
 
     public void setSlidingTileGame(SlidingTileGame slidingTileGame) {
@@ -27,11 +27,11 @@ public class MovementController {
             Toast.makeText(context, "Invalid Tap", Toast.LENGTH_SHORT).show();
         }
     }
-    public void undo(){
+    void undo(){
         slidingTileGame.undo();
     }
 
-    public void toastNoMoreUndo(Context context){
+    void toastNoMoreUndo(Context context){
         Toast.makeText(context, "No more undo!", Toast.LENGTH_SHORT).show();
     }
 }

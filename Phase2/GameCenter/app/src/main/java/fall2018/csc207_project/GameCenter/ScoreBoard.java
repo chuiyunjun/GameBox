@@ -78,7 +78,7 @@ public abstract class ScoreBoard implements Observer, Serializable {
      * @param userName which user the score belongs to
      * @param score the score needed to be add
      */
-    public void addNewScore(String userName, Integer score) {
+    protected void addNewScore(String userName, Integer score) {
         if (topUserScores.containsKey(userName)) {
             Integer[] userScores = topUserScores.get(userName);
             //put scores from lowest to highest first so the lower score will be replace first

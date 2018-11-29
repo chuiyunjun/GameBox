@@ -22,8 +22,12 @@ import fall2018.csc207_project.UI.StartingActivity;
 
 public class SplashActivity extends Activity {
 
+    /**
+     * global centre of the game
+     */
     private GlobalCenter globalCenter;
 
+    @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
@@ -43,6 +47,7 @@ public class SplashActivity extends Activity {
         timer.schedule(timerTask, 1000*2);
     }
 
+    @Override
     public void onBackPressed() {
         Intent tmp = new Intent(this, StartingActivity.class);
         tmp.putExtra("GlobalCenter", globalCenter);

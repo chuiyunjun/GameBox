@@ -29,16 +29,45 @@ import fall2018.csc207_project.UI.StartingActivity;
  *
  */
 public class GameActivity extends AppCompatActivity implements Observer {
+
+    /**
+     * global centre of the game
+     */
     private GlobalCenter globalCenter;
+
+    /**
+     * local centre of each user
+     */
     private LocalGameCenter localCenter;
+
+    /**
+     * view of the game
+     */
     private BoardView gameView;
 
+    /**
+     * text view of bombs left in the game
+     */
     TextView mineCountText;
+
+    /**
+     * text view of time left in the game
+     */
     TextView timerCountText;
+
+    /**
+     * text view of help chance left in the game
+     */
     TextView helpLeft;
 
+    /**
+     * timer of the game
+     */
     private Handler timer = new Handler();
 
+    /**
+     * data model of the game
+     */
     private MineSweeperGame game;
 
     @Override
@@ -49,16 +78,23 @@ public class GameActivity extends AppCompatActivity implements Observer {
         globalCenter = (GlobalCenter) (getIntent().getSerializableExtra("GlobalCenter"));
         localCenter = globalCenter.getLocalGameCenter(globalCenter.
                 getCurrentPlayer().getUsername());
-        ScoreBoard scoreBoard = (MineSweeperScoreBoard)globalCenter.getScoreBoards().get(localCenter.getCurGameName());
+        ScoreBoard scoreBoard = (MineSweeperScoreBoard)globalCenter.getScoreBoards().
+                get(localCenter.getCurGameName());
+
+        // find the game model from the local centre
+        // which realize game autosave and change of complexity
         game = (MineSweeperGame) localCenter.getCurGame();
-        gameView = findViewById(R.id.grid);
-        gameView.setGame(game);
         game.setPlayer(globalCenter.getCurrentPlayer().getUsername());
 
+        //initialize game view
+        gameView = findViewById(R.id.grid);
+        gameView.setGame(game);
         gameView.setTableImage();
+
         game.addObserver(this);
         game.addObserver(scoreBoard);
 
+        //set text view of the game
         this.mineCountText = findViewById(R.id.bomb);
         this.timerCountText = findViewById(R.id.time);
         this.helpLeft = findViewById(R.id.help_left);
@@ -117,22 +153,22 @@ public class GameActivity extends AppCompatActivity implements Observer {
         }
     };
 
-    private void updateFlagsLeft() {
-        mineCountText.setText(String.valueOf(game.getFlagsLeft()));
-    }
-
     @Override
     public void update(Observable o, Object arg){
+        //change the image of the tile if flipped
         if (arg instanceof Integer)
             gameView.setTileImage((int) arg);
         if (game.getGameOver()) {
             stopTimer();
         }
-        timerCountText.setText(String.valueOf(game.getSecondsPassed()));
-        updateFlagsLeft();
+        //reset flags number after each move
+        mineCountText.setText(String.valueOf(game.getFlagsLeft()));
         autoSave();
     }
 
+    /**
+     * auto save the game model by time played
+     */
     private void autoSave() {
         String timeStamp = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
                 .format(Calendar.getInstance().getTime());
@@ -140,13 +176,19 @@ public class GameActivity extends AppCompatActivity implements Observer {
                 autoSave(timeStamp);
     }
 
+    /**
+     * call help method of the game model
+     * only one help chance
+     */
     public void addHelpButtonListener(){
         Button helpButton = findViewById(R.id.help);
         helpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // invalidate the button if game end
                 if (!game.getGameOver()) {
                     if (game.getHelp()) {
+                        // change help left to zero on the screen
                         helpLeft.setText("(0)");
                         gameView.getMController().helpPressed();
                     } else {
@@ -157,6 +199,9 @@ public class GameActivity extends AppCompatActivity implements Observer {
         });
     }
 
+    /**
+     * connect the game with global center
+     */
     public void onBackPressed() {
         Intent tmp = new Intent(this, StartingActivity.class);
         tmp.putExtra("GlobalCenter", globalCenter);

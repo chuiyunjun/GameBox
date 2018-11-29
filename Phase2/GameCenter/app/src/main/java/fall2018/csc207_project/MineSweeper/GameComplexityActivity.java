@@ -18,11 +18,22 @@ import fall2018.csc207_project.SlidingTileGame.SlidingTileGame;
 import fall2018.csc207_project.UI.StartingActivity;
 
 
+/**
+ * select the complexity of the game
+ */
 public class GameComplexityActivity extends Activity {
 
+    /**
+     * global game center for all users
+     */
     private GlobalCenter globalCenter;
+
+    /**
+     * local game center for each user
+     */
     private LocalGameCenter localCenter;
 
+    @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_complexity);
@@ -37,6 +48,9 @@ public class GameComplexityActivity extends Activity {
         addLuckyModeButtonListener();
     }
 
+    /**
+     * to the mode that there are 10 bombs
+     */
     private void add10BombsButtonListener(){
         Button l10Button = findViewById(R.id.grid10);
         l10Button.setOnClickListener(new View.OnClickListener() {
@@ -48,6 +62,9 @@ public class GameComplexityActivity extends Activity {
         });
     }
 
+    /**
+     * to the mode that there are 15 bombs
+     */
     private void add15BombsButtonListener(){
         Button l15Button = findViewById(R.id.grid15);
         l15Button.setOnClickListener(new View.OnClickListener() {
@@ -59,6 +76,23 @@ public class GameComplexityActivity extends Activity {
         });
     }
 
+    /**
+     * to the mode that there are 20 bombs
+     */
+    private void add20BombsButtonListener(){
+        Button l20Button = findViewById(R.id.grid20);
+        l20Button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switchToGame(20);
+                finish();
+            }
+        });
+    }
+
+    /**
+     * to the crazy mode, there are 98 bombs
+     */
     private void addCrazyModeButtonListener(){
         Button crazyButton = findViewById(R.id.crazy);
         crazyButton.setOnClickListener(new View.OnClickListener() {
@@ -70,18 +104,22 @@ public class GameComplexityActivity extends Activity {
                         "tricky, would you like to go?");
                 builder1.setCancelable(true);
 
+                //if yes, switch to the game
                 builder1.setPositiveButton(
                         "Yes, please",
                         new DialogInterface.OnClickListener() {
+                            @Override
                             public void onClick(DialogInterface dialog, int id) {
                                 switchToGame(98);
                                 finish();
                             }
                         });
 
+                //if no, nothing happens
                 builder1.setNegativeButton(
                         "No, thanks",
                         new DialogInterface.OnClickListener() {
+                            @Override
                             public void onClick(DialogInterface dialog, int id) {
                                 dialog.cancel();
                             }
@@ -93,6 +131,9 @@ public class GameComplexityActivity extends Activity {
         });
     }
 
+    /**
+     * to the lucky mode, the bomb number is random
+     */
     private void addLuckyModeButtonListener(){
         Button luckButton = findViewById(R.id.lucky);
         luckButton.setOnClickListener(new View.OnClickListener() {
@@ -104,9 +145,11 @@ public class GameComplexityActivity extends Activity {
                         "would you like to go?");
                 builder1.setCancelable(true);
 
+                //if yes, switch to the game
                 builder1.setPositiveButton(
                         "Yes, please",
                         new DialogInterface.OnClickListener() {
+                            @Override
                             public void onClick(DialogInterface dialog, int id) {
                                 Random random = new Random();
                                 int comp = random.nextInt(101);
@@ -120,9 +163,11 @@ public class GameComplexityActivity extends Activity {
                             }
                         });
 
+                //if no, nothing happens
                 builder1.setNegativeButton(
                         "No, thanks",
                         new DialogInterface.OnClickListener() {
+                            @Override
                             public void onClick(DialogInterface dialog, int id) {
                                 dialog.cancel();
                             }
@@ -134,17 +179,9 @@ public class GameComplexityActivity extends Activity {
         });
     }
 
-    private void add20BombsButtonListener(){
-        Button l20Button = findViewById(R.id.grid20);
-        l20Button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                switchToGame(20);
-                finish();
-            }
-        });
-    }
-
+    /**
+     * switch to the selected complexity
+     */
     private void switchToGame(int complexity) {
         LinkedList<Object> settings = new LinkedList<>();
         settings.add(complexity);
@@ -157,6 +194,9 @@ public class GameComplexityActivity extends Activity {
         finish();
     }
 
+    /**
+     * connect with global center
+     */
     public void onBackPressed() {
         Intent tmp = new Intent(this, StartingActivity.class);
         tmp.putExtra("GlobalCenter", globalCenter);

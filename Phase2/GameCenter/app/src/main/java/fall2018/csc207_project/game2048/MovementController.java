@@ -11,11 +11,11 @@ public class MovementController implements Serializable {
 
     private Game2048 game;
     public static final long SERIALIZATIONID = 78273L;
-    public static final int UP = 1;
-    public static final int DOWN = 2;
-    public static final int LEFT = 3;
-    public static final int RIGHT = 4;
-    public static final int TARGET = 2048;
+    private static final int UP = 1;
+    private static final int DOWN = 2;
+    private static final int LEFT = 3;
+    private static final int RIGHT = 4;
+    private static final int TARGET = 2048;
     public static final int COMPLEXITY = 4;
 
 
@@ -26,7 +26,7 @@ public class MovementController implements Serializable {
     public Game2048 getGame(){
         return this.game;
     }
-    public boolean processMovement(Context context, int direction){
+    boolean processMovement(Context context, int direction){
         System.out.println(game.getPlayer());
         boolean hasMoved = false;
         if(direction == UP){
@@ -59,7 +59,7 @@ public class MovementController implements Serializable {
         this.game = game;
     }
 
-    public void undo(){
+    void undo(){
         game.undo();
     }
     public void restart(){
