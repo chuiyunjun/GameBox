@@ -14,7 +14,13 @@ public class MineSweeperScoreBoard extends ScoreBoard implements Serializable {
 
     @Override
     public int calculateScore(List<Object> setting) {
-        return MAXIMUM-(Integer)(setting.get(1));
+        if ((boolean)setting.get(5)) {
+            Board board = new Board((Board) (setting.get(0)));
+            return (int)((MAXIMUM - (Integer) (setting.get(1))) *
+                    ((float)board.getBombNum() / 20));
+        } else {
+            return 0;
+        }
     }
 
     @Override
