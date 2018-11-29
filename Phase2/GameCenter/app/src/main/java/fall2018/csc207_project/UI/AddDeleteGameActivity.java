@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import fall2018.csc207_project.GameCenter.GlobalCenter;
 import fall2018.csc207_project.GameCenter.LocalGameCenter;
+import fall2018.csc207_project.MineSweeper.MineSweeperScoreBoard;
 import fall2018.csc207_project.SlidingTileGame.SlidingTileScoreBoard;
 import fall2018.csc207_project.R;
 import fall2018.csc207_project.game2048.Game2048ScoreBoard;
@@ -64,7 +65,7 @@ public class AddDeleteGameActivity extends AppCompatActivity {
         if (gameSet.contains("minesweeperGame"))
             findViewById(R.id.snake_button).setVisibility(View.GONE);
         else
-            addSnakeGameListener();
+            addMineSweeperListener();
 
     }
 
@@ -92,12 +93,13 @@ public class AddDeleteGameActivity extends AppCompatActivity {
         });
     }
 
-    private void addSnakeGameListener() {
+    private void addMineSweeperListener() {
         final Button button = findViewById(R.id.snake_button);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 localCenter.addGame("minesweeperGame");
+                globalCenter.addScoreBoard("minesweeperGame", new MineSweeperScoreBoard());
                 button.setVisibility(View.GONE);
             }
         });

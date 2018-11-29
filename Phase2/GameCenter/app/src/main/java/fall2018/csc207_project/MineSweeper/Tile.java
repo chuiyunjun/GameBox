@@ -16,6 +16,25 @@ class Tile implements Serializable {
 
     Tile(int num){this.num = num;}
 
+    Tile(Tile tile) {
+        this.num = tile.getNum();
+        this.fliped = tile.getFliped();
+        this.labeled = tile.getLabeled();
+        this.boom = tile.getBoom();
+    }
+
+    public boolean getFliped() {
+        return fliped;
+    }
+
+    public boolean getLabeled() {
+        return labeled;
+    }
+
+    public boolean getBoom() {
+        return boom;
+    }
+
     void setNum(int num) {
         this.num = num;
     }

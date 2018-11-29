@@ -72,7 +72,8 @@ public class LocalCenterActivity extends AppCompatActivity {
                 tmp.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
+                        localCenter.setCurGameName(minesweeperGame);
+                        gameLaunch();
                     }
                 });
             }

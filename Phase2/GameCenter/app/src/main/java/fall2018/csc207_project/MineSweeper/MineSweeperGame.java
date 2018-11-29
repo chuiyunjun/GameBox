@@ -1,9 +1,13 @@
 package fall2018.csc207_project.MineSweeper;
 
 import java.io.Serializable;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Observable;
 
-class MineSweeperGame extends Observable implements Serializable {
+import fall2018.csc207_project.GameCenter.Game;
+
+public class MineSweeperGame extends Game implements Serializable {
 
     private static final long serialVersionUID = 314346L;
 
@@ -17,9 +21,37 @@ class MineSweeperGame extends Observable implements Serializable {
     private boolean win = false;
     private boolean help = true;
 
-    MineSweeperGame(int bombNum){
-        board = new Board(bombNum);
-        flagsLeft = bombNum;
+    public MineSweeperGame(List<Object> settings) {
+        if (settings.size() == 1)
+            initWithComplexity((Integer) settings.get(0));
+        else {
+            this.board = new Board((Board) (settings.get(0))); // TODO: Shallow copy
+            this.secondPassed = (Integer) (settings.get(1));
+            this.flagsLeft = (Integer) (settings.get(2));
+            this.announced = (Boolean) (settings.get(3));
+            this.gameOver = (Boolean) (settings.get(4));
+            this.win = (Boolean) (settings.get(5));
+            this.help = (Boolean) (settings.get(6));
+        }
+    }
+
+    private void initWithComplexity(int complexity) {
+        board = new Board(complexity);
+        flagsLeft = complexity;
+    }
+
+    @Override
+    public List<Object> getSetting() {
+        List<Object> settings = new LinkedList<>();
+        settings.add(new Board(this.board));
+        settings.add(this.secondPassed);
+        settings.add(flagsLeft);
+        settings.add(announced);
+        settings.add(gameOver);
+        settings.add(win);
+        settings.add(help);
+
+        return settings;
     }
 
     void setSecondPassed(int secondPassed) {

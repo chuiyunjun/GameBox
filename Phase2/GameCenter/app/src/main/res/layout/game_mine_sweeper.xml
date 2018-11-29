@@ -29,9 +29,19 @@
 
     <Button
         android:id="@+id/help"
+        android:layout_width="48dp"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:text="@string/help" />
+
+    <TextView
+        android:id="@+id/help_left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/help" />
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="-35dp"
+        android:text="@string/help_left"
+        android:textAppearance="@style/TextAppearance.AppCompat.Button" />
 
     <fall2018.csc207_project.MineSweeper.BoardView xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/grid"

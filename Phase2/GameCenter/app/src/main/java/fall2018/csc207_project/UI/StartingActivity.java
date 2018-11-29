@@ -11,12 +11,10 @@ import java.util.LinkedList;
 
 import fall2018.csc207_project.GameCenter.GlobalCenter;
 import fall2018.csc207_project.GameCenter.LocalGameCenter;
-import fall2018.csc207_project.GameCenter.ScoreBoard;
+import fall2018.csc207_project.MineSweeper.SplashActivity;
 import fall2018.csc207_project.R;
 import fall2018.csc207_project.SlidingTileGame.ComplexityActivity;
-import fall2018.csc207_project.SlidingTileGame.SlidingTileGame;
 import fall2018.csc207_project.game2048.Game2048;
-import fall2018.csc207_project.game2048.GameActivity;
 
 public class StartingActivity extends AppCompatActivity {
 
@@ -49,6 +47,8 @@ public class StartingActivity extends AppCompatActivity {
             band.setText(R.string.sliding_tile_band);
         else if(gameName.equals(game2048))
             band.setText(R.string.game_2048_band);
+        else if(gameName.equals(minesweeperGame))
+            band.setText(R.string.mine_sweeper_band);
 
     }
 
@@ -66,9 +66,11 @@ public class StartingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(localCenter.getCurGameName().equals(slidingTileGame))
-                    switchToComplexity();
+                    switchToSlidingComplexity();
                 else if(localCenter.getCurGameName().equals(game2048))
                     switchTo2048();
+                else if(localCenter.getCurGameName().equals(minesweeperGame))
+                    switchToMineSweeperSplash();
             }
         });
     }
@@ -121,7 +123,7 @@ public class StartingActivity extends AppCompatActivity {
         finish();
     }
 
-    public void switchToComplexity() {
+    public void switchToSlidingComplexity() {
         Intent tmp = new Intent(this, ComplexityActivity.class);
         tmp.putExtra("GlobalCenter", globalCenter);
         startActivity(tmp);
@@ -134,6 +136,13 @@ public class StartingActivity extends AppCompatActivity {
         Game2048 game = (Game2048) localCenter.newGame("game2048", settings);
         Intent tmp = new Intent(this, fall2018.csc207_project.game2048.GameActivity.class);
         localCenter.setCurGame(game);
+        tmp.putExtra("GlobalCenter", globalCenter);
+        startActivity(tmp);
+        finish();
+    }
+
+    public void switchToMineSweeperSplash() {
+        Intent tmp = new Intent(this, SplashActivity.class);
         tmp.putExtra("GlobalCenter", globalCenter);
         startActivity(tmp);
         finish();

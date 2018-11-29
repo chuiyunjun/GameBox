@@ -18,6 +18,8 @@ import java.util.List;
 import fall2018.csc207_project.GameCenter.Game;
 import fall2018.csc207_project.GameCenter.GlobalCenter;
 import fall2018.csc207_project.GameCenter.LocalGameCenter;
+import fall2018.csc207_project.MineSweeper.Board;
+import fall2018.csc207_project.MineSweeper.MineSweeperGame;
 import fall2018.csc207_project.R;
 import fall2018.csc207_project.SlidingTileGame.GameActivity;
 import fall2018.csc207_project.SlidingTileGame.SlidingTileGame;
@@ -123,6 +125,11 @@ public class LoadOrSaveGameActivity extends AppCompatActivity {
             tmp.putExtra("game2048", (Game2048) game);
             localCenter.setCurGame(game);
             startActivity(tmp);
+        } else if(game instanceof MineSweeperGame) {
+            Intent tmp = new Intent(this, fall2018.csc207_project.MineSweeper.GameActivity.class);
+            tmp.putExtra("GlobalCenter", globalCenter);
+            localCenter.setCurGame(game);
+            startActivity(tmp);
         }
 
         finish();
@@ -132,14 +139,19 @@ public class LoadOrSaveGameActivity extends AppCompatActivity {
         if(slot.size() == 0) {
             button.setText("(Blank Slot)");
         } else if(localCenter.getCurGameName().equals("slidingTileGame")){
-            int complexity = (Integer) ((LinkedList<Object>) slot).getFirst();;
+            int complexity = (Integer) ((LinkedList<Object>) slot).getFirst();
             String time = (String) ((LinkedList<Object>) slot).getLast();
             button.setText("Complexity: " + complexity + "x" + complexity +"\n" + "Save Time: "+time);
         } else if(localCenter.getCurGameName().equals("game2048")) {
-            //TODO:
             int score = (Integer) slot.get(3);
             String time = (String) ((LinkedList<Object>) slot).getLast();
             button.setText("Score: "+score+"\n" + "Save Time: "+time);
+        } else if(localCenter.getCurGame() instanceof MineSweeperGame) {
+            Board board = (Board) ((LinkedList<Object>) slot).getFirst();
+            int timePassed = (Integer) ((LinkedList<Object>) slot).get(1);
+            int bombNum = board.getBombNum();
+            String time = (String) ((LinkedList<Object>) slot).getLast();
+            button.setText("Time Passed: "+timePassed+"\n"+ "Bomb Number: "+bombNum+"\n"+"Save time: "+time);
         }
     }
 

@@ -7,7 +7,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.NoSuchElementException;
 
-class Board implements Serializable, Iterable<Tile> {
+public class Board implements Serializable, Iterable<Tile> {
 
     private static final long serialVersionUID = 2657091L;
 
@@ -22,6 +22,17 @@ class Board implements Serializable, Iterable<Tile> {
         addBombs(bombNum);
     }
 
+    Board(Board board) {
+        tileTable = new Tile[boardSize][boardSize];
+        for(int y=0;y<boardSize;y++) {
+            for(int x=0;x<boardSize;x++) {
+                tileTable[x][y] = new Tile(board.getTileTable()[x][y]);
+            }
+        }
+        this.boardSize = board.getBoardSize();
+        this.bombNum = board.getBombNum();
+    }
+
 
     Tile[][] getTileTable(){
         return tileTable;
@@ -31,7 +42,7 @@ class Board implements Serializable, Iterable<Tile> {
         return boardSize;
     }
 
-    int getBombNum() {
+    public int getBombNum() {
         return this.bombNum;
     }
 
