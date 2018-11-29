@@ -153,10 +153,9 @@ public class GameActivity extends AppCompatActivity implements Observer {
                 if (!game.getGameOver()) {
                     if (game.getHelp()) {
                         helpLeft.setText("(0)");
-                        game.help();
+                        gameView.getMController().helpPressed();
                     } else {
-                            Toast.makeText(getApplicationContext(), "Help used up!",
-                                    Toast.LENGTH_SHORT).show();
+                            gameView.getMController().toastHelpUsedUp(getApplicationContext());
                     }
                 }
             }
