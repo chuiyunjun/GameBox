@@ -17,6 +17,7 @@ import java.util.Observer;
 
 import fall2018.csc207_project.GameCenter.GlobalCenter;
 import fall2018.csc207_project.GameCenter.LocalGameCenter;
+import fall2018.csc207_project.GameCenter.ScoreBoard;
 import fall2018.csc207_project.R;
 import fall2018.csc207_project.UI.StartingActivity;
 
@@ -56,9 +57,12 @@ public class GameActivity extends AppCompatActivity implements Observer {
         super.onCreate(savedInstanceState);
         globalCenter = (GlobalCenter) (getIntent().getSerializableExtra("GlobalCenter"));
         LocalGameCenter localGameCenter = globalCenter.getLocalGameCenter(globalCenter.getCurrentPlayer().getUsername());
-        slidingTileGame = (SlidingTileGame) (getIntent().getSerializableExtra("slidingTileGame"));
-        localGameCenter.setCurGame(slidingTileGame);
+        //slidingTileGame = (SlidingTileGame) (getIntent().getSerializableExtra("slidingTileGame"));
+        slidingTileGame = (SlidingTileGame) localGameCenter.getCurGame();
         createTileButtons(this);
+        ScoreBoard scoreBoard = (SlidingTileScoreBoard)globalCenter.getScoreBoards().get(localGameCenter.getCurGameName());
+        slidingTileGame.setPlayer(globalCenter.getCurrentPlayer().getUsername());
+        slidingTileGame.addObserver(scoreBoard);
 
         setContentView(R.layout.sliding_tile_activity);
         //slidingTileGame.addObserver(globalCenter);

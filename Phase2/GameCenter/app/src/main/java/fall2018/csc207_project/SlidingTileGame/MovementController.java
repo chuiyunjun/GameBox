@@ -20,6 +20,7 @@ public class MovementController {
             slidingTileGame.touchMove(position);
             if (slidingTileGame.puzzleSolved()) {
                 Toast.makeText(context, "YOU WIN!", Toast.LENGTH_SHORT).show();
+                slidingTileGame.notifyScoreBoard();
             }
         }
         else {

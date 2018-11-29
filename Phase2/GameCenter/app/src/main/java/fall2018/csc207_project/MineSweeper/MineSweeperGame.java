@@ -21,11 +21,13 @@ public class MineSweeperGame extends Game implements Serializable {
     private boolean win = false;
     private boolean help = true;
 
+    private String player;
+
     public MineSweeperGame(List<Object> settings) {
         if (settings.size() == 1)
             initWithComplexity((Integer) settings.get(0));
         else {
-            this.board = new Board((Board) (settings.get(0))); // TODO: Shallow copy
+            this.board = new Board((Board) (settings.get(0)));
             this.secondPassed = (Integer) (settings.get(1));
             this.flagsLeft = (Integer) (settings.get(2));
             this.announced = (Boolean) (settings.get(3));
@@ -135,6 +137,18 @@ public class MineSweeperGame extends Game implements Serializable {
             setChanged();
             notifyObservers();
         }
+    }
+
+    public void setPlayer(String name) {
+        this.player = name;
+    }
+
+    public void notifyScoreBoard() {
+        setChanged();
+        LinkedList info = new LinkedList<>();
+        info.add(player);
+        info.add(this.getSetting());
+        notifyObservers(info);
     }
 
 

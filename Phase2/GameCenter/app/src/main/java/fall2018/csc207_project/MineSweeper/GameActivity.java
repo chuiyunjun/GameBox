@@ -16,6 +16,7 @@ import java.util.Observer;
 
 import fall2018.csc207_project.GameCenter.GlobalCenter;
 import fall2018.csc207_project.GameCenter.LocalGameCenter;
+import fall2018.csc207_project.GameCenter.ScoreBoard;
 import fall2018.csc207_project.R;
 import fall2018.csc207_project.UI.StartingActivity;
 
@@ -51,12 +52,15 @@ public class GameActivity extends AppCompatActivity implements Observer {
         globalCenter = (GlobalCenter) (getIntent().getSerializableExtra("GlobalCenter"));
         localCenter = globalCenter.getLocalGameCenter(globalCenter.
                 getCurrentPlayer().getUsername());
+        ScoreBoard scoreBoard = (MineSweeperScoreBoard)globalCenter.getScoreBoards().get(localCenter.getCurGameName());
         game = (MineSweeperGame) localCenter.getCurGame();
         gameView = findViewById(R.id.grid);
         gameView.setGame(game);
+        game.setPlayer(globalCenter.getCurrentPlayer().getUsername());
 
         gameView.setTableImage();
         game.addObserver(this);
+        game.addObserver(scoreBoard);
 
         this.mineCountText = findViewById(R.id.bomb);
         this.timerCountText = findViewById(R.id.time);
@@ -125,7 +129,7 @@ public class GameActivity extends AppCompatActivity implements Observer {
 
     @Override
     public void update(Observable o, Object arg){
-        if(arg!=null)
+        if (arg instanceof Integer)
             gameView.setTileImage((int) arg);
         if (game.getGameOver()) {
             stopTimer();

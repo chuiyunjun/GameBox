@@ -1,6 +1,8 @@
 package fall2018.csc207_project.SlidingTileGame;
 
 
+import android.content.pm.LabeledIntent;
+
 import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
@@ -48,8 +50,10 @@ public class SlidingTileScoreBoard extends ScoreBoard implements Serializable {
 
     @Override
     public void update(Observable o, Object arg) {
-        LinkedList<Object> temp = (LinkedList<Object>)arg;
-        int score = calculateScore((List<Object>)(temp.getLast()));
-        this.addNewScore((String)temp.getFirst(),score);
+        if(arg instanceof LinkedList) {
+            LinkedList<Object> temp = (LinkedList<Object>) arg;
+            int score = calculateScore((List<Object>) (temp.getLast()));
+            this.addNewScore((String) temp.getFirst(), score);
+        }
     }
 }

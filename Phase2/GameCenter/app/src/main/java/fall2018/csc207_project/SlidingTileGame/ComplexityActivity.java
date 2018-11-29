@@ -104,7 +104,7 @@ public class ComplexityActivity extends AppCompatActivity {
         game.setUndoStep(undoStep);
         Intent tmp = new Intent(this, GameActivity.class);
         tmp.putExtra("GlobalCenter", globalCenter);
-        tmp.putExtra("slidingTileGame",game);
+        //tmp.putExtra("slidingTileGame",game);
         localCenter.setCurGame(game);
         startActivity(tmp);
         finish();

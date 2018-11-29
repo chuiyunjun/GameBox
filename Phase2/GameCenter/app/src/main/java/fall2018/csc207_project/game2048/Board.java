@@ -23,8 +23,8 @@ public class Board implements Serializable {
         addTiles();
         addRandomTile();
         addRandomTile();
-//        addTile(1024,0,0);
-//        addTile(1024,0,1);
+//        addTile(2048,0,0);
+//        addTile(2048,0,1);
     }
 
     Board(Board board) {

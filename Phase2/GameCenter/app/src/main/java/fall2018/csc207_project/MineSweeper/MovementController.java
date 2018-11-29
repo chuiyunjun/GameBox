@@ -32,6 +32,7 @@ class MovementController {
         if (game.getWin() && game.hasAnnouncedInverted()) {
             Toast.makeText(context, "YOU WIN!", Toast.LENGTH_SHORT).show();
             game.setAnnounced();
+            game.notifyScoreBoard();
         }
     }
 

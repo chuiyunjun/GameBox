@@ -104,8 +104,6 @@ public abstract class ScoreBoard implements Observer, Serializable {
             // update topScores after a new score is added
             updateTopScores(topUserScores);
         }
-
-
     }
 
     /**
@@ -191,7 +189,7 @@ public abstract class ScoreBoard implements Observer, Serializable {
             if(inputMap.get(o1)[0] > inputMap.get(o2)[0]){
                 return -1;
             }
-            else if (inputMap.get(o1)[0] < inputMap.get(o2)[0]) {
+            else if (inputMap.get(o1)[0] <= inputMap.get(o2)[0]) {
                 return 1;
             }
             else {
@@ -200,16 +198,4 @@ public abstract class ScoreBoard implements Observer, Serializable {
         }
     }
 
-    public HashMap<String, Integer[]> getTopUserScores(){
-        return topUserScores;
-    }
-
-    public int getUserTopScore(String curUserName){
-        Integer[] topFiveScores = getPlayerScore(curUserName);
-        int max = topFiveScores[0];
-        for(int i = 1; i != perUser; i++){
-            if(max < topFiveScores[1]){max = topFiveScores[1];}
-        }
-        return max;
-    }
 }

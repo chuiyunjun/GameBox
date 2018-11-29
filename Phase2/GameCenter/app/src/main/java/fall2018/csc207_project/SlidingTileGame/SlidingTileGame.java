@@ -15,6 +15,8 @@ import fall2018.csc207_project.GameCenter.Game;
 public class SlidingTileGame extends Game implements Serializable {
     private static final long serialVersionUID = 8888L;
 
+
+    private String player;
     /**
      * The board being managed.
      */
@@ -109,13 +111,8 @@ public class SlidingTileGame extends Game implements Serializable {
         result.add(this.undoList);
         return result;
    }
-    /**
-     * return number of steps
-     *
-     * @return number of steps
-     */
-    public int getNumSteps() {
-        return numSteps;
+    public void setPlayer(String name) {
+        this.player = name;
     }
 
     /**
@@ -142,6 +139,14 @@ public class SlidingTileGame extends Game implements Serializable {
             this.undoList.add(positions);
         }
 
+    }
+
+    public void notifyScoreBoard() {
+        setChanged();
+        LinkedList info = new LinkedList<>();
+        info.add(player);
+        info.add(this.getSetting());
+        notifyObservers(info);
     }
 
     /**
