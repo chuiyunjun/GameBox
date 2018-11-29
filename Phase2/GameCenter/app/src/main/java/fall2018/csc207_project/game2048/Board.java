@@ -26,7 +26,7 @@ public class Board implements Serializable {
     private Tile[][] tileTable;
 
     /**
-     * a list of number of tiles
+     * a list of empty spots on the tile
      */
     private List<Integer> blankTileList = new LinkedList<>();
 
@@ -91,8 +91,8 @@ public class Board implements Serializable {
     }
 
     /**
-     * get the largest number
-     * @return largest number
+     * get the board size
+     * @return the board size
      */
     int getBoardSize(){
         return this.boardSize;
@@ -134,10 +134,12 @@ public class Board implements Serializable {
     void addRandomTile() {
         blankTileList.clear();
 
+        //check empty spots
         for(int i=0;i < boardSize*boardSize;i++) {
             if(tileTable[i/boardSize][i%boardSize].getNum() <= 0)
                 blankTileList.add(i);
         }
+        //add a tile randomly to the board
         int randomIndex = (int)(Math.random()*blankTileList.size());
         int point = blankTileList.get(randomIndex);
         tileTable[point/boardSize][point%boardSize].setNum(Math.random()>0.1?2:4);
