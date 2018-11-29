@@ -7,16 +7,14 @@ import android.widget.Toast;
 import java.io.Serializable;
 
 
-public class MovementController implements Serializable {
+public class MovementController{
 
     private Game2048 game;
-    public static final long SERIALIZATIONID = 78273L;
     private static final int UP = 1;
     private static final int DOWN = 2;
     private static final int LEFT = 3;
     private static final int RIGHT = 4;
     private static final int TARGET = 2048;
-    public static final int COMPLEXITY = 4;
 
 
     MovementController(Game2048 game){

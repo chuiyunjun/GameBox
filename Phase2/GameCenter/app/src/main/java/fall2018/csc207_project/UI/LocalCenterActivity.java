@@ -10,6 +10,9 @@ import android.widget.TextView;
 
 import fall2018.csc207_project.GameCenter.GlobalCenter;
 import fall2018.csc207_project.GameCenter.LocalGameCenter;
+import fall2018.csc207_project.MineSweeper.MineSweeperGame;
+import fall2018.csc207_project.SlidingTileGame.SlidingTileGame;
+import fall2018.csc207_project.game2048.Game2048;
 
 import java.util.Set;
 
@@ -36,9 +39,6 @@ public class LocalCenterActivity extends AppCompatActivity {
     }
 
     private void loadButtons() {
-        final String slidingTileGame = "slidingTileGame";
-        final String game2048 = "game2048";
-        final String minesweeperGame = "minesweeperGame";
 
         Set<String> gameSet = localCenter.getGames();
         LinearLayout buttonLayout = findViewById(fall2018.csc207_project.R.id.local_center_button_layout);
@@ -47,32 +47,32 @@ public class LocalCenterActivity extends AppCompatActivity {
         for(String s:gameSet) {
             tmp = new Button(this);
             buttonLayout.addView(tmp);
-            if(s.equals(slidingTileGame)) {
+            if(s.equals(SlidingTileGame.GAMENAME)) {
                 tmp.setText(fall2018.csc207_project.R.string.slidingTileGame);
                 tmp.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        localCenter.setCurGameName(slidingTileGame);
+                        localCenter.setCurGameName(SlidingTileGame.GAMENAME);
                         gameLaunch();
                     }
                 });
             }
-            else if(s.equals(game2048)) {
+            else if(s.equals(Game2048.GAMENAME)) {
                 tmp.setText(fall2018.csc207_project.R.string.game2048);
                 tmp.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        localCenter.setCurGameName(game2048);
+                        localCenter.setCurGameName(Game2048.GAMENAME);
                         gameLaunch();
                     }
                 });
             }
-            else if(s.equals(minesweeperGame)) {
+            else if(s.equals(MineSweeperGame.GAMENAME)) {
                 tmp.setText(fall2018.csc207_project.R.string.mineSweeperGame);
                 tmp.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        localCenter.setCurGameName(minesweeperGame);
+                        localCenter.setCurGameName(MineSweeperGame.GAMENAME);
                         gameLaunch();
                     }
                 });

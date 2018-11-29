@@ -100,11 +100,10 @@ public class ComplexityActivity extends AppCompatActivity {
     private void switchToGame(int complexity) {
         LinkedList<Object> settings = new LinkedList<>();
         settings.add(complexity);
-        SlidingTileGame game = (SlidingTileGame) localCenter.newGame("slidingTileGame", settings);
+        SlidingTileGame game = (SlidingTileGame) localCenter.newGame(SlidingTileGame.GAMENAME, settings);
         game.setUndoStep(undoStep);
         Intent tmp = new Intent(this, GameActivity.class);
         tmp.putExtra("GlobalCenter", globalCenter);
-        //tmp.putExtra("slidingTileGame",game);
         localCenter.setCurGame(game);
         startActivity(tmp);
         finish();

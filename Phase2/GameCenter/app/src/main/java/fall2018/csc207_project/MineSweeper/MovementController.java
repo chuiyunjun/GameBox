@@ -44,7 +44,7 @@ class MovementController {
             game.flipTile(row, col);
             Tile tile = game.getBoard().getTileTable()[row][col];
             //fail if a bomb is flipped, and flip all tiles
-            if (tile.getNum() >= 10 && tile.isFliped()) {
+            if (tile.getNum() >= 10 && tile.isFlipped()) {
                 tile.setBoom();
                 for(int rowNum = 0; rowNum < game.getBoard().getBoardSize(); rowNum++) {
                     for(int colNum = 0; colNum < game.getBoard().getBoardSize(); colNum++) {

@@ -12,9 +12,8 @@ import java.util.Observer;
 import java.util.TreeMap;
 
 public abstract class ScoreBoard implements Observer, Serializable {
-    private static final long serialVersionUID = 4L;
 
-    private String gameName;
+    private static final long serialVersionUID = 4L;
 
     /**
      * fixed length top scores among all users

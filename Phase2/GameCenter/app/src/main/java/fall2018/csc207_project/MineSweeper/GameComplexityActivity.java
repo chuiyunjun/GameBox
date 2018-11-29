@@ -185,7 +185,7 @@ public class GameComplexityActivity extends Activity {
     private void switchToGame(int complexity) {
         LinkedList<Object> settings = new LinkedList<>();
         settings.add(complexity);
-        MineSweeperGame game = (MineSweeperGame) localCenter.newGame("minesweeperGame",
+        MineSweeperGame game = (MineSweeperGame) localCenter.newGame(MineSweeperGame.GAMENAME,
                 settings);
         Intent tmp = new Intent(this, GameActivity.class);
         tmp.putExtra("GlobalCenter", globalCenter);

@@ -79,7 +79,7 @@ public class GameActivity extends AppCompatActivity implements Observer {
         localCenter = globalCenter.getLocalGameCenter(globalCenter.
                 getCurrentPlayer().getUsername());
         ScoreBoard scoreBoard = (MineSweeperScoreBoard)globalCenter.getScoreBoards().
-                get(localCenter.getCurGameName());
+                get(MineSweeperGame.GAMENAME);
 
         // find the game model from the local centre
         // which realize game autosave and change of complexity

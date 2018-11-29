@@ -41,7 +41,7 @@ public class GameActivity extends AppCompatActivity implements Observer {
         game.setPlayer(globalCenter.getCurrentPlayer().getUsername());
         gameView.setGame(game);
         game.addObserver(this);
-        game.addObserver((Game2048ScoreBoard)(globalCenter.getScoreBoards().get("game2048")));
+        game.addObserver((Game2048ScoreBoard)(globalCenter.getScoreBoards().get(Game2048.GAMENAME)));
 
         setUndoButtonListener();
         setRestartButtonListener();

@@ -9,20 +9,20 @@ import android.widget.TextView;
 
 import java.util.LinkedList;
 
+import fall2018.csc207_project.GameCenter.Game;
 import fall2018.csc207_project.GameCenter.GlobalCenter;
 import fall2018.csc207_project.GameCenter.LocalGameCenter;
+import fall2018.csc207_project.MineSweeper.MineSweeperGame;
 import fall2018.csc207_project.MineSweeper.SplashActivity;
 import fall2018.csc207_project.R;
 import fall2018.csc207_project.SlidingTileGame.ComplexityActivity;
+import fall2018.csc207_project.SlidingTileGame.SlidingTileGame;
 import fall2018.csc207_project.game2048.Game2048;
 
 public class StartingActivity extends AppCompatActivity {
 
     private GlobalCenter globalCenter;
     private LocalGameCenter localCenter;
-    final String slidingTileGame = "slidingTileGame";
-    final String game2048 = "game2048";
-    final String minesweeperGame = "minesweeperGame";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,11 +43,11 @@ public class StartingActivity extends AppCompatActivity {
     private void initBand() {
         TextView band = findViewById(R.id.GameText);
         String gameName = localCenter.getCurGameName();
-        if(gameName.equals(slidingTileGame))
+        if(gameName.equals(SlidingTileGame.GAMENAME))
             band.setText(R.string.sliding_tile_band);
-        else if(gameName.equals(game2048))
+        else if(gameName.equals(Game2048.GAMENAME))
             band.setText(R.string.game_2048_band);
-        else if(gameName.equals(minesweeperGame))
+        else if(gameName.equals(MineSweeperGame.GAMENAME))
             band.setText(R.string.mine_sweeper_band);
 
     }
@@ -65,11 +65,11 @@ public class StartingActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(localCenter.getCurGameName().equals(slidingTileGame))
+                if(localCenter.getCurGameName().equals(SlidingTileGame.GAMENAME))
                     switchToSlidingComplexity();
-                else if(localCenter.getCurGameName().equals(game2048))
+                else if(localCenter.getCurGameName().equals(Game2048.GAMENAME))
                     switchTo2048();
-                else if(localCenter.getCurGameName().equals(minesweeperGame))
+                else if(localCenter.getCurGameName().equals(MineSweeperGame.GAMENAME))
                     switchToMineSweeperSplash();
             }
         });
@@ -133,7 +133,7 @@ public class StartingActivity extends AppCompatActivity {
     public void switchTo2048() {
         LinkedList<Object> settings = new LinkedList<>();
         settings.add(4);
-        Game2048 game = (Game2048) localCenter.newGame("game2048", settings);
+        Game2048 game = (Game2048) localCenter.newGame(Game2048.GAMENAME, settings);
         Intent tmp = new Intent(this, fall2018.csc207_project.game2048.GameActivity.class);
         localCenter.setCurGame(game);
         tmp.putExtra("GlobalCenter", globalCenter);

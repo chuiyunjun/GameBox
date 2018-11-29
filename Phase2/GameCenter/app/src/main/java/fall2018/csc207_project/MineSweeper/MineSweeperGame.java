@@ -3,7 +3,6 @@ package fall2018.csc207_project.MineSweeper;
 import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Observable;
 
 import fall2018.csc207_project.GameCenter.Game;
 
@@ -16,6 +15,8 @@ public class MineSweeperGame extends Game implements Serializable {
      * serial number of the game model
      */
     private static final long serialVersionUID = 314346L;
+
+    public static final String GAMENAME = "minesweeperGame";
 
     /**
      * board of this game
@@ -182,21 +183,21 @@ public class MineSweeperGame extends Game implements Serializable {
         //if the tile flipped is 0, then we can flip other tiles around, if the tile is not a bomb
         if(board.getTileTable()[row][col].getNum() == 0){
             if(row != 0 && !board.getTileTable()
-                    [row - 1][col].isFliped()){flipTile(row - 1,col);}
+                    [row - 1][col].isFlipped()){flipTile(row - 1,col);}
             if(row < boardSize - 1 && !board.getTileTable()
-                    [row + 1][col].isFliped()){flipTile(row + 1,col);}
+                    [row + 1][col].isFlipped()){flipTile(row + 1,col);}
             if(col != 0 && !board.getTileTable()
-                    [row][col - 1].isFliped()){flipTile(row,col - 1);}
+                    [row][col - 1].isFlipped()){flipTile(row,col - 1);}
             if(col < boardSize - 1 && !board.getTileTable()
-                    [row][col + 1].isFliped()){flipTile(row,col + 1);}
+                    [row][col + 1].isFlipped()){flipTile(row,col + 1);}
             if(row != 0 && col != 0 && !board.getTileTable()
-                    [row - 1][col - 1].isFliped()){flipTile(row - 1,col - 1);}
+                    [row - 1][col - 1].isFlipped()){flipTile(row - 1,col - 1);}
             if(row != 0 && col<boardSize - 1 && !board.getTileTable()
-                    [row - 1][col + 1].isFliped()){flipTile(row - 1,col + 1);}
+                    [row - 1][col + 1].isFlipped()){flipTile(row - 1,col + 1);}
             if(row <boardSize - 1 && col != 0 && !board.getTileTable()
-                    [row + 1][col - 1].isFliped()){flipTile(row + 1,col - 1);}
+                    [row + 1][col - 1].isFlipped()){flipTile(row + 1,col - 1);}
             if(row <boardSize - 1 && col < boardSize - 1 && !board.getTileTable()
-                    [row + 1][col + 1].isFliped()){flipTile(row + 1,col + 1);}
+                    [row + 1][col + 1].isFlipped()){flipTile(row + 1,col + 1);}
         }
         //lose the game if one bomb is flipped
         if(board.getTileTable()[row][col].getNum() == 10){
@@ -214,7 +215,7 @@ public class MineSweeperGame extends Game implements Serializable {
         int notRevealed = boardSize * boardSize;
         int bombNotFound = board.getBombNum();
         for (Tile tile : board) {
-            if (tile.isFliped() || tile.isLabeled()) {
+            if (tile.isFlipped() || tile.isLabeled()) {
                 notRevealed--;
             }
             if (tile.isLabeled() && tile.getNum() >= 10) {
@@ -279,7 +280,7 @@ public class MineSweeperGame extends Game implements Serializable {
    void help() {
         int position = 0;
         for (Tile tile : board) {
-            if (!tile.isFliped() && tile.getNum() > 0 && tile.getNum() < 10) {
+            if (!tile.isFlipped() && tile.getNum() > 0 && tile.getNum() < 10) {
                 int row = position / board.getBoardSize();
                 int col = position % board.getBoardSize();
                 if (tile.isLabeled()) {

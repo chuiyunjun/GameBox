@@ -23,7 +23,7 @@ class Tile implements Serializable {
     /**
      * if the tile has been flipped
      */
-    private boolean fliped = false;
+    private boolean flipped = false;
 
     /**
      * if the tile has been labelled
@@ -47,7 +47,7 @@ class Tile implements Serializable {
      */
     Tile(Tile tile) {
         this.num = tile.getNum();
-        this.fliped = tile.getFliped();
+        this.flipped = tile.getFliped();
         this.labeled = tile.getLabeled();
         this.boom = tile.getBoom();
     }
@@ -57,7 +57,7 @@ class Tile implements Serializable {
      * @return if the tile has been flipped
      */
     private boolean getFliped() {
-        return fliped;
+        return flipped;
     }
 
     /**
@@ -96,7 +96,7 @@ class Tile implements Serializable {
      * set tile flipped to be true
      */
     void setFliped() {
-        this.fliped = true;
+        this.flipped = true;
     }
 
     /**
@@ -124,8 +124,8 @@ class Tile implements Serializable {
      * get if the tile has been flipped
      * @return if the tile has been flipped
      */
-    boolean isFliped() {
-        return fliped;
+    boolean isFlipped() {
+        return flipped;
     }
 
     /**
@@ -134,7 +134,7 @@ class Tile implements Serializable {
      */
     int getTileImage(){
         int ret;
-        if(!isFliped()){
+        if(!isFlipped()){
             if(isLabeled()){
                 ret = R.drawable.flag;}
             else{

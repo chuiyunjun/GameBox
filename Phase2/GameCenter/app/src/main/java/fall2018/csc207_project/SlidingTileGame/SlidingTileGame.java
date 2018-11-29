@@ -14,6 +14,7 @@ import fall2018.csc207_project.GameCenter.Game;
 
 public class SlidingTileGame extends Game implements Serializable {
     private static final long serialVersionUID = 8888L;
+    public static final String GAMENAME = "slidingTileGame";
 
 
     private String player;

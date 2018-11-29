@@ -11,8 +11,8 @@ import fall2018.csc207_project.GameCenter.Game;
 public class Game2048 extends Game implements Serializable {
 
     private static final long serialVersionUID = 772895212901L;
-    private String player;
     public static final String GAMENAME = "game2048";
+    private String player;
 
     private Board board;  // settings index 0
     private int complexity;
@@ -145,7 +145,6 @@ public class Game2048 extends Game implements Serializable {
 
         for (int i = 0; i < complexity * complexity; i++) {
             int j = Math.abs(countDownFrom - i);
-
             int r = j / complexity;
             int c = j % complexity;
 
@@ -156,12 +155,9 @@ public class Game2048 extends Game implements Serializable {
             int nextC = c + yDirection;
 
             while (nextR >= 0 && nextR < complexity && nextC >= 0 && nextC < complexity) {
-
                 Tile next = board.getTile(nextR,nextC);
                 Tile curr = board.getTile(r,c);
-
                 if (next.getNum() == 0) {
-
                     if (moveAvailable)
                         return true;
 
@@ -174,23 +170,21 @@ public class Game2048 extends Game implements Serializable {
                     moved = true;
 
                 } else if (next.equals(curr) && !next.getMergedState()) {
-
                     if (moveAvailable)
                         return true;
 
                     int value = next.merge(curr);
+
                     if (value > highestTile)
                         highestTile = value;
                     score += value;
                     board.getTile(r,c).setNum(0);
                     moved = true;
                     break;
-
                 } else
                     break;
             }
         }
-
 
         if (moved && highestTile < target) {
             board.clearMerged();

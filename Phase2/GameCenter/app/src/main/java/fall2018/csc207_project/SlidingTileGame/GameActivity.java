@@ -57,15 +57,15 @@ public class GameActivity extends AppCompatActivity implements Observer {
         super.onCreate(savedInstanceState);
         globalCenter = (GlobalCenter) (getIntent().getSerializableExtra("GlobalCenter"));
         LocalGameCenter localGameCenter = globalCenter.getLocalGameCenter(globalCenter.getCurrentPlayer().getUsername());
-        //slidingTileGame = (SlidingTileGame) (getIntent().getSerializableExtra("slidingTileGame"));
+
         slidingTileGame = (SlidingTileGame) localGameCenter.getCurGame();
         createTileButtons(this);
-        ScoreBoard scoreBoard = (SlidingTileScoreBoard)globalCenter.getScoreBoards().get(localGameCenter.getCurGameName());
+        ScoreBoard scoreBoard = (SlidingTileScoreBoard)globalCenter.getScoreBoards().get(SlidingTileGame.GAMENAME);
         slidingTileGame.setPlayer(globalCenter.getCurrentPlayer().getUsername());
         slidingTileGame.addObserver(scoreBoard);
 
         setContentView(R.layout.sliding_tile_activity);
-        //slidingTileGame.addObserver(globalCenter);
+
         // Add View to activity
         gridView = findViewById(R.id.grid);
         gridView.setNumColumns(slidingTileGame.getBoard().getNumCols());

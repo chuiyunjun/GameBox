@@ -98,13 +98,11 @@ public class LocalGameCenter implements Serializable {
 
     public Game loadGame(String gameName, int gameSlot) {
         List<Object> settings= localGames.get(gameName).get(gameSlot);
-        curGame = new GameFactory().createGame(gameName, settings);
-        return curGame;
+        return new GameFactory().createGame(gameName, settings);
     }
 
     public Game newGame(String gameName, List<Object> settings) {
-        curGame = new GameFactory().createGame(gameName, settings);
-        return curGame;
+        return new GameFactory().createGame(gameName, settings);
     }
 
 

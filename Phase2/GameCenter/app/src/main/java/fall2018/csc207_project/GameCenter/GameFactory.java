@@ -7,17 +7,14 @@ import fall2018.csc207_project.SlidingTileGame.SlidingTileGame;
 import fall2018.csc207_project.game2048.Game2048;
 
 class GameFactory {
-    private static final String SLIDINGTILEGAME = "slidingTileGame";
-    private static final String GAME2048 = "game2048";
-    private static final String MINESWEEPER = "minesweeperGame";
 
     Game createGame(String gameName, List<Object> settings) {
-        if(gameName.equals(SLIDINGTILEGAME))
+        if(gameName.equals(SlidingTileGame.GAMENAME))
             return new SlidingTileGame(settings);
-        else if(gameName.equals(GAME2048)) {
+        else if(gameName.equals(Game2048.GAMENAME)) {
             return new Game2048(settings);
         }
-        else if(gameName.equals(MINESWEEPER)) {
+        else if(gameName.equals(MineSweeperGame.GAMENAME)) {
             return new MineSweeperGame(settings);
         }
         return null;

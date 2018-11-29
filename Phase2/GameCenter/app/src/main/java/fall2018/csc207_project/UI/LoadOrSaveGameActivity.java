@@ -116,13 +116,11 @@ public class LoadOrSaveGameActivity extends AppCompatActivity {
         if(game instanceof SlidingTileGame) {
             Intent tmp = new Intent(this, fall2018.csc207_project.SlidingTileGame.GameActivity.class);
             tmp.putExtra("GlobalCenter", globalCenter);
-            tmp.putExtra("slidingTileGame", (SlidingTileGame) game);
             localCenter.setCurGame(game);
             startActivity(tmp);
         } else if(game instanceof Game2048) {
             Intent tmp = new Intent(this, fall2018.csc207_project.game2048.GameActivity.class);
             tmp.putExtra("GlobalCenter", globalCenter);
-            tmp.putExtra("game2048", (Game2048) game);
             localCenter.setCurGame(game);
             startActivity(tmp);
         } else if(game instanceof MineSweeperGame) {
@@ -138,11 +136,11 @@ public class LoadOrSaveGameActivity extends AppCompatActivity {
     private void initButtonLabel(Button button, List<Object> slot) {
         if(slot.size() == 0) {
             button.setText("(Blank Slot)");
-        } else if(localCenter.getCurGameName().equals("slidingTileGame")){
+        } else if(localCenter.getCurGame() instanceof SlidingTileGame){
             int complexity = (Integer) ((LinkedList<Object>) slot).getFirst();
             String time = (String) ((LinkedList<Object>) slot).getLast();
             button.setText("Complexity: " + complexity + "x" + complexity +"\n" + "Save Time: "+time);
-        } else if(localCenter.getCurGameName().equals("game2048")) {
+        } else if(localCenter.getCurGame() instanceof Game2048) {
             int score = (Integer) slot.get(3);
             String time = (String) ((LinkedList<Object>) slot).getLast();
             button.setText("Score: "+score+"\n" + "Save Time: "+time);

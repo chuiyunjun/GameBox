@@ -10,9 +10,12 @@ import android.widget.TextView;
 
 import fall2018.csc207_project.GameCenter.GlobalCenter;
 import fall2018.csc207_project.GameCenter.LocalGameCenter;
+import fall2018.csc207_project.MineSweeper.MineSweeperGame;
 import fall2018.csc207_project.MineSweeper.MineSweeperScoreBoard;
+import fall2018.csc207_project.SlidingTileGame.SlidingTileGame;
 import fall2018.csc207_project.SlidingTileGame.SlidingTileScoreBoard;
 import fall2018.csc207_project.R;
+import fall2018.csc207_project.game2048.Game2048;
 import fall2018.csc207_project.game2048.Game2048ScoreBoard;
 
 import java.util.Set;
@@ -52,17 +55,17 @@ public class AddDeleteGameActivity extends AppCompatActivity {
     private void addState() {
         Set<String> gameSet = localCenter.getGames();
 
-        if (gameSet.contains("slidingTileGame"))
+        if (gameSet.contains(SlidingTileGame.GAMENAME))
             findViewById(R.id.sliding_tile_button).setVisibility(View.GONE);
         else
             addSlidingTileGameListener();
 
-        if (gameSet.contains("game2048"))
+        if (gameSet.contains(Game2048.GAMENAME))
             findViewById(R.id.game2048_button).setVisibility(View.GONE);
         else
             addGame2048Listener();
 
-        if (gameSet.contains("minesweeperGame"))
+        if (gameSet.contains(MineSweeperGame.GAMENAME))
             findViewById(R.id.snake_button).setVisibility(View.GONE);
         else
             addMineSweeperListener();
@@ -74,8 +77,8 @@ public class AddDeleteGameActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                localCenter.addGame("slidingTileGame");
-                globalCenter.addScoreBoard("slidingTileGame", new SlidingTileScoreBoard());
+                localCenter.addGame(SlidingTileGame.GAMENAME);
+                globalCenter.addScoreBoard(SlidingTileGame.GAMENAME, new SlidingTileScoreBoard());
                 button.setVisibility(View.GONE);
             }
         });
@@ -86,8 +89,8 @@ public class AddDeleteGameActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                localCenter.addGame("game2048");
-                globalCenter.addScoreBoard("game2048", new Game2048ScoreBoard());
+                localCenter.addGame(Game2048.GAMENAME);
+                globalCenter.addScoreBoard(Game2048.GAMENAME, new Game2048ScoreBoard());
                 button.setVisibility(View.GONE);
             }
         });
@@ -98,8 +101,8 @@ public class AddDeleteGameActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                localCenter.addGame("minesweeperGame");
-                globalCenter.addScoreBoard("minesweeperGame", new MineSweeperScoreBoard());
+                localCenter.addGame(MineSweeperGame.GAMENAME);
+                globalCenter.addScoreBoard(MineSweeperGame.GAMENAME, new MineSweeperScoreBoard());
                 button.setVisibility(View.GONE);
             }
         });
@@ -113,30 +116,30 @@ public class AddDeleteGameActivity extends AppCompatActivity {
         for (String s : gameSet) {
             final Button tmp = new Button(this);
             ll.addView(tmp);
-            if (s.equals("slidingTileGame")) {
+            if (s.equals(SlidingTileGame.GAMENAME)) {
                 tmp.setText(R.string.slidingTileGame);
                 tmp.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        localCenter.removeGame("slidingTileGame");
+                        localCenter.removeGame(SlidingTileGame.GAMENAME);
                         tmp.setVisibility(View.GONE);
                     }
                 });
-            } else if (s.equals("game2048")) {
+            } else if (s.equals(Game2048.GAMENAME)) {
                 tmp.setText(R.string.game2048);
                 tmp.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        localCenter.removeGame("game2048");
+                        localCenter.removeGame(Game2048.GAMENAME);
                         tmp.setVisibility(View.GONE);
                     }
                 });
-            } else if (s.equals("minesweeperGame")) {
+            } else if (s.equals(MineSweeperGame.GAMENAME)) {
                 tmp.setText(R.string.mineSweeperGame);
                 tmp.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        localCenter.removeGame("minesweeperGame");
+                        localCenter.removeGame(MineSweeperGame.GAMENAME);
                         tmp.setVisibility(View.GONE);
                     }
                 });
