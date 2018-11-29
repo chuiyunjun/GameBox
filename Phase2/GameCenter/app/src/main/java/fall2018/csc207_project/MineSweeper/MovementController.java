@@ -49,4 +49,9 @@ class MovementController {
     void helpPressed(){
        game.help();
     }
+
+    void toastHelpUsedUp(Context context){
+        Toast.makeText(context, "Help used up!",
+                Toast.LENGTH_SHORT).show();
+    }
 }
