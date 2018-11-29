@@ -34,6 +34,7 @@ public class GameActivity extends AppCompatActivity implements Observer {
 
     TextView mineCountText;
     TextView timerCountText;
+    TextView helpLeft;
 
     private Handler timer = new Handler();
     private int secondsPassed;
@@ -58,12 +59,14 @@ public class GameActivity extends AppCompatActivity implements Observer {
 
         this.mineCountText = findViewById(R.id.bomb);
         this.timerCountText = findViewById(R.id.time);
+        this.helpLeft = findViewById(R.id.help_left);
 
         secondsPassed = game.getSecondsPassed();
         flagsLeft = game.getFlagsLeft();
 
         timerCountText.setText(String.valueOf(secondsPassed));
         mineCountText.setText(String.valueOf(flagsLeft));
+        helpLeft.setText(String.valueOf(game.getHelp() ? 1 : 0));
 
         addHelpButtonListener();
 
@@ -135,6 +138,7 @@ public class GameActivity extends AppCompatActivity implements Observer {
             @Override
             public void onClick(View v) {
                 if (game.getHelp()) {
+                    helpLeft.setText(String.valueOf(0));
                     game.help();
                 } else {
                     if (!game.getGameOver()) {

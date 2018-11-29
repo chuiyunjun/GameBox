@@ -72,7 +72,7 @@ public class GameComplexityActivity extends Activity {
                         new AlertDialog.Builder(GameComplexityActivity.this);
                 builder1.setMessage("This mode is crazy! The number of bombs is quite " +
                         "tricky, and this mode is just for fun, " +
-                        "not for mark, would you like to go?");
+                        "would you like to go?");
                 builder1.setCancelable(true);
 
                 builder1.setPositiveButton(
@@ -107,7 +107,7 @@ public class GameComplexityActivity extends Activity {
                         new AlertDialog.Builder(GameComplexityActivity.this);
                 builder1.setMessage("Good luck for you! The number of bombs is random " +
                         ", and this mode is just for fun, " +
-                        "not for mark, would you like to go?");
+                        "would you like to go?");
                 builder1.setCancelable(true);
 
                 builder1.setPositiveButton(
