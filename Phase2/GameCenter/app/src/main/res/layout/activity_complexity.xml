@@ -12,7 +12,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="59dp"
         android:layout_marginEnd="27dp"
         android:layout_marginRight="27dp"
         android:text="@string/Welcome_To_Sweep_Mine_Game"
@@ -24,8 +24,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="120dp"
-        android:text="@string/_10_BOMBS"/>
+        android:layout_marginTop="180dp"
+        android:text="@string/_10_BOMBS" />
 
     <Button
         android:id="@+id/grid15"
@@ -36,7 +36,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="-1dp"
         android:layout_marginLeft="-1dp"
-        android:layout_marginTop="197dp"
+        android:layout_marginTop="266dp"
         android:text="@string/_15_BOMBS" />
 
     <Button
@@ -48,7 +48,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginStart="-1dp"
         android:layout_marginLeft="-1dp"
-        android:layout_marginBottom="240dp"
+        android:layout_marginBottom="254dp"
         android:text="@string/_20_BOMBS" />
 
     <TextView
@@ -57,7 +57,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="93dp"
+        android:layout_marginTop="118dp"
         android:text="@string/choose" />
 
     <Button
