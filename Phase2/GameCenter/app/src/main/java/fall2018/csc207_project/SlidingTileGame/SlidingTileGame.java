@@ -80,8 +80,10 @@ public class SlidingTileGame extends Game implements Serializable {
             }
         }
         Collections.shuffle(tiles);
-        this.board = new Board(tiles, complexity);
-        this.board = checkSolvable(board);
+
+        MakeSolvable converter = new MakeSolvable();
+        converter.takeIn(board);
+        this.board = converter.outputSolvableBoard();
     }
 
 
@@ -256,7 +258,7 @@ public class SlidingTileGame extends Game implements Serializable {
         }
         boolean solved;
         if(board.getNumCols()%2==1){
-            if(inversion%2==0){solved = true;}else solved = false;
+            if(inversion%2==0){solved = true;}else{solved = false;}
         }else {
             solved = ((board.getNumRows()-blankTileRow) % 2 == 1)==(inversion%2==0);
         }
@@ -271,7 +273,9 @@ public class SlidingTileGame extends Game implements Serializable {
             }else{
                 board.swapTiles(complexity-1,complexity-1,complexity-1,complexity-2);
             }
+
         }
+
         return board;
     }
 }
