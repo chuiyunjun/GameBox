@@ -80,6 +80,7 @@ public class SlidingTileGame extends Game implements Serializable {
             }
         }
         Collections.shuffle(tiles);
+        this.board = new Board(tiles, complexity);
         this.board = checkSolvable(board);
     }
 
