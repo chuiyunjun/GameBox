@@ -55,10 +55,11 @@ public class BoardView extends GridLayout {
     }
 
     private void setTextViewLabel(TextView label, int num) {
+        String n = num + "";
         if(num <= 0)
             label.setText("");
         else
-            label.setText(num+"");
+            label.setText(n);
     }
 
     private void initViewTable() {
