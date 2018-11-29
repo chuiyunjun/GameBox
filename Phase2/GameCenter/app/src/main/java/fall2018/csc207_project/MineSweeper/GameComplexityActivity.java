@@ -29,17 +29,13 @@ public class GameComplexityActivity extends Activity {
         globalCenter = (GlobalCenter) (getIntent().getSerializableExtra("GlobalCenter"));
         localCenter = globalCenter.getLocalGameCenter(globalCenter.getCurrentPlayer().
                 getUsername());
+
         add10BombsButtonListener();
         add15BombsButtonListener();
         add20BombsButtonListener();
         addCrazyModeButtonListener();
         addLuckyModeButtonListener();
-
     }
-
-//    private int numBombs(int bombNum){
-//        return bombNum;
-//    }
 
     private void add10BombsButtonListener(){
         Button l10Button = findViewById(R.id.grid10);
@@ -148,15 +144,6 @@ public class GameComplexityActivity extends Activity {
             }
         });
     }
-
-//    private void switchToGame(int numBombs) {
-//        MineSweeperGame game = new MineSweeperGame(numBombs);
-//        Intent tmp = new Intent(this, GameActivity.class);
-//        tmp.putExtra("GlobalCenter", globalCenter);
-//        tmp.putExtra("minesweeperGame",game);
-//        startActivity(tmp);
-//        finish();
-//    }
 
     private void switchToGame(int complexity) {
         LinkedList<Object> settings = new LinkedList<>();
