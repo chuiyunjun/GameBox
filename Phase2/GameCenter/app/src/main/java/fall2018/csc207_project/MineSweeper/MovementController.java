@@ -29,7 +29,7 @@ class MovementController {
             }
         }
         game.checkEnd();
-        if (game.getWin() && !game.hasAnnounced()) {
+        if (game.getWin() && game.hasAnnouncedInverted()) {
             Toast.makeText(context, "YOU WIN!", Toast.LENGTH_SHORT).show();
             game.setAnnounced();
         }
@@ -40,9 +40,13 @@ class MovementController {
             game.labelTile(row, col);
         }
         game.checkEnd();
-        if (game.getWin() && !game.hasAnnounced()) {
+        if (game.getWin() && game.hasAnnouncedInverted()) {
             Toast.makeText(context, "YOU WIN!", Toast.LENGTH_SHORT).show();
             game.setAnnounced();
         }
+    }
+
+    void helpPressed(){
+       game.help();
     }
 }

@@ -65,7 +65,7 @@ public class GameActivity extends AppCompatActivity implements Observer {
         // Add View to activity
         gridView = findViewById(R.id.grid);
         gridView.setNumColumns(slidingTileGame.getBoard().getNumCols());
-        gridView.setSlidingTileGame(slidingTileGame);
+        gridView.setGame(slidingTileGame);
         slidingTileGame.getBoard().addObserver(this);
         // Observer sets up desired dimensions as well as calls our display function
         gridView.getViewTreeObserver().addOnGlobalLayoutListener(
@@ -94,9 +94,9 @@ public class GameActivity extends AppCompatActivity implements Observer {
             @Override
             public void onClick(View v) {
                 if(slidingTileGame.getUndoListSize() == 0)
-                    Toast.makeText(getApplicationContext(), "No more undo!", Toast.LENGTH_SHORT).show();
+                    gridView.getMController().toastNoMoreUndo(getApplicationContext());
                 else
-                    slidingTileGame.undo();
+                    gridView.getMController().undo();
             }
         });
     }

@@ -84,8 +84,8 @@ public class MineSweeperGame extends Game implements Serializable {
         return help;
     }
 
-    boolean hasAnnounced(){
-        return this.announced;
+    boolean hasAnnouncedInverted(){
+        return !this.announced;
     }
 
     void flipTile(int row, int col){

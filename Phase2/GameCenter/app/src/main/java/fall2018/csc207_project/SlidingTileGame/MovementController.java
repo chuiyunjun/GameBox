@@ -26,4 +26,11 @@ public class MovementController {
             Toast.makeText(context, "Invalid Tap", Toast.LENGTH_SHORT).show();
         }
     }
+    public void undo(){
+        slidingTileGame.undo();
+    }
+
+    public void toastNoMoreUndo(Context context){
+        Toast.makeText(context, "No more undo!", Toast.LENGTH_SHORT).show();
+    }
 }

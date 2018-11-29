@@ -118,4 +118,5 @@ public class BoardView extends GridLayout {
         movementController.setGame(game);
 
     }
+    MovementController getMController(){return movementController;}
 }

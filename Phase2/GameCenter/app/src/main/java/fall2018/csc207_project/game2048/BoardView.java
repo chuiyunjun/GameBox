@@ -50,8 +50,11 @@ public class BoardView extends GridLayout {
         initViewTable();
     }
 
+    public MovementController getMController() {
+        return mController;
+    }
 
-    private void setTextViewLabel(TextView label,int num) {
+    private void setTextViewLabel(TextView label, int num) {
         if(num <= 0)
             label.setText("");
         else
