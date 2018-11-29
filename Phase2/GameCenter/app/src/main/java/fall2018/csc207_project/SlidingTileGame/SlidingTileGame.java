@@ -82,6 +82,8 @@ public class SlidingTileGame extends Game implements Serializable {
         }
         Collections.shuffle(tiles);
 
+        this.board = new Board(tiles, this.complexity);
+
         MakeSolvable converter = new MakeSolvable();
         converter.takeIn(board);
         this.board = converter.outputSolvableBoard();
