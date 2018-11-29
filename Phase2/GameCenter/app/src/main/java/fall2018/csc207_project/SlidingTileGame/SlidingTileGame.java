@@ -256,7 +256,9 @@ public class SlidingTileGame extends Game implements Serializable {
         }
         boolean solved;
         if(board.getNumCols()%2==1){
-            if(inversion%2==0){solved = true;}else solved = false;
+            if(inversion%2==0){solved = true;
+            } else {
+                solved = false;}
         }else {
             solved = ((board.getNumRows()-blankTileRow) % 2 == 1)==(inversion%2==0);
         }
