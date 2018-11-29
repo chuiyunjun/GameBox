@@ -45,4 +45,8 @@ class MovementController {
             game.setAnnounced();
         }
     }
+
+    void helpPressed(){
+       game.help();
+    }
 }

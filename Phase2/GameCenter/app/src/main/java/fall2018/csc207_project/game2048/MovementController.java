@@ -58,4 +58,11 @@ public class MovementController implements Serializable {
     public void setGame(Game2048 game) {
         this.game = game;
     }
+
+    public void undo(){
+        game.undo();
+    }
+    public void restart(){
+        game.restart();
+    }
 }

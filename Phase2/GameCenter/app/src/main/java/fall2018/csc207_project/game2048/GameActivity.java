@@ -77,7 +77,7 @@ public class GameActivity extends AppCompatActivity implements Observer {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                game.undo();
+                gameView.getMController().undo();
             }
         });
 
@@ -87,7 +87,7 @@ public class GameActivity extends AppCompatActivity implements Observer {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                game.restart();
+                gameView.getMController().restart();
             }
         });
 
