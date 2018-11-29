@@ -55,4 +55,8 @@ class MovementController {
         Toast.makeText(context, "Help used up!",
                 Toast.LENGTH_SHORT).show();
     }
+
+    void changeTime(int newTime){
+        game.setSecondPassed(newTime);
+    }
 }

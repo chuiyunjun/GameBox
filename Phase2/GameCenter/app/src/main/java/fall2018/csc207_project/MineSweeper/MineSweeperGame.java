@@ -58,6 +58,8 @@ public class MineSweeperGame extends Game implements Serializable {
 
     void setSecondPassed(int secondPassed) {
         this.secondPassed = secondPassed;
+        setChanged();
+        notifyScoreBoard();
     }
 
     void setAnnounced() {

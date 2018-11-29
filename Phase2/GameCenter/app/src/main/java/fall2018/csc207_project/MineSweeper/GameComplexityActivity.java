@@ -46,7 +46,7 @@ public class GameComplexityActivity extends Activity {
         l10Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                switchToGame(1);
+                switchToGame(10);
                 finish();
             }
         });
