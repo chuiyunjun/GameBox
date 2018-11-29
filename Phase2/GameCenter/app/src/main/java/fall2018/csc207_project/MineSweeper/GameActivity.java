@@ -38,9 +38,6 @@ public class GameActivity extends AppCompatActivity implements Observer {
     TextView helpLeft;
 
     private Handler timer = new Handler();
-    private int secondsPassed;
-
-    private int flagsLeft;
 
     MineSweeperGame game;
 
@@ -66,17 +63,14 @@ public class GameActivity extends AppCompatActivity implements Observer {
         this.timerCountText = findViewById(R.id.time);
         this.helpLeft = findViewById(R.id.help_left);
 
-        secondsPassed = game.getSecondsPassed();
-        flagsLeft = game.getFlagsLeft();
-
-        timerCountText.setText(String.valueOf(secondsPassed));
-        mineCountText.setText(String.valueOf(flagsLeft));
+        timerCountText.setText(String.valueOf(game.getSecondsPassed()));
+        mineCountText.setText(String.valueOf(game.getFlagsLeft()));
         String helpAvailable = "(" + String.valueOf(game.getHelp() ? 1 : 0) + ")";
         helpLeft.setText(helpAvailable);
 
         addHelpButtonListener();
 
-        if (secondsPassed < 999) {
+        if (game.getSecondsPassed() < 999) {
             startTimer();
         }
     }
@@ -104,6 +98,8 @@ public class GameActivity extends AppCompatActivity implements Observer {
     private Runnable updateTimeElasped = new Runnable() {
         public void run() {
             long currentMilliseconds = System.currentTimeMillis();
+            int secondsPassed = game.getSecondsPassed();
+
             ++secondsPassed;
 
             game.setSecondPassed(secondsPassed);
@@ -123,7 +119,7 @@ public class GameActivity extends AppCompatActivity implements Observer {
     };
 
     private void updateFlagsLeft() {
-        flagsLeft = game.getFlagsLeft();
+        int flagsLeft = game.getFlagsLeft();
         mineCountText.setText(String.valueOf(flagsLeft));
     }
 
