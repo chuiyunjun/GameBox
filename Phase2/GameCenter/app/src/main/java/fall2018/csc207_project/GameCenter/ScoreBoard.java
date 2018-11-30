@@ -1,5 +1,7 @@
 package fall2018.csc207_project.GameCenter;
 
+import android.support.annotation.NonNull;
+
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Collections;
@@ -131,7 +133,10 @@ public abstract class ScoreBoard implements Observer, Serializable {
      * @return the highest score
      */
     public int getPlayerTopScore(String name) {
-        return topUserScores.get(name)[0];
+        if (topUserScores.get(name) == null)
+            return 0;
+        else
+            return topUserScores.get(name)[0];
     }
 
     /**
