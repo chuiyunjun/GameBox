@@ -122,6 +122,15 @@ public abstract class ScoreBoard implements Observer, Serializable {
     }
 
     /**
+     * return the highest score of for specific user
+     * @param name the name of the user
+     * @return the highest score
+     */
+    public int getPlayerTopScore(String name) {
+        return topUserScores.get(name)[0];
+    }
+
+    /**
      * return highest scores among all users of the game
      * @return a HashMap maps userName of users achieve top scores to their scores
      */

@@ -14,6 +14,7 @@ import java.util.Observer;
 
 import fall2018.csc207_project.GameCenter.GlobalCenter;
 import fall2018.csc207_project.GameCenter.LocalGameCenter;
+import fall2018.csc207_project.GameCenter.ScoreBoard;
 import fall2018.csc207_project.Interfaces.GameActivityInterface;
 import fall2018.csc207_project.R;
 import fall2018.csc207_project.UI.ScoreBoardActivity;
@@ -59,11 +60,12 @@ public class GameActivity extends AppCompatActivity implements GameActivityInter
     }
 
     private void initTextView() {
+        Game2048ScoreBoard scoreBoard = (Game2048ScoreBoard)(globalCenter.getScoreBoards().get(Game2048.GAMENAME));
         TextView score = findViewById(R.id.current_score);
         TextView highest = findViewById(R.id.highest_score);
         TextView undoStepLeft = findViewById(R.id.undo_step_left_2048);
         score.setText("Score\n"+game.getScore());
-        highest.setText("Best\n"+0);
+        highest.setText("Best\n"+scoreBoard.getPlayerTopScore(globalCenter.getCurrentPlayer().getUsername()));
         undoStepLeft.setText("("+game.getUndoStep()+")");
 
     }
