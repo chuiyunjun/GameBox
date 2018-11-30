@@ -35,6 +35,7 @@ public class ComplexityActivity extends AppCompatActivity {
 
     /**
      * initial the graphical interface
+     *
      * @param savedInstanceState saved instance state
      */
 
@@ -63,7 +64,7 @@ public class ComplexityActivity extends AppCompatActivity {
      * listen to the 3*3 button
      * if the button is pressed, then begin the game of complexity of 3.
      */
-    private void add3x3ButtonListener(){
+    private void add3x3ButtonListener() {
         Button l3Button = findViewById(R.id.button3x3);
         l3Button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,7 +79,7 @@ public class ComplexityActivity extends AppCompatActivity {
      * listen to the 4*4 button
      * if the button is pressed, then begin the game of complexity of 4.
      */
-    private void add4x4ButtonListener(){
+    private void add4x4ButtonListener() {
         Button l3Button = findViewById(R.id.button4x4);
         l3Button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,7 +94,7 @@ public class ComplexityActivity extends AppCompatActivity {
      * listen to the 5*5 button
      * if the button is pressed, then begin the game of complexity of 5.
      */
-    private void add5x5ButtonListener(){
+    private void add5x5ButtonListener() {
         Button l3Button = findViewById(R.id.button5x5);
         l3Button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -115,11 +116,10 @@ public class ComplexityActivity extends AppCompatActivity {
             public void onClick(View v) {
                 EditText undoStepsText = findViewById(R.id.undo_step_input);
                 String steps = undoStepsText.getText().toString();
-                if(steps.equals("")) {
+                if (steps.equals("")) {
                     Toast.makeText(getApplicationContext(), "Field can't be empty!",
                             Toast.LENGTH_SHORT).show();
-                }
-                else {
+                } else {
                     undoStep = Integer.parseInt(steps);
                     Toast.makeText(getApplicationContext(), "Setting complete!",
                             Toast.LENGTH_SHORT).show();
@@ -130,6 +130,7 @@ public class ComplexityActivity extends AppCompatActivity {
 
     /**
      * begin the game
+     *
      * @param complexity the complexity of the new game.
      */
     private void switchToGame(int complexity) {
