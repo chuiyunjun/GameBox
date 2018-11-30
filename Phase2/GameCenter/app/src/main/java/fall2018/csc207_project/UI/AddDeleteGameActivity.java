@@ -8,17 +8,17 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.Set;
+
 import fall2018.csc207_project.GameCenter.GlobalCenter;
 import fall2018.csc207_project.GameCenter.LocalGameCenter;
 import fall2018.csc207_project.MineSweeper.MineSweeperGame;
 import fall2018.csc207_project.MineSweeper.MineSweeperScoreBoard;
+import fall2018.csc207_project.R;
 import fall2018.csc207_project.SlidingTileGame.SlidingTileGame;
 import fall2018.csc207_project.SlidingTileGame.SlidingTileScoreBoard;
-import fall2018.csc207_project.R;
 import fall2018.csc207_project.game2048.Game2048;
 import fall2018.csc207_project.game2048.Game2048ScoreBoard;
-
-import java.util.Set;
 
 /**
  * the activity of delete game
@@ -40,7 +40,8 @@ public class AddDeleteGameActivity extends AppCompatActivity {
         setContentView(R.layout.add_delete_game);
         state = getIntent().getBooleanExtra("addGame?", true);
         globalCenter = (GlobalCenter) (getIntent().getSerializableExtra("GlobalCenter"));
-        localCenter = globalCenter.getLocalGameCenter(globalCenter.getCurrentPlayer().getUsername());
+        localCenter = globalCenter.
+                getLocalGameCenter(globalCenter.getCurrentPlayer().getUsername());
 
         initTextView();
         if(state)
