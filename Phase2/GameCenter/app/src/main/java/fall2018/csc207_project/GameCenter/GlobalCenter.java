@@ -12,23 +12,43 @@ import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 
+/**
+ * The GlobalCenter for Application
+ */
+
 public class GlobalCenter implements Serializable, Observer{
 
+    /**
+     * the serial number of global center
+     */
     private static final long serialVersionUID = 2L;
 
+    /**
+     * the map from String to account
+     * the map from String to LocalGameCenter
+     * the map from String to ScoreBoard
+     * the current account of currentPlayer
+     */
     private Map<String, Account> accounts = new HashMap<>();
     private Map<String, LocalGameCenter> localCenters = new HashMap<>();
     private Map<String, ScoreBoard> scoreboards = new HashMap<>(); // gameName -> ScoreBoard
     private Account currentPlayer;
 
-    public Map getAccounts() {
-        return accounts;
-    }
 
+    /**
+     * get the scoreboard
+     * @return scoreboard
+     */
     public Map getScoreBoards(){
         return scoreboards;
     }
 
+    /**
+     * check the username and password
+     * @param username the username which user input
+     * @param password the password which user input
+     * @return whether the username and password is matched
+     */
     public Boolean signIn(String username, String password){
 
         if (accounts.containsKey(username)){

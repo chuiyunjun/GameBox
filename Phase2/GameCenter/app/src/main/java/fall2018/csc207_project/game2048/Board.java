@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * board of game 2048
  */
-public class Board implements Serializable {
+class Board implements Serializable {
 
     /**
      * serial number of the board of 2048
@@ -60,9 +60,6 @@ public class Board implements Serializable {
         blankTileList.addAll(board.getBlankTileList());
     }
 
-    public void setTileTable(Tile[][] newTiles){
-        this.tileTable = newTiles;
-    }
 
     /**
      * return the linked list of numbers of all all tiles
@@ -70,10 +67,6 @@ public class Board implements Serializable {
      */
     private List<Integer> getBlankTileList() {
         return this.blankTileList;
-    }
-
-    public Tile[][] getTileTable(){
-        return this.tileTable;
     }
 
     /**
@@ -84,10 +77,6 @@ public class Board implements Serializable {
      */
     Tile getTile(int x, int y) {
         return tileTable[x][y];
-    }
-
-    public void setBoardSize(int size){
-        this.boardSize = size;
     }
 
     /**
@@ -109,9 +98,6 @@ public class Board implements Serializable {
         }
     }
 
-    private void addTile(int num, int x, int y) {
-        tileTable[x][y].setNum(num);
-    }
 
     /**
      * set values of tiles on the board by the given list
@@ -143,15 +129,6 @@ public class Board implements Serializable {
         int randomIndex = (int)(Math.random()*blankTileList.size());
         int point = blankTileList.get(randomIndex);
         tileTable[point/boardSize][point%boardSize].setNum(Math.random()>0.1?2:4);
-    }
-
-
-    private  void clearTileTable() {
-        for (int y = 0; y < boardSize; y++) {
-            for (int x = 0; x < boardSize; x++) {
-                tileTable[x][y].setNum(0);
-            }
-        }
     }
 
     /**

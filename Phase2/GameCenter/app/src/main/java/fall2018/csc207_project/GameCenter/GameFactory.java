@@ -6,8 +6,17 @@ import fall2018.csc207_project.MineSweeper.MineSweeperGame;
 import fall2018.csc207_project.SlidingTileGame.SlidingTileGame;
 import fall2018.csc207_project.game2048.Game2048;
 
+/**
+ * the factory of all of the games
+ */
 class GameFactory {
 
+    /**
+     * create a game with a name and setting infro
+     * @param gameName the name of game
+     * @param settings the setting information of game
+     * @return null
+     */
     Game createGame(String gameName, List<Object> settings) {
         if(gameName.equals(SlidingTileGame.GAMENAME))
             return new SlidingTileGame(settings);
