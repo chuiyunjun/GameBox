@@ -74,7 +74,7 @@ public class GameActivity extends AppCompatActivity implements GameActivityInter
 
         slidingTileGame = (SlidingTileGame) localGameCenter.getCurGame();
         createTileButtons(this);
-        ScoreBoard scoreBoard = (SlidingTileScoreBoard)globalCenter.getScoreBoards().get(SlidingTileGame.GAMENAME);
+        ScoreBoard scoreBoard = (SlidingTileScoreBoard) globalCenter.getScoreBoards().get(SlidingTileGame.GAMENAME);
         slidingTileGame.setPlayer(globalCenter.getCurrentPlayer().getUsername());
         slidingTileGame.addObserver(scoreBoard);
 
@@ -114,7 +114,7 @@ public class GameActivity extends AppCompatActivity implements GameActivityInter
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(slidingTileGame.getUndoListSize() == 0)
+                if (slidingTileGame.getUndoListSize() == 0)
                     gridView.getMController().toastNoMoreUndo(getApplicationContext());
                 else
                     gridView.getMController().undo();

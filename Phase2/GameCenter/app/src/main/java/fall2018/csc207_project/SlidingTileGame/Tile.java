@@ -140,6 +140,7 @@ public class Tile implements Comparable<Tile>, Serializable {
                 background = R.drawable.blank;
         }
     }
+
     @Override
     public int compareTo(@NonNull Tile o) {
         return o.id - this.id;

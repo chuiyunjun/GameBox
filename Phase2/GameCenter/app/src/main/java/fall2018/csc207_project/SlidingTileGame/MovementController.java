@@ -20,6 +20,7 @@ public class MovementController implements Controller {
 
     /**
      * set the game
+     *
      * @param game the game taken in
      */
     public void setGame(Game game) {
@@ -29,9 +30,10 @@ public class MovementController implements Controller {
     /**
      * According the input event from view, change the data model of the game.
      * Let tiles swap each other and toast message if necessary.
-     * @param context current context
+     *
+     * @param context  current context
      * @param position the position that the player's finger touched
-     * @param display the boolean display
+     * @param display  the boolean display
      */
     void processTapMovement(Context context, int position, boolean display) {
         if (slidingTileGame.isValidTap(position)) {
@@ -42,30 +44,31 @@ public class MovementController implements Controller {
                 slidingTileGame.notifyScoreBoard();
                 endGame(context, message);
             }
-        }
-        else {
+        } else {
             Toast.makeText(context, "Invalid Tap", Toast.LENGTH_SHORT).show();
         }
     }
 
     /**
-     *  change the data model when the player wants to undo.
+     * change the data model when the player wants to undo.
      */
-    void undo(){
+    void undo() {
         slidingTileGame.undo();
     }
 
     /**
      * toast the message "No more undo"
+     *
      * @param context current context
      */
 
-    void toastNoMoreUndo(Context context){
+    void toastNoMoreUndo(Context context) {
         Toast.makeText(context, "No more undo!", Toast.LENGTH_SHORT).show();
     }
 
     /**
      * end the game after playing it by popping up a dialog
+     *
      * @param context game activity
      * @param message message for making toast
      */

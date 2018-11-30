@@ -60,7 +60,7 @@ public class Board extends Observable implements Serializable, Iterable<Tile> {
      *
      * @return the number of row of the board, which is the same as numCols/numRows.
      */
-    int getNumRows(){
+    int getNumRows() {
         return this.numRows;
     }
 
@@ -69,7 +69,7 @@ public class Board extends Observable implements Serializable, Iterable<Tile> {
      *
      * @return the number of row of the board, which is the same as numCols/numRows.
      */
-    int getNumCols(){
+    int getNumCols() {
         return this.numCols;
     }
 
@@ -87,6 +87,7 @@ public class Board extends Observable implements Serializable, Iterable<Tile> {
 
     /**
      * Return the Tiles
+     *
      * @return Tiles
      */
     Tile[][] getTiles() {

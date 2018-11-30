@@ -16,7 +16,7 @@ import fall2018.csc207_project.Interfaces.Game;
 public class SlidingTileGame extends Observable implements Game, Serializable {
 
     /**
-     *  the unique id for serialization
+     * the unique id for serialization
      */
     private static final long serialVersionUID = 8888L;
 
@@ -59,13 +59,13 @@ public class SlidingTileGame extends Observable implements Game, Serializable {
      * Manage a board that has been pre-populated.
      *
      * @param settings the settings of the game.
-     * Preconditin: the first element of the settings should be current board, the second one should
-     *              be numSteps, the third one should be undoStep, and the last one should be
-     *              undoList containing previous board. settings should contain only 4 elements.
+     *                 Preconditin: the first element of the settings should be current board, the second one should
+     *                 be numSteps, the third one should be undoStep, and the last one should be
+     *                 undoList containing previous board. settings should contain only 4 elements.
      */
     public SlidingTileGame(List<Object> settings) {
-        if(settings.size() == 1)
-            initWithComplexity((int)settings.get(0));
+        if (settings.size() == 1)
+            initWithComplexity((int) settings.get(0));
         else {
             this.complexity = (int) settings.get(0);
             this.board = (Board) settings.get(1);
@@ -78,6 +78,7 @@ public class SlidingTileGame extends Observable implements Game, Serializable {
 
     /**
      * initial the sliding tiles game , given the complexity
+     *
      * @param complexity
      */
     private void initWithComplexity(int complexity) {
@@ -91,7 +92,7 @@ public class SlidingTileGame extends Observable implements Game, Serializable {
             // correct id to it
             if (tileNum != numTiles - 1) {
                 tiles.add(new Tile(tileNum));
-            }else{
+            } else {
                 // if tileNum is numTiles -1, we assign blank image to it
                 tiles.add(new Tile(-1));
                 // we then set its id to numTiles
@@ -109,20 +110,21 @@ public class SlidingTileGame extends Observable implements Game, Serializable {
 
     /**
      * get the size of undoList
+     *
      * @return the size of the undoList
      */
-    int getUndoListSize(){
+    int getUndoListSize() {
         return this.undoList.size();
     }
+
     /**
-     *
      * @return the setting information of the SlidingTileGame in an ArrayList, where the first
      * element is the current board, the second one is the number of steps the user used, the third
      * one is the preset undoStep of the game, and the last one is the list containing previous
      * boards for undo.
      */
     @Override
-    public List<Object> getSetting(){
+    public List<Object> getSetting() {
         LinkedList<Object> result = new LinkedList<>();
         result.add(this.complexity);
         result.add(this.board);
@@ -130,7 +132,8 @@ public class SlidingTileGame extends Observable implements Game, Serializable {
         result.add(this.undoStep);
         result.add(this.undoList);
         return result;
-   }
+    }
+
     void setPlayer(String name) {
         this.player = name;
     }
@@ -149,12 +152,12 @@ public class SlidingTileGame extends Observable implements Game, Serializable {
      * first one and add the board to it.
      *
      * @param positions: first/second number: row/col of first swapped tile;
-     *                 third/fourth number: row/col of second swapped tile;
+     *                   third/fourth number: row/col of second swapped tile;
      */
-    private void addToUndoList(int[] positions){
-        if (this.undoList.size() < this.undoStep){
+    private void addToUndoList(int[] positions) {
+        if (this.undoList.size() < this.undoStep) {
             this.undoList.add(positions);
-        }else{
+        } else {
             this.undoList.removeFirst();
             this.undoList.add(positions);
         }
@@ -171,12 +174,12 @@ public class SlidingTileGame extends Observable implements Game, Serializable {
     }
 
     /**
-     *If the undoList is not empty, SlidingTileGame's board is reset to the previous one.
+     * If the undoList is not empty, SlidingTileGame's board is reset to the previous one.
      */
-    void undo(){
+    void undo() {
         if (this.undoList.size() != 0) {
-            int []positions = this.undoList.removeLast();
-            this.board.swapTiles(positions[0],positions[1],positions[2],positions[3]);
+            int[] positions = this.undoList.removeLast();
+            this.board.swapTiles(positions[0], positions[1], positions[2], positions[3]);
             this.numSteps += 1;
         }
     }
