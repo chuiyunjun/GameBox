@@ -291,9 +291,7 @@ public class MineSweeperGame extends Game implements Serializable {
             }
             position++;
         }
-       /**
-        * invalidate help chance if the help has been used
-        */
+        //invalidate help chance if the help has been used
        help = false;
    }
 }
