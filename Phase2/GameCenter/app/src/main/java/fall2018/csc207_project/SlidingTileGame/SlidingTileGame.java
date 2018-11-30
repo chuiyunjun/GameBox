@@ -14,10 +14,20 @@ import fall2018.csc207_project.Interfaces.Game;
  */
 
 public class SlidingTileGame extends Observable implements Game, Serializable {
+
+    /**
+     *  the unique id for serialization
+     */
     private static final long serialVersionUID = 8888L;
+
+    /**
+     * the game name
+     */
     public static final String GAMENAME = "slidingTileGame";
 
-
+    /**
+     * player's username
+     */
     private String player;
     /**
      * The board being managed.
@@ -38,6 +48,10 @@ public class SlidingTileGame extends Observable implements Game, Serializable {
      * list for previous board.
      */
     private LinkedList<int[]> undoList = new LinkedList<>();
+
+    /**
+     * the complexity of the game
+     */
 
     private int complexity = 3;
 
@@ -62,7 +76,10 @@ public class SlidingTileGame extends Observable implements Game, Serializable {
     }
 
 
-
+    /**
+     * initial the sliding tiles game , given the complexity
+     * @param complexity
+     */
     private void initWithComplexity(int complexity) {
         this.complexity = complexity;
         List<Tile> tiles = new ArrayList<>();
@@ -90,7 +107,10 @@ public class SlidingTileGame extends Observable implements Game, Serializable {
         this.board = converter.outputSolvableBoard();
     }
 
-
+    /**
+     * get the size of undoList
+     * @return the size of the undoList
+     */
     int getUndoListSize(){
         return this.undoList.size();
     }

@@ -12,9 +12,11 @@ import java.util.Map;
 import fall2018.csc207_project.GameCenter.GlobalCenter;
 import fall2018.csc207_project.GameCenter.LocalGameCenter;
 import fall2018.csc207_project.GameCenter.ScoreBoard;
-import fall2018.csc207_project.SlidingTileGame.SlidingTileScoreBoard;
 import fall2018.csc207_project.R;
 
+/**
+ * The activity of the scoreboard
+ */
 public class ScoreBoardActivity extends AppCompatActivity {
 
     private GlobalCenter globalCenter;
@@ -22,12 +24,14 @@ public class ScoreBoardActivity extends AppCompatActivity {
     private ScoreBoard scoreboard;
     private LinearLayout canvas;
 
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.scoreboard);
         globalCenter = (GlobalCenter) (getIntent().getSerializableExtra("GlobalCenter"));
         state = getIntent().getBooleanExtra("perPlayer?", true);
-        LocalGameCenter localCenter = globalCenter.getLocalGameCenter(globalCenter.getCurrentPlayer().getUsername());
+        LocalGameCenter localCenter = globalCenter.
+                getLocalGameCenter(globalCenter.getCurrentPlayer().getUsername());
         scoreboard = (ScoreBoard) globalCenter.getScoreBoards().get(localCenter.getCurGameName());
         canvas = findViewById(R.id.score_board_canvas);
 
@@ -40,9 +44,13 @@ public class ScoreBoardActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Display 10 scores of the current user.
+     */
     public void displayPlayerScore() {
-        Integer[] playerScorers = scoreboard.getPlayerScore(globalCenter.getCurrentPlayer().getUsername());
-        for(int x=0;x<playerScorers.length;x++) {
+        Integer[] playerScorers = scoreboard.
+                getPlayerScore(globalCenter.getCurrentPlayer().getUsername());
+        for (int x = 0; x < playerScorers.length; x++) {
             scoreColumnView((x+1)+"",
                     globalCenter.getCurrentPlayer().getUsername(),
                     playerScorers[x] == null? "-":playerScorers[x]+"");
@@ -50,14 +58,27 @@ public class ScoreBoardActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Display 10 highest user scores across the whole game. Each player appear once only.
+     */
     public void displayGlobalScore() {
         Map<Integer, String> indexList = scoreboard.getIndexList();
         int[] topScores = scoreboard.getTopScores();
 
-        for(int x=0;x<topScores.length;x++) {
-            scoreColumnView((x+1)+"",indexList.get(x)==null?"-":indexList.get(x),topScores[x] == 0? "-":topScores[x]+"");
+        for (int x = 0; x < topScores.length; x++) {
+            scoreColumnView((x + 1) + "",
+                    indexList.get(x) == null ? "-" : indexList.get(x),
+                    topScores[x] == 0 ? "-" : topScores[x] + "");
         }
     }
+
+    /**
+     * Set the view of scores for each column.
+     *
+     * @param rankNum   rank number
+     * @param user      the username
+     * @param topScores the scores
+     */
 
     private void scoreColumnView(String rankNum, String user, String topScores) {
         LinearLayout ll = new LinearLayout(this);
@@ -78,7 +99,12 @@ public class ScoreBoardActivity extends AppCompatActivity {
         canvas.addView(ll);
     }
 
-
+    /**
+     * Generate a textView with specific setting.
+     *
+     * @param view the textView
+     * @param text the text to be set
+     */
     private void generateTextView(TextView view, String text) {
         LinearLayout.LayoutParams param = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
@@ -92,7 +118,7 @@ public class ScoreBoardActivity extends AppCompatActivity {
         view.setLayoutParams(param);
     }
 
-
+    @Override
     public void onBackPressed() {
         Intent tmp = new Intent(this, StartingActivity.class);
         tmp.putExtra("GlobalCenter", globalCenter);

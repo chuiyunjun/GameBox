@@ -1,8 +1,8 @@
 package fall2018.csc207_project.UI;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -18,6 +18,9 @@ import fall2018.csc207_project.SlidingTileGame.ComplexityActivity;
 import fall2018.csc207_project.SlidingTileGame.SlidingTileGame;
 import fall2018.csc207_project.game2048.Game2048;
 
+/**
+ * The starting activity of all the games.
+ */
 public class StartingActivity extends AppCompatActivity {
 
     private GlobalCenter globalCenter;
@@ -27,7 +30,8 @@ public class StartingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         globalCenter = (GlobalCenter) (getIntent().getSerializableExtra("GlobalCenter"));
-        localCenter = globalCenter.getLocalGameCenter(globalCenter.getCurrentPlayer().getUsername());
+        localCenter = globalCenter.
+                getLocalGameCenter(globalCenter.getCurrentPlayer().getUsername());
         setContentView(fall2018.csc207_project.R.layout.game_page);
         initBand();
 
@@ -36,9 +40,11 @@ public class StartingActivity extends AppCompatActivity {
         addSaveGameButtonListener();
         addMyScoreButtonListener();
         addGlobalScoreButtonListener();
-
     }
 
+    /**
+     * Initialize the message at the top of the activity.
+     */
     private void initBand() {
         TextView band = findViewById(R.id.GameText);
         String gameName = localCenter.getCurGameName();
@@ -51,13 +57,9 @@ public class StartingActivity extends AppCompatActivity {
 
     }
 
-    public void onBackPressed() {
-        Intent tmp = new Intent(this, LocalCenterActivity.class);
-        tmp.putExtra("GlobalCenter", globalCenter);
-        startActivity(tmp);
-        finish();
-    }
-
+    /**
+     * Add a new game button listener and link to its button.
+     */
     public void addNewGameButtonListener() {
 
         Button button = findViewById(fall2018.csc207_project.R.id.new_game_button);
@@ -74,6 +76,9 @@ public class StartingActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Add a load game button listener and link to its button.
+     */
     public void addLoadGameButtonListener() {
         Button button = findViewById(fall2018.csc207_project.R.id.load_button);
         button.setOnClickListener(new View.OnClickListener() {
@@ -84,6 +89,9 @@ public class StartingActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Add a save game button listener and link to its button.
+     */
     public void addSaveGameButtonListener() {
         Button button = findViewById(fall2018.csc207_project.R.id.save_button);
         button.setOnClickListener(new View.OnClickListener() {
@@ -94,6 +102,9 @@ public class StartingActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Add a my score button listener and lin to its button.
+     */
     public void addMyScoreButtonListener() {
         Button button = findViewById(R.id.my_score_button);
         button.setOnClickListener(new View.OnClickListener() {
@@ -104,6 +115,9 @@ public class StartingActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Add a global score button listener and link to its button.
+     */
     public void addGlobalScoreButtonListener() {
         Button button = findViewById(R.id.global_score_button);
         button.setOnClickListener(new View.OnClickListener() {
@@ -114,6 +128,11 @@ public class StartingActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Switch to scoreboard activity.
+     *
+     * @param state
+     */
     public void switchToScoreBoard(Boolean state) {
         Intent tmp = new Intent(this, ScoreBoardActivity.class);
         tmp.putExtra("GlobalCenter", globalCenter);
@@ -122,6 +141,9 @@ public class StartingActivity extends AppCompatActivity {
         finish();
     }
 
+    /**
+     * Switch to sliding tile game complexity.
+     */
     public void switchToSlidingComplexity() {
         Intent tmp = new Intent(this, ComplexityActivity.class);
         tmp.putExtra("GlobalCenter", globalCenter);
@@ -129,17 +151,24 @@ public class StartingActivity extends AppCompatActivity {
         finish();
     }
 
+    /**
+     * Switch to game 2048 playing activity.
+     */
     public void switchTo2048() {
         LinkedList<Object> settings = new LinkedList<>();
         settings.add(4);
         Game2048 game = (Game2048) localCenter.newGame(Game2048.GAMENAME, settings);
-        Intent tmp = new Intent(this, fall2018.csc207_project.game2048.GameActivity.class);
+        Intent tmp = new Intent(this,
+                fall2018.csc207_project.game2048.GameActivity.class);
         localCenter.setCurGame(game);
         tmp.putExtra("GlobalCenter", globalCenter);
         startActivity(tmp);
         finish();
     }
 
+    /**
+     * Switch to minesweeper splash activity.
+     */
     public void switchToMineSweeperSplash() {
         Intent tmp = new Intent(this, SplashActivity.class);
         tmp.putExtra("GlobalCenter", globalCenter);
@@ -147,9 +176,22 @@ public class StartingActivity extends AppCompatActivity {
         finish();
     }
 
+    /**
+     * Switch to game slot page.
+     *
+     * @param saveOrLoad
+     */
     public void switchToGameSlot(boolean saveOrLoad) {
         Intent tmp = new Intent(this, LoadOrSaveGameActivity.class);
         tmp.putExtra("loadGame?", saveOrLoad);
+        tmp.putExtra("GlobalCenter", globalCenter);
+        startActivity(tmp);
+        finish();
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent tmp = new Intent(this, LocalCenterActivity.class);
         tmp.putExtra("GlobalCenter", globalCenter);
         startActivity(tmp);
         finish();
