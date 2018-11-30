@@ -36,7 +36,7 @@ public class MakeSolvable {
     private void judgeSolved(){
 
         if(complexity%2==1){
-            if(inversion%2==0){solved = true;}else{solved = false;}
+            solved = inversion%2==0;
         }else {
             solved = ((complexity-blankTileRow) % 2 == 1)==(inversion%2==0);
         }
