@@ -13,7 +13,9 @@ import fall2018.csc207_project.Interfaces.Game;
  * LocalGameCenter for each user
  */
 public class LocalGameCenter implements Serializable {
-    /** serial number of LocalGameCenter */
+    /**
+     * serial number of LocalGameCenter
+     */
     private static final long serialVersionUID = 3L;
 
     /**
@@ -46,6 +48,7 @@ public class LocalGameCenter implements Serializable {
 
     /**
      * get the current game which is playing
+     *
      * @return the current game
      */
     public Game getCurGame() {
@@ -54,6 +57,7 @@ public class LocalGameCenter implements Serializable {
 
     /**
      * set the current game which will be playing
+     *
      * @param game the game will be set as current game
      */
     public void setCurGame(Game game) {
@@ -62,15 +66,16 @@ public class LocalGameCenter implements Serializable {
 
     /**
      * add a new game to local game center with the game name
+     *
      * @param gameName the game which will be add to slot
      * @return whether the game can be added
      */
     public boolean addGame(String gameName) {
-        if(localGames.containsKey(gameName))
+        if (localGames.containsKey(gameName))
             return false;
         else {
             LinkedList<List<Object>> slots = new LinkedList<>();
-            for(int i=0;i<=SAVESLOTNUM;i++) {
+            for (int i = 0; i <= SAVESLOTNUM; i++) {
                 slots.add(new LinkedList<>());
             }
             localGames.put(gameName, slots);
@@ -80,6 +85,7 @@ public class LocalGameCenter implements Serializable {
 
     /**
      * set the name of current game
+     *
      * @param gameName the name of game will be set
      */
     public void setCurGameName(String gameName) {
@@ -89,6 +95,7 @@ public class LocalGameCenter implements Serializable {
 
     /**
      * get the number of slot
+     *
      * @return the the number of slot
      */
     public int getSAVESLOTNUM() {
@@ -97,6 +104,7 @@ public class LocalGameCenter implements Serializable {
 
     /**
      * get the index of auto save
+     *
      * @return the index of auto save
      */
     public int getAUTOSAVEINDEX() {
@@ -105,6 +113,7 @@ public class LocalGameCenter implements Serializable {
 
     /**
      * get the name of current game
+     *
      * @return the name of current game
      */
     public String getCurGameName() {
@@ -113,6 +122,7 @@ public class LocalGameCenter implements Serializable {
 
     /**
      * get the set which contains games
+     *
      * @return set of games
      */
     public Set<String> getGames() {
@@ -121,6 +131,7 @@ public class LocalGameCenter implements Serializable {
 
     /**
      * get the list of the name of current games
+     *
      * @return the list of current games
      */
     public LinkedList<List<Object>> getSavingSlots() {
@@ -129,6 +140,7 @@ public class LocalGameCenter implements Serializable {
 
     /**
      * remove the game
+     *
      * @param gameName the name of game
      * @return whether the game is removed
      */
@@ -138,13 +150,14 @@ public class LocalGameCenter implements Serializable {
 
     /**
      * save the game to the slot
-     * @param gameSlot the slot of game
+     *
+     * @param gameSlot  the slot of game
      * @param timeStamp the stamp of time
      * @return whether the user saves the game
      */
     public boolean saveGame(int gameSlot, String timeStamp) {
 
-        if(gameSlot > SAVESLOTNUM || gameSlot < 0 || curGame == null || curGameName == null) {
+        if (gameSlot > SAVESLOTNUM || gameSlot < 0 || curGame == null || curGameName == null) {
             return false;
         }
         List<Object> temp = localGames.get(curGameName).get(gameSlot);
@@ -157,17 +170,19 @@ public class LocalGameCenter implements Serializable {
 
     /**
      * load the game
+     *
      * @param gameName the name of the loading game
      * @param gameSlot the slot which the game is saved
      * @return null or new game
      */
     public Game loadGame(String gameName, int gameSlot) {
-        List<Object> settings= localGames.get(gameName).get(gameSlot);
+        List<Object> settings = localGames.get(gameName).get(gameSlot);
         return new GameFactory().createGame(gameName, settings);
     }
 
     /**
      * creat a new game with the setting information
+     *
      * @param gameName the name of game
      * @param settings the information of game
      * @return null or new game
@@ -178,6 +193,7 @@ public class LocalGameCenter implements Serializable {
 
     /**
      * auto save the game
+     *
      * @param timestamp stamp of time
      */
     public void autoSave(String timestamp) {
