@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * An converter that can convert a random board into a solvable board
  */
 
-public class MakeSolvable {
+class MakeSolvable {
 
     /**
      * the row of the blank tile.
@@ -90,12 +90,15 @@ public class MakeSolvable {
         if (!solved) {
             if (blankTileRow == complexity - 1) {
                 if (blankTileCol == complexity - 1) {
-                    board.swapTiles(complexity - 1, complexity - 2, complexity - 1, complexity - 3);
+                    board.swapTiles(complexity - 1, complexity - 2,
+                            complexity - 1, complexity - 3);
                 } else if (blankTileCol == board.getNumCols() - 2) {
-                    board.swapTiles(complexity - 1, complexity - 1, complexity - 1, complexity - 3);
+                    board.swapTiles(complexity - 1, complexity - 1,
+                            complexity - 1, complexity - 3);
                 }
             } else {
-                board.swapTiles(complexity - 1, complexity - 1, complexity - 1, complexity - 2);
+                board.swapTiles(complexity - 1, complexity - 1,
+                        complexity - 1, complexity - 2);
             }
 
         }

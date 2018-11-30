@@ -39,11 +39,10 @@ public class Board implements Serializable {
     Board(int complexity) {
         this.boardSize = complexity;
         tileTable = new Tile[boardSize][boardSize];
-
+        ;
         addTiles();
         addRandomTile();
         addRandomTile();
-
     }
 
     /**
@@ -93,6 +92,10 @@ public class Board implements Serializable {
         return this.boardSize;
     }
 
+    public void setBoardSize(int size) {
+        this.boardSize = size;
+    }
+
     /**
      * set merge state of all tiles to false
      */
@@ -136,7 +139,6 @@ public class Board implements Serializable {
         int point = blankTileList.get(randomIndex);
         tileTable[point / boardSize][point % boardSize].setNum(Math.random() > 0.1 ? 2 : 4);
     }
-
 
     /**
      * add tiles to the board
