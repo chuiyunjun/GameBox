@@ -54,4 +54,10 @@ public class SplashActivity extends Activity {
         startActivity(tmp);
         finish();
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        globalCenter.saveAll(getApplicationContext());
+    }
 }

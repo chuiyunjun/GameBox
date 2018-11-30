@@ -100,6 +100,11 @@ public class ScoreBoardActivity extends AppCompatActivity {
         finish();
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        globalCenter.saveAll(getApplicationContext());
+    }
 
 
 }

@@ -13,4 +13,18 @@
     <color name="red">#cc2f22</color>
     <color name="green">#007c00</color>
     <color name="black">#0d0d0d</color>
+    <color name="tile_base_color">#0d0d0d</color>
+
+    <color name="tile_2">#ece4db</color>
+    <color name="tile_4">#eae0cc</color>
+    <color name="tile_8">#e9b381</color>
+    <color name="tile_16">#e9996e</color>
+    <color name="tile_32">#e78267</color>
+    <color name="tile_64">#e56847</color>
+    <color name="tile_128">#7fa7ea</color>
+    <color name="tile_256">#5080e1</color>
+    <color name="tile_512">#e9cf7f</color>
+    <color name="tile_1024">#e7c559</color>
+    <color name="tile_2048">#dcae25</color>
+    <color name="default2048TextColor">#5d5a54</color>
 </resources>

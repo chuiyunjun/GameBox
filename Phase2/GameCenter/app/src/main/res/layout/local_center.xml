@@ -8,55 +8,46 @@
         android:layout_width="250dp"
         android:layout_height="65dp"
         android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
         android:layout_marginStart="60dp"
-        android:layout_marginLeft="60dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="60dp"
-        android:layout_marginRight="95dp"
         android:textSize="25sp"
         android:gravity="center"
-        android:textStyle="bold"
-        android:text="TextView" />
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/add_game_button"
         android:layout_width="170dp"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/welcome"
         android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
         android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="153dp"
-        android:textStyle="bold"
-        android:text="@string/addGame" />
+        android:layout_marginTop="68dp"
+        android:text="@string/addGame"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/delete_game_button"
         android:layout_width="170dp"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/add_game_button"
+        android:layout_below="@+id/welcome"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
+        android:layout_marginTop="68dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginRight="19dp"
-        android:textStyle="bold"
-        android:text="@string/deleteGame" />
+        android:text="@string/deleteGame"
+        android:textStyle="bold" />
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="355dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="223dp"
+        android:layout_below="@+id/welcome"
         android:layout_marginLeft="50dp"
+        android:layout_marginTop="138dp"
         android:layout_marginRight="50dp"
-        android:textStyle="bold"
-        android:layout_marginBottom="81dp">
+        android:layout_marginBottom="10dp"
+        android:textStyle="bold">
 
         <LinearLayout
             android:id="@+id/local_center_button_layout"
@@ -70,11 +61,24 @@
                 android:layout_height="50dp"
                 android:gravity="center"
                 android:text="@string/gameListView"
-                android:textStyle="bold"
-                android:textSize="25sp" />
+                android:textSize="25sp"
+                android:textStyle="bold" />
 
 
         </LinearLayout>
     </ScrollView>
+
+    <Button
+        android:id="@+id/log_off_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="120dp"
+        android:textStyle="bold"
+        android:layout_marginEnd="120dp"
+        android:layout_marginBottom="20dp"
+        android:text="@string/log_off" />
 
 </RelativeLayout>

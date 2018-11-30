@@ -1,12 +1,6 @@
 package fall2018.csc207_project.GameCenter;
 
-import org.junit.Assert;
 import org.junit.Test;
-
-
-import org.junit.Test;
-
-import fall2018.csc207_project.GameCenter.Account;
 
 import static org.junit.Assert.*;
 

@@ -17,7 +17,6 @@ import fall2018.csc207_project.GameCenter.GlobalCenter;
 import fall2018.csc207_project.GameCenter.LocalGameCenter;
 import fall2018.csc207_project.GameCenter.ScoreBoard;
 import fall2018.csc207_project.R;
-import fall2018.csc207_project.UI.ScoreBoardActivity;
 import fall2018.csc207_project.UI.StartingActivity;
 
 /**
@@ -200,8 +199,7 @@ public class GameActivity extends AppCompatActivity implements Observer {
     }
 
     /**
-     * connect the game with global center, activate the back button on the bottom of the
-     * screen
+     * connect the game with global center
      */
     public void onBackPressed() {
         Intent tmp = new Intent(this, StartingActivity.class);
@@ -210,13 +208,9 @@ public class GameActivity extends AppCompatActivity implements Observer {
         finish();
     }
 
-    /**
-     * change to scoreboard activity
-     */
-    void switchToScoreboard() {
-        Intent tmp = new Intent(this, ScoreBoardActivity.class);
-        tmp.putExtra("GlobalCenter", globalCenter);
-        startActivity(tmp);
-        finish();
+    @Override
+    protected void onPause() {
+        super.onPause();
+        globalCenter.saveAll(getApplicationContext());
     }
 }
