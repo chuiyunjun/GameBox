@@ -14,10 +14,14 @@ import fall2018.csc207_project.GameCenter.PasswordNotMatchingException;
 import fall2018.csc207_project.GameCenter.UsernameExistException;
 import fall2018.csc207_project.R;
 
+/**
+ * The sign up activity of the game center.
+ */
 public class SignUpActivity extends AppCompatActivity {
 
     private GlobalCenter globalCenter;
 
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signup_page);
@@ -26,6 +30,9 @@ public class SignUpActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Add a sign up button listener and link it to its button.
+     */
     private void addSignUpButtonListener(){
         Button loginButton = findViewById(R.id.signup_button);
         loginButton.setOnClickListener(new View.OnClickListener() {
@@ -38,6 +45,11 @@ public class SignUpActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Check whether sign up succeed or not.
+     *
+     * @return sign up success or not.
+     */
     private boolean checkSignUp() {
         EditText user = findViewById(R.id.signup_username);
         EditText pswInput = findViewById(R.id.signup_password);
@@ -64,6 +76,9 @@ public class SignUpActivity extends AppCompatActivity {
         return false;
     }
 
+    /**
+     * Switch to local center activity.
+     */
     private void localCenter(){
         Intent tmp = new Intent(this, LocalCenterActivity.class);
         tmp = tmp.putExtra("GlobalCenter", globalCenter);
@@ -77,6 +92,7 @@ public class SignUpActivity extends AppCompatActivity {
         globalCenter.saveAll(getApplicationContext());
     }
 
+    @Override
     public void onBackPressed() {
         Intent tmp = new Intent(this, GlobalActivity.class);
         startActivity(tmp);
