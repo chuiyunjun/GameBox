@@ -10,7 +10,7 @@ import fall2018.csc207_project.Interfaces.Game;
 /**
  * the game data model of 2048
  */
-public class Game2048  extends Observable implements Game, Serializable {
+public class Game2048 extends Observable implements Game, Serializable {
 
     /**
      * serial number of the game
@@ -65,11 +65,12 @@ public class Game2048  extends Observable implements Game, Serializable {
 
     /**
      * construct the game data model of 2048
+     *
      * @param settings parametres needed to build the game
      */
     public Game2048(List<Object> settings) {
         //if this is new, initialize it
-        if(settings.size() == 1) {
+        if (settings.size() == 1) {
             this.complexity = (Integer) settings.get(0);
             this.board = new Board(complexity);
             this.undoStep = 3;
@@ -77,16 +78,16 @@ public class Game2048  extends Observable implements Game, Serializable {
 
             addToUndoList();
 
-        //load the autosave version
+            //load the autosave version
         } else {
-            this.board = new Board((Board)settings.get(0));
+            this.board = new Board((Board) settings.get(0));
             this.complexity = (Integer) settings.get(1);
             this.undoStep = (Integer) settings.get(2);
             this.score = (Integer) settings.get(3);
             this.highestTile = (Integer) settings.get(4);
             this.moveAvailable = (Boolean) settings.get(5);
             this.undoList = new LinkedList<>();
-            this.undoList.addAll((LinkedList)settings.get(6));
+            this.undoList.addAll((LinkedList) settings.get(6));
 
 
             addToUndoList();
@@ -110,6 +111,7 @@ public class Game2048  extends Observable implements Game, Serializable {
 
     /**
      * set the player of the game
+     *
      * @param playerName the name of the player
      */
     void setPlayer(String playerName) {
@@ -118,6 +120,7 @@ public class Game2048  extends Observable implements Game, Serializable {
 
     /**
      * get the name of the player
+     *
      * @return the name of the player
      */
     String getPlayer() {
@@ -126,15 +129,18 @@ public class Game2048  extends Observable implements Game, Serializable {
 
     /**
      * get the number of undo available
+     *
      * @return the number of undo available
      */
-    int getUndoStep(){return undoStep;}
+    int getUndoStep() {
+        return undoStep;
+    }
 
     /**
      * restart the game from game data model
      * re-initialize the new game
      */
-    public void restart(){
+    public void restart() {
         this.board = new Board(complexity);
         this.undoStep = 3;
         this.score = 0;
@@ -147,11 +153,11 @@ public class Game2048  extends Observable implements Game, Serializable {
     /**
      * add undo path to the game data model
      */
-    private void addToUndoList(){
+    private void addToUndoList() {
         //if the number of moves is less than undo available
-        if(this.undoList.size()<this.undoStep+1)
+        if (this.undoList.size() < this.undoStep + 1)
             this.undoList.add(record(board));
-        //if the number of moves is more than undo available
+            //if the number of moves is more than undo available
         else {
             this.undoList.removeFirst();
             this.undoList.add(record(board));
@@ -161,14 +167,15 @@ public class Game2048  extends Observable implements Game, Serializable {
 
     /**
      * record all the tile numbers on the board
+     *
      * @param board the board data for the game
      * @return the list of the tile numbers on the board
      */
     private LinkedList<Integer> record(Board board) {
         LinkedList<Integer> list = new LinkedList<>();
-        for(int y=0;y<board.getBoardSize();y++) {
-            for(int x=0;x<board.getBoardSize();x++) {
-                list.add(board.getTile(x,y).getNum());
+        for (int y = 0; y < board.getBoardSize(); y++) {
+            for (int x = 0; x < board.getBoardSize(); x++) {
+                list.add(board.getTile(x, y).getNum());
             }
         }
         list.add(score);
@@ -180,11 +187,11 @@ public class Game2048  extends Observable implements Game, Serializable {
      * perform undo on the data model
      */
     void undo() {
-        if(this.undoList.size()>=2 && undoStep !=0) {
+        if (this.undoList.size() >= 2 && undoStep != 0) {
             undoList.removeLast();
             LinkedList<Integer> temp = undoList.getLast();
             board.syncBoard(temp);
-            undoStep-=1;
+            undoStep -= 1;
             this.score = temp.getLast();
             setChanged();
             notifyObservers();
@@ -194,12 +201,16 @@ public class Game2048  extends Observable implements Game, Serializable {
 
     /**
      * get the highest number on the tile of this board
+     *
      * @return the highest number on the tile of this board
      */
-    int getHighestTile(){return highestTile;}
+    int getHighestTile() {
+        return highestTile;
+    }
 
     /**
      * get the complexity of this game
+     *
      * @return the complexity of this game
      */
     public int getComplexity() {
@@ -208,24 +219,29 @@ public class Game2048  extends Observable implements Game, Serializable {
 
     /**
      * get the board data model
+     *
      * @return the board data model
      */
-    public Board getBoard(){
+    public Board getBoard() {
         return board;
     }
 
     /**
      * get the score of the game
+     *
      * @return the score of the game
      */
-    public int getScore(){return score;}
+    public int getScore() {
+        return score;
+    }
 
     /**
      * perform the touch move as a vector on the data model
      * and calculate if the move is valid
+     *
      * @param countDownFrom move from left bottom or right top
-     * @param yDirection vertical coordinate of the move
-     * @param xDirection horizontal coordinate of the move
+     * @param yDirection    vertical coordinate of the move
+     * @param xDirection    horizontal coordinate of the move
      * @return if the move is valid
      */
     private boolean doMove(int countDownFrom, int yDirection, int xDirection) {
@@ -240,7 +256,7 @@ public class Game2048  extends Observable implements Game, Serializable {
             int r = j / complexity;
             int c = j % complexity;
 
-            if (board.getTile(r,c).getNum() == 0)
+            if (board.getTile(r, c).getNum() == 0)
                 continue;
 
             int nextR = r + xDirection;
@@ -250,8 +266,8 @@ public class Game2048  extends Observable implements Game, Serializable {
              * check if the move is available
              */
             while (nextR >= 0 && nextR < complexity && nextC >= 0 && nextC < complexity) {
-                Tile next = board.getTile(nextR,nextC);
-                Tile curr = board.getTile(r,c);
+                Tile next = board.getTile(nextR, nextC);
+                Tile curr = board.getTile(r, c);
                 if (next.getNum() == 0) {
                     if (moveAvailable)
                         return true;
@@ -273,7 +289,7 @@ public class Game2048  extends Observable implements Game, Serializable {
                     if (value > highestTile)
                         highestTile = value;
                     score += value;
-                    board.getTile(r,c).setNum(0);
+                    board.getTile(r, c).setNum(0);
                     moved = true;
                     break;
                 } else
@@ -288,7 +304,7 @@ public class Game2048  extends Observable implements Game, Serializable {
             setChanged();
             notifyObservers();
         }
-        
+
         return moved;
     }
 
@@ -303,42 +319,49 @@ public class Game2048  extends Observable implements Game, Serializable {
 
     /**
      * if move up is valid
+     *
      * @return if move up is valid
      */
     boolean touchUp() {
-        return doMove(0,-1,0);
+        return doMove(0, -1, 0);
     }
 
     /**
      * if move down is valid
+     *
      * @return if move up is valid
      */
     boolean touchDown() {
-        return doMove(complexity * complexity - 1,1,0);
+        return doMove(complexity * complexity - 1,
+                1, 0);
     }
 
     /**
      * if move left is valid
+     *
      * @return if move up is valid
      */
     boolean touchLeft() {
-        return doMove(0,0,-1);
+        return doMove(0, 0, -1);
     }
 
     /**
      * if move right is valid
+     *
      * @return if move up is valid
      */
     boolean touchRight() {
-        return doMove(complexity * complexity - 1, 0, 1);
+        return doMove(complexity * complexity - 1,
+                0, 1);
     }
 
 
     /**
      * overall the move is available from four directions
+     *
      * @return overall the move is available from four directions
      */
-    boolean movesAvailable(){
+    boolean movesAvailable() {
         moveAvailable = true;
         boolean hasMoves = touchUp() || touchDown() || touchLeft() || touchRight();
         moveAvailable = false;
