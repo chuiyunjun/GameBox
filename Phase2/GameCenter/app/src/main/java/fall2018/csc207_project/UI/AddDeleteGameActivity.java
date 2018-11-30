@@ -20,12 +20,21 @@ import fall2018.csc207_project.game2048.Game2048ScoreBoard;
 
 import java.util.Set;
 
+/**
+ * the activity of delete game
+ */
 public class AddDeleteGameActivity extends AppCompatActivity {
 
+    /**
+     * the Global Center
+     * the local Game center
+     * the state of game
+     */
     private GlobalCenter globalCenter;
     private LocalGameCenter localCenter;
     private boolean state;
 
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_delete_game);
@@ -41,6 +50,9 @@ public class AddDeleteGameActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * init the testView
+     */
     private void initTextView() {
         if (!state) {
             TextView addDeleteBand = findViewById(R.id.add_delete_band);
@@ -52,7 +64,12 @@ public class AddDeleteGameActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * add the state to game
+     */
     private void addState() {
+
+        //the set of game in local center
         Set<String> gameSet = localCenter.getGames();
 
         if (gameSet.contains(SlidingTileGame.GAMENAME))
@@ -72,6 +89,9 @@ public class AddDeleteGameActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * add the Listener of SlidingTile game
+     */
     private void addSlidingTileGameListener() {
         final Button button = findViewById(R.id.sliding_tile_button);
         button.setOnClickListener(new View.OnClickListener() {
@@ -84,6 +104,9 @@ public class AddDeleteGameActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * add the listener of game2048
+     */
     private void addGame2048Listener() {
         final Button button = findViewById(R.id.game2048_button);
         button.setOnClickListener(new View.OnClickListener() {
@@ -96,6 +119,9 @@ public class AddDeleteGameActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * add the listener of MineSweeper
+     */
     private void addMineSweeperListener() {
         final Button button = findViewById(R.id.snake_button);
         button.setOnClickListener(new View.OnClickListener() {
@@ -108,14 +134,18 @@ public class AddDeleteGameActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * delete the state of game
+     */
     private void deleteState() {
         Set<String> gameSet = localCenter.getGames();
         LinearLayout ll = findViewById(R.id.add_delete_game_button_layout);
         ll.removeAllViews();
-
+        // set the game
         for (String s : gameSet) {
             final Button tmp = new Button(this);
             ll.addView(tmp);
+            // Game Sliding Tile, 2048 and MineSweeper
             if (s.equals(SlidingTileGame.GAMENAME)) {
                 tmp.setText(R.string.slidingTileGame);
                 tmp.setOnClickListener(new View.OnClickListener() {
@@ -147,6 +177,9 @@ public class AddDeleteGameActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * set back press
+     */
     public void onBackPressed() {
         Intent tmp = new Intent(this, LocalCenterActivity.class);
         tmp.putExtra("GlobalCenter", globalCenter);
