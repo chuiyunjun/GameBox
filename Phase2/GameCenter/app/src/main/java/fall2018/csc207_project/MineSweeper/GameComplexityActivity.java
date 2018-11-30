@@ -34,7 +34,7 @@ public class GameComplexityActivity extends Activity {
     private LocalGameCenter localCenter;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_complexity);
         globalCenter = (GlobalCenter) (getIntent().getSerializableExtra("GlobalCenter"));
@@ -51,7 +51,7 @@ public class GameComplexityActivity extends Activity {
     /**
      * to the mode that there are 10 bombs
      */
-    private void add10BombsButtonListener(){
+    private void add10BombsButtonListener() {
         Button l10Button = findViewById(R.id.grid10);
         l10Button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,7 +65,7 @@ public class GameComplexityActivity extends Activity {
     /**
      * to the mode that there are 15 bombs
      */
-    private void add15BombsButtonListener(){
+    private void add15BombsButtonListener() {
         Button l15Button = findViewById(R.id.grid15);
         l15Button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,7 +79,7 @@ public class GameComplexityActivity extends Activity {
     /**
      * to the mode that there are 20 bombs
      */
-    private void add20BombsButtonListener(){
+    private void add20BombsButtonListener() {
         Button l20Button = findViewById(R.id.grid20);
         l20Button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,7 +93,7 @@ public class GameComplexityActivity extends Activity {
     /**
      * to the crazy mode, there are 98 bombs
      */
-    private void addCrazyModeButtonListener(){
+    private void addCrazyModeButtonListener() {
         Button crazyButton = findViewById(R.id.crazy);
         crazyButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -134,7 +134,7 @@ public class GameComplexityActivity extends Activity {
     /**
      * to the lucky mode, the bomb number is random
      */
-    private void addLuckyModeButtonListener(){
+    private void addLuckyModeButtonListener() {
         Button luckButton = findViewById(R.id.lucky);
         luckButton.setOnClickListener(new View.OnClickListener() {
             @Override

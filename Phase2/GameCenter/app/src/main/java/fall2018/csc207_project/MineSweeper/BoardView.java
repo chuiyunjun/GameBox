@@ -37,6 +37,7 @@ public class BoardView extends GridLayout {
 
     /**
      * construct the board view
+     *
      * @param context game activity
      */
     public BoardView(Context context) {
@@ -46,6 +47,7 @@ public class BoardView extends GridLayout {
 
     /**
      * construct the board view
+     *
      * @param context game activity
      */
     public BoardView(Context context, AttributeSet attrs) {
@@ -55,8 +57,9 @@ public class BoardView extends GridLayout {
 
     /**
      * construct the board view
-     * @param context game activity
-     * @param attrs default setting in android
+     *
+     * @param context      game activity
+     * @param attrs        default setting in android
      * @param defStyleAttr default setting in android
      */
     public BoardView(Context context, AttributeSet attrs, int defStyleAttr) {
@@ -66,36 +69,37 @@ public class BoardView extends GridLayout {
 
     /**
      * initialize the view of the game (game activity)
+     *
      * @param context game activity
      */
-    public void initBoardView(Context context){
+    public void initBoardView(Context context) {
         int boardSize = 10;
         setColumnCount(boardSize);
         tileTable = new Button[boardSize][boardSize];
         movementController = new MovementController();
         //set overall grid layout
-        FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(-1,-1);
-        params.setMargins(1,1,1,1);
+        FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(-1, -1);
+        params.setMargins(1, 1, 1, 1);
 
         //put tiles to the grid, assign each tile to a button
-        for(int x = 0;x < boardSize; x++){
-            for(int y = 0; y < boardSize; y++){
+        for (int x = 0; x < boardSize; x++) {
+            for (int y = 0; y < boardSize; y++) {
                 Button button = new Button(getContext());
                 button.setLongClickable(true);
                 final int row = x;
                 final int col = y;
-                button.setOnClickListener(new View.OnClickListener(){
+                button.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(View v){
+                    public void onClick(View v) {
                         movementController.flip(getContext(), row, col);
 
                     }
                 });
-                button.setOnLongClickListener(new View.OnLongClickListener(){
+                button.setOnLongClickListener(new View.OnLongClickListener() {
                     @Override
-                    public boolean onLongClick(View v){
+                    public boolean onLongClick(View v) {
                         movementController.changeLabelState(getContext(), row, col);
-                        return  true;
+                        return true;
                     }
                 });
 
@@ -108,14 +112,14 @@ public class BoardView extends GridLayout {
 
     }
 
-    public void initViewTable(){
+    public void initViewTable() {
         Board board = movementController.getGame().getBoard();
         int boardSize = board.getBoardSize();
-        FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(-1,-1);
-        params.setMargins(10,10,0,0);
+        FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(-1, -1);
+        params.setMargins(10, 10, 0, 0);
 
-        for(int y = 0;y < boardSize; y++){
-            for(int x = 0; x < boardSize; x++){
+        for (int y = 0; y < boardSize; y++) {
+            for (int x = 0; x < boardSize; x++) {
                 tileTable[x][y] = new Button(getContext());
                 FrameLayout fl = new FrameLayout(getContext());
                 tileTable[x][y].setBackgroundResource(R.drawable.button);
@@ -128,13 +132,13 @@ public class BoardView extends GridLayout {
     /**
      * set the view of each tile
      */
-    public void setTableImage(){
+    public void setTableImage() {
         Tile tile;
         Board board = movementController.getGame().getBoard();
         Tile[][] boardTable = board.getTiles();
         int boardSize = board.getBoardSize();
-        for(int x = 0;x < boardSize; x++){
-            for(int y = 0; y < boardSize; y++){
+        for (int x = 0; x < boardSize; x++) {
+            for (int y = 0; y < boardSize; y++) {
                 tile = boardTable[x][y];
                 int resourceID = tile.getTileImage();
                 tileTable[x][y].setBackgroundResource(resourceID);
@@ -144,9 +148,10 @@ public class BoardView extends GridLayout {
 
     /**
      * set the view of the tile by its index
+     *
      * @param index index of the tile
      */
-    public void setTileImage(int index){
+    public void setTileImage(int index) {
         Board board = movementController.getGame().getBoard();
         Tile[][] boardTable = board.getTiles();
         int boardSize = board.getBoardSize();
@@ -158,6 +163,7 @@ public class BoardView extends GridLayout {
 
     /**
      * assign game model to the controller
+     *
      * @param game game model
      */
     public void setGame(MineSweeperGame game) {
@@ -165,5 +171,8 @@ public class BoardView extends GridLayout {
         movementController.setGame(game);
 
     }
-    MovementController getMController(){return movementController;}
+
+    MovementController getMController() {
+        return movementController;
+    }
 }

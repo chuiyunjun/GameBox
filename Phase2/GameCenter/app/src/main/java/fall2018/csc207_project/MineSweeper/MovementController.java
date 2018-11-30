@@ -22,10 +22,12 @@ class MovementController implements Controller {
     /**
      * default constructor
      */
-    MovementController(){}
+    MovementController() {
+    }
 
     /**
      * set up the game model
+     *
      * @param game game model
      */
     public void setGame(Game game) {
@@ -34,15 +36,19 @@ class MovementController implements Controller {
 
     /**
      * get the game model
+     *
      * @return the game model
      */
-    MineSweeperGame getGame(){return game;}
+    MineSweeperGame getGame() {
+        return game;
+    }
 
     /**
      * flip the tile and process the move
+     *
      * @param context game activity
-     * @param row row index of the tile
-     * @param col column index of the tile
+     * @param row     row index of the tile
+     * @param col     column index of the tile
      */
     void flip(Context context, int row, int col) {
         //lock the game if the game ends
@@ -52,8 +58,8 @@ class MovementController implements Controller {
             //fail if a bomb is flipped, and flip all tiles
             if (tile.getNum() >= 10 && tile.isFlipped()) {
                 tile.setBoom();
-                for(int rowNum = 0; rowNum < game.getBoard().getBoardSize(); rowNum++) {
-                    for(int colNum = 0; colNum < game.getBoard().getBoardSize(); colNum++) {
+                for (int rowNum = 0; rowNum < game.getBoard().getBoardSize(); rowNum++) {
+                    for (int colNum = 0; colNum < game.getBoard().getBoardSize(); colNum++) {
                         game.flipTile(rowNum, colNum);
                     }
                 }
@@ -66,9 +72,10 @@ class MovementController implements Controller {
 
     /**
      * change the if the tile is flagged
+     *
      * @param context game activity
-     * @param row row index of the tile
-     * @param col column index of the tile
+     * @param row     row index of the tile
+     * @param col     column index of the tile
      */
     void changeLabelState(Context context, int row, int col) {
         if (!game.getGameOver()) {
@@ -80,29 +87,32 @@ class MovementController implements Controller {
     /**
      * process help function if the user press help
      */
-    void helpPressed(){
-       game.help();
+    void helpPressed() {
+        game.help();
     }
 
     /**
      * tell the player there is no help left
+     *
      * @param context game activity
      */
-    void toastHelpUsedUp(Context context){
+    void toastHelpUsedUp(Context context) {
         Toast.makeText(context, "Help used up!",
                 Toast.LENGTH_SHORT).show();
     }
 
     /**
      * store time used in the game data model
+     *
      * @param newTime time used
      */
-    void changeTime(int newTime){
+    void changeTime(int newTime) {
         game.setSecondPassed(newTime);
     }
 
     /**
      * check if the game has ended and the user has won
+     *
      * @param context game activity
      */
     private void checkIfEnd(Context context) {
@@ -120,6 +130,7 @@ class MovementController implements Controller {
     /**
      * auto-exit the game after playing it, different from other two because popping up
      * an alert dialog needs another thread which makes the game lag
+     *
      * @param context game activity
      * @param message message for making toast
      */
@@ -129,7 +140,7 @@ class MovementController implements Controller {
         //auto exit after five seconds
         Timer timer = new Timer();
         final GameActivity gameActivity = (GameActivity) context;
-        TimerTask timerTask=new TimerTask() {
+        TimerTask timerTask = new TimerTask() {
             @Override
             public void run() {
                 gameActivity.switchToScoreBoard();
