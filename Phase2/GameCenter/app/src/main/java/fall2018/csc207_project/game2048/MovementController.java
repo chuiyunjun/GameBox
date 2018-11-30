@@ -2,11 +2,18 @@ package fall2018.csc207_project.game2048;
 
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.widget.Toast;
 
-import java.io.Serializable;
 
-
+/**
+ * the controller of each move for game2048, connect between game data model and view
+ *
+ * dialog adapted from
+ * https://stackoverflow.com/questions/2115758/how-do-i-display-an-alert-dialog-on-android
+ *
+ */
 public class MovementController{
 
     private Game2048 game;
@@ -25,7 +32,6 @@ public class MovementController{
         return this.game;
     }
     boolean processMovement(Context context, int direction){
-        System.out.println(game.getPlayer());
         boolean hasMoved = false;
         if(direction == UP){
             hasMoved = game.touchUp();
@@ -39,17 +45,22 @@ public class MovementController{
 
         if(!hasMoved){
             if(!game.movesAvailable()){
-                Toast.makeText(context, "GAME OVER!", Toast.LENGTH_SHORT).show();
+                String message = "GAME OVER!";
+                Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
                 game.notifyScoreBoard();
+                endGame(context, message);
             }
         }
 
         boolean has2048 = game.getHighestTile() >= TARGET;
 
         if(has2048){
-            Toast.makeText(context, "YOU WIN!", Toast.LENGTH_SHORT).show();
+            String message = "YOU WIN!";
+            Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
             game.notifyScoreBoard();
+            endGame(context, message);
         }
+
         return hasMoved;
     }
 
@@ -62,5 +73,33 @@ public class MovementController{
     }
     public void restart(){
         game.restart();
+    }
+
+    /**
+     * end the game after playing it by popping up a dialog
+     * @param context game activity
+     * @param message message for making toast
+     */
+    private void endGame(final Context context, final String message) {
+        GameActivity gameActivity = (GameActivity) context;
+        gameActivity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                final GameActivity gameActivity = (GameActivity) context;
+                if (!gameActivity.isFinishing()) {
+                    new AlertDialog.Builder(context)
+                            .setTitle(message)
+                            .setMessage("You can check the scoreboard.")
+                            .setCancelable(false)
+                            .setPositiveButton("ok", new DialogInterface.
+                                    OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    gameActivity.switchToScoreBoard();
+                                }
+                            }).show();
+                }
+            }
+        });
     }
 }

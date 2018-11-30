@@ -27,7 +27,7 @@ public class Tile implements Serializable {
      * construct the tile by number
      * @param number
      */
-    Tile(int number){
+    public Tile(int number){
         this.num = number;
         this.mergedState = false;
     }

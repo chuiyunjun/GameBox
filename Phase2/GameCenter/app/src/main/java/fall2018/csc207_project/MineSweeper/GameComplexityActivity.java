@@ -20,6 +20,10 @@ import fall2018.csc207_project.UI.StartingActivity;
 
 /**
  * select the complexity of the game
+ *
+ * dialog adapted from
+ * https://stackoverflow.com/questions/2115758/how-do-i-display-an-alert-dialog-on-android
+ *
  */
 public class GameComplexityActivity extends Activity {
 
