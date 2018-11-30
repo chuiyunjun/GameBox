@@ -22,7 +22,7 @@ public class LocalGameCenter implements Serializable {
      */
     private final int SAVESLOTNUM = 3;
 
-    public final int AUTOSAVEINDEX = 3;
+    private final int AUTOSAVEINDEX = 3;
 
     /**
      * map for local games
@@ -127,10 +127,21 @@ public class LocalGameCenter implements Serializable {
         return localGames.get(curGameName);
     }
 
+    /**
+     * remove the game
+     * @param gameName the name of game
+     * @return whether the game is removed
+     */
     public boolean removeGame(String gameName) {
         return localGames.remove(gameName) != null;
     }
 
+    /**
+     * save the game to the slot
+     * @param gameSlot the slot of game
+     * @param timeStamp the stamp of time
+     * @return whether the user saves the game
+     */
     public boolean saveGame(int gameSlot, String timeStamp) {
 
         if(gameSlot > SAVESLOTNUM || gameSlot < 0 || curGame == null || curGameName == null) {
@@ -144,6 +155,12 @@ public class LocalGameCenter implements Serializable {
         return true;
     }
 
+    /**
+     * load the game
+     * @param gameName the name of the loading game
+     * @param gameSlot the slot which the game is saved
+     * @return null or new game
+     */
     public Game loadGame(String gameName, int gameSlot) {
         List<Object> settings= localGames.get(gameName).get(gameSlot);
         return new GameFactory().createGame(gameName, settings);

@@ -68,7 +68,7 @@ public class GlobalCenter implements Serializable, Observer{
      * @param password1 the password which user input
      * @param password2 the password which user confirmed
      * @return Sign in the game use the new account
-     * @throws Exception
+     * @throws Exception username exist or password not match or user does not exist
      */
     public boolean signUp(String username, String password1, String password2) throws Exception{
         if (username.equals("") || password1.equals("") || password2.equals(""))
