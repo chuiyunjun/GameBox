@@ -200,7 +200,8 @@ public class GameActivity extends AppCompatActivity implements Observer {
     }
 
     /**
-     * connect the game with global center
+     * connect the game with global center, activate the back button on the bottom of the
+     * screen
      */
     public void onBackPressed() {
         Intent tmp = new Intent(this, StartingActivity.class);
@@ -209,6 +210,9 @@ public class GameActivity extends AppCompatActivity implements Observer {
         finish();
     }
 
+    /**
+     * change to scoreboard activity
+     */
     void switchToScoreboard() {
         Intent tmp = new Intent(this, ScoreBoardActivity.class);
         tmp.putExtra("GlobalCenter", globalCenter);
