@@ -62,6 +62,7 @@ public class GestureDetectGridView extends GridView {
 
     /**
      * construct gridView of detect gesture
+     *
      * @param context game activity
      */
     public GestureDetectGridView(Context context) {
@@ -71,8 +72,9 @@ public class GestureDetectGridView extends GridView {
 
     /**
      * construct gridView of gesture detect
+     *
      * @param context game activity
-     * @param attrs attribute
+     * @param attrs   attribute
      */
     public GestureDetectGridView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -81,8 +83,9 @@ public class GestureDetectGridView extends GridView {
 
     /**
      * construct gridView of gesture detect
-     * @param context game activity
-     * @param attrs attribute
+     *
+     * @param context      game activity
+     * @param attrs        attribute
      * @param defStyleAttr defStyleAttr
      */
     public GestureDetectGridView(Context context, AttributeSet attrs, int defStyleAttr) {
@@ -99,6 +102,7 @@ public class GestureDetectGridView extends GridView {
 
     /**
      * init the game center
+     *
      * @param context game activity
      */
     private void init(final Context context) {
@@ -159,5 +163,7 @@ public class GestureDetectGridView extends GridView {
         mController.setGame(slidingTileGame);
     }
 
-    public MovementController getMController(){return mController;}
+    public MovementController getMController() {
+        return mController;
+    }
 }
