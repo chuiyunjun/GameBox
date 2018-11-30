@@ -199,7 +199,7 @@ public class GameActivity extends AppCompatActivity implements Observer {
     }
 
     /**
-     * connect the game with global center
+     * connect the game with global center, activate the back button on the bottom left
      */
     public void onBackPressed() {
         Intent tmp = new Intent(this, StartingActivity.class);
@@ -211,6 +211,7 @@ public class GameActivity extends AppCompatActivity implements Observer {
     @Override
     protected void onPause() {
         super.onPause();
+        //save information of the gakme
         globalCenter.saveAll(getApplicationContext());
     }
 }
