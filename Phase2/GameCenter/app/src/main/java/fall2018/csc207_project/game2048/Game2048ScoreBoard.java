@@ -8,10 +8,23 @@ import java.util.Observable;
 
 import fall2018.csc207_project.GameCenter.ScoreBoard;
 
+/**
+ * the scoreboard of the game 2048
+ */
 public class Game2048ScoreBoard extends ScoreBoard implements Serializable {
+    /**
+     * serial number of the scoreboard of 2048
+     */
     private static final long serialVersionUID = 284675295723L;
+
+    /**
+     * the mark index in the setting
+     */
     private final int SCOREINDEX = 3;
 
+    /**
+     * initialize the socreboard
+     */
     public Game2048ScoreBoard() {
         super();
     }
