@@ -15,9 +15,9 @@ import java.util.Calendar;
 import java.util.LinkedList;
 import java.util.List;
 
-import fall2018.csc207_project.Interfaces.Game;
 import fall2018.csc207_project.GameCenter.GlobalCenter;
 import fall2018.csc207_project.GameCenter.LocalGameCenter;
+import fall2018.csc207_project.Interfaces.Game;
 import fall2018.csc207_project.MineSweeper.Board;
 import fall2018.csc207_project.MineSweeper.MineSweeperGame;
 import fall2018.csc207_project.R;
@@ -45,7 +45,8 @@ public class LoadOrSaveGameActivity extends AppCompatActivity {
         setContentView(R.layout.load_and_save);
         state = getIntent().getBooleanExtra("loadGame?", true);
         globalCenter = (GlobalCenter) (getIntent().getSerializableExtra("GlobalCenter"));
-        localCenter = globalCenter.getLocalGameCenter(globalCenter.getCurrentPlayer().getUsername());
+        localCenter = globalCenter.
+                getLocalGameCenter(globalCenter.getCurrentPlayer().getUsername());
 
         initTextView();
         addSlotButton();
@@ -80,7 +81,8 @@ public class LoadOrSaveGameActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     if(state) {
                         try {
-                            Game game = localCenter.loadGame(localCenter.getCurGameName(), button.getId());
+                            Game game = localCenter.loadGame(localCenter.getCurGameName(),
+                                    button.getId());
                             switchToGame(game);
                         } catch (IndexOutOfBoundsException e) {
                         Toast toast = Toast.makeText(getApplicationContext(),
@@ -121,7 +123,8 @@ public class LoadOrSaveGameActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Game game = localCenter.loadGame(localCenter.getCurGameName(), localCenter.getAUTOSAVEINDEX());
+                Game game = localCenter.loadGame(localCenter.getCurGameName(),
+                        localCenter.getAUTOSAVEINDEX());
                 switchToGame(game);
             }
         });
@@ -134,17 +137,20 @@ public class LoadOrSaveGameActivity extends AppCompatActivity {
     private void switchToGame(Game game) {
 
         if(game instanceof SlidingTileGame) {
-            Intent tmp = new Intent(this, fall2018.csc207_project.SlidingTileGame.GameActivity.class);
+            Intent tmp = new Intent(this,
+                    fall2018.csc207_project.SlidingTileGame.GameActivity.class);
             tmp.putExtra("GlobalCenter", globalCenter);
             localCenter.setCurGame(game);
             startActivity(tmp);
         } else if(game instanceof Game2048) {
-            Intent tmp = new Intent(this, fall2018.csc207_project.game2048.GameActivity.class);
+            Intent tmp = new Intent(this,
+                    fall2018.csc207_project.game2048.GameActivity.class);
             tmp.putExtra("GlobalCenter", globalCenter);
             localCenter.setCurGame(game);
             startActivity(tmp);
         } else if(game instanceof MineSweeperGame) {
-            Intent tmp = new Intent(this, fall2018.csc207_project.MineSweeper.GameActivity.class);
+            Intent tmp = new Intent(this,
+                    fall2018.csc207_project.MineSweeper.GameActivity.class);
             tmp.putExtra("GlobalCenter", globalCenter);
             localCenter.setCurGame(game);
             startActivity(tmp);
@@ -164,7 +170,8 @@ public class LoadOrSaveGameActivity extends AppCompatActivity {
         } else if(localCenter.getCurGame() instanceof SlidingTileGame){
             int complexity = (Integer) ((LinkedList<Object>) slot).getFirst();
             String time = (String) ((LinkedList<Object>) slot).getLast();
-            button.setText("Complexity: " + complexity + "x" + complexity +"\n" + "Save Time: "+time);
+            button.setText("Complexity: " + complexity + "x" + complexity
+                    + "\n" + "Save Time: " + time);
         } else if(localCenter.getCurGame() instanceof Game2048) {
             int score = (Integer) slot.get(3);
             String time = (String) ((LinkedList<Object>) slot).getLast();
@@ -174,7 +181,8 @@ public class LoadOrSaveGameActivity extends AppCompatActivity {
             int timePassed = (Integer) ((LinkedList<Object>) slot).get(1);
             int bombNum = board.getBombNum();
             String time = (String) ((LinkedList<Object>) slot).getLast();
-            button.setText("Time Passed: "+timePassed+"\n"+ "Bomb Number: "+bombNum+"\n"+"Save time: "+time);
+            button.setText("Time Passed: " + timePassed + "\n" + "Bomb Number: "
+                    + bombNum + "\n" + "Save time: " + time);
         }
     }
 

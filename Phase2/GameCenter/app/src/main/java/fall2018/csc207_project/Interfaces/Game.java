@@ -10,6 +10,7 @@ public interface Game {
 
     /**
      * get the setting information
+     *
      * @return the setting list
      */
     List<Object> getSetting();

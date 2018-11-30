@@ -8,7 +8,6 @@ import android.content.Context;
 public interface Controller {
 
     /**
-     *
      * @param context game activity
      * @param message message of content
      */
@@ -16,6 +15,7 @@ public interface Controller {
 
     /**
      * set the game
+     *
      * @param game the game will be set
      */
     void setGame(Game game);
