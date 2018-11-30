@@ -7,6 +7,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.NoSuchElementException;
 
+
 /**
  * the board of the game, used to store tiles in it
  */
@@ -51,7 +52,7 @@ public class Board implements Serializable, Iterable<Tile> {
         tileTable = new Tile[boardSize][boardSize];
         for(int y=0;y<boardSize;y++) {
             for(int x=0;x<boardSize;x++) {
-                tileTable[x][y] = new Tile(board.getTileTable()[x][y]);
+                tileTable[x][y] = new Tile(board.getTiles()[x][y]);
             }
         }
         this.boardSize = board.getBoardSize();
@@ -63,7 +64,7 @@ public class Board implements Serializable, Iterable<Tile> {
      * getter of tile table
      * @return tile table
      */
-    Tile[][] getTileTable(){
+    Tile[][] getTiles(){
         return tileTable;
     }
 

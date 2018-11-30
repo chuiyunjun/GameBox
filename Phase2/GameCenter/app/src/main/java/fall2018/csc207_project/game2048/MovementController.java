@@ -6,10 +6,12 @@ import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.widget.Toast;
 
-import java.io.Serializable;
+
+import fall2018.csc207_project.Interfaces.Game;
+import fall2018.csc207_project.Interfaces.Controller;
 
 
-public class MovementController{
+public class MovementController implements Controller {
 
     private Game2048 game;
     private static final int UP = 1;
@@ -59,13 +61,14 @@ public class MovementController{
         return hasMoved;
     }
 
-    public void setGame(Game2048 game) {
-        this.game = game;
+    public void setGame(Game game) {
+        this.game = (Game2048) game;
     }
 
     void undo(){
         game.undo();
     }
+
     public void restart(){
         game.restart();
     }
@@ -75,7 +78,7 @@ public class MovementController{
      * @param context game activity
      * @param message message for making toast
      */
-    private void endGame(final Context context, final String message) {
+    public void endGame(final Context context, final String message) {
         GameActivity gameActivity = (GameActivity) context;
         gameActivity.runOnUiThread(new Runnable() {
             @Override

@@ -6,10 +6,13 @@ import android.widget.Toast;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import fall2018.csc207_project.Interfaces.Game;
+import fall2018.csc207_project.Interfaces.Controller;
+
 /**
  * control the change of the game model from the command of the activity and view
  */
-class MovementController {
+class MovementController implements Controller {
 
     /**
      * model of the game
@@ -25,8 +28,8 @@ class MovementController {
      * set up the game model
      * @param game game model
      */
-    void setGame(MineSweeperGame game) {
-        this.game = game;
+    public void setGame(Game game) {
+        this.game = (MineSweeperGame) game;
     }
 
     /**
@@ -45,7 +48,7 @@ class MovementController {
         //lock the game if the game ends
         if (!game.getGameOver()) {
             game.flipTile(row, col);
-            Tile tile = game.getBoard().getTileTable()[row][col];
+            Tile tile = game.getBoard().getTiles()[row][col];
             //fail if a bomb is flipped, and flip all tiles
             if (tile.getNum() >= 10 && tile.isFlipped()) {
                 tile.setBoom();
@@ -120,8 +123,8 @@ class MovementController {
      * @param context game activity
      * @param message message for making toast
      */
-    private void endGame(final Context context, final String message) {
-        Toast.makeText(context, message + "The game will exit in 3 seconds",
+    public void endGame(final Context context, final String message) {
+        Toast.makeText(context, message + "The game will exit in 2 seconds",
                 Toast.LENGTH_SHORT).show();
         //auto exit after five seconds
         Timer timer = new Timer();
@@ -132,6 +135,6 @@ class MovementController {
                 gameActivity.switchToScoreBoard();
             }
         };
-        timer.schedule(timerTask, 1000 * 3);
+        timer.schedule(timerTask, 1000 * 2);
     }
 }

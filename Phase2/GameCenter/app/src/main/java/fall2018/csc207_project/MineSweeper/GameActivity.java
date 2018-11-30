@@ -16,6 +16,7 @@ import java.util.Observer;
 import fall2018.csc207_project.GameCenter.GlobalCenter;
 import fall2018.csc207_project.GameCenter.LocalGameCenter;
 import fall2018.csc207_project.GameCenter.ScoreBoard;
+import fall2018.csc207_project.Interfaces.GameActivityInterface;
 import fall2018.csc207_project.R;
 import fall2018.csc207_project.UI.ScoreBoardActivity;
 import fall2018.csc207_project.UI.StartingActivity;
@@ -28,7 +29,7 @@ import fall2018.csc207_project.UI.StartingActivity;
  * resource of images for tiles from https://github.com/marcellelek/Minesweeper
  *
  */
-public class GameActivity extends AppCompatActivity implements Observer {
+public class GameActivity extends AppCompatActivity implements GameActivityInterface, Observer {
 
     /**
      * global centre of the game
@@ -215,6 +216,7 @@ public class GameActivity extends AppCompatActivity implements Observer {
         globalCenter.saveAll(getApplicationContext());
     }
 
+    @Override
     public void switchToScoreBoard() {
         Intent tmp = new Intent(this, ScoreBoardActivity.class);
         tmp.putExtra("GlobalCenter", globalCenter);

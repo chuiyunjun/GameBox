@@ -15,13 +15,12 @@ import java.util.Calendar;
 import java.util.LinkedList;
 import java.util.List;
 
-import fall2018.csc207_project.GameCenter.Game;
+import fall2018.csc207_project.Interfaces.Game;
 import fall2018.csc207_project.GameCenter.GlobalCenter;
 import fall2018.csc207_project.GameCenter.LocalGameCenter;
 import fall2018.csc207_project.MineSweeper.Board;
 import fall2018.csc207_project.MineSweeper.MineSweeperGame;
 import fall2018.csc207_project.R;
-import fall2018.csc207_project.SlidingTileGame.GameActivity;
 import fall2018.csc207_project.SlidingTileGame.SlidingTileGame;
 import fall2018.csc207_project.game2048.Game2048;
 

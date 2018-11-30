@@ -1,14 +1,11 @@
 package fall2018.csc207_project.MineSweeper;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.GridLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import fall2018.csc207_project.R;
 
@@ -134,7 +131,7 @@ public class BoardView extends GridLayout {
     public void setTableImage(){
         Tile tile;
         Board board = movementController.getGame().getBoard();
-        Tile[][] boardTable = board.getTileTable();
+        Tile[][] boardTable = board.getTiles();
         int boardSize = board.getBoardSize();
         for(int x = 0;x < boardSize; x++){
             for(int y = 0; y < boardSize; y++){
@@ -151,7 +148,7 @@ public class BoardView extends GridLayout {
      */
     public void setTileImage(int index){
         Board board = movementController.getGame().getBoard();
-        Tile[][] boardTable = board.getTileTable();
+        Tile[][] boardTable = board.getTiles();
         int boardSize = board.getBoardSize();
         int row = index / boardSize;
         int col = index % boardSize;

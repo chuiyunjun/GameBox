@@ -5,14 +5,15 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Observable;
 
-import fall2018.csc207_project.GameCenter.Game;
+import fall2018.csc207_project.Interfaces.Game;
 
 /**
  * Manage a board, including swapping tiles, checking for a win, and managing taps.
  */
 
-public class SlidingTileGame extends Game implements Serializable {
+public class SlidingTileGame extends Observable implements Game, Serializable {
     private static final long serialVersionUID = 8888L;
     public static final String GAMENAME = "slidingTileGame";
 
@@ -140,7 +141,8 @@ public class SlidingTileGame extends Game implements Serializable {
 
     }
 
-    void notifyScoreBoard() {
+    @Override
+    public void notifyScoreBoard() {
         setChanged();
         LinkedList info = new LinkedList<>();
         info.add(player);

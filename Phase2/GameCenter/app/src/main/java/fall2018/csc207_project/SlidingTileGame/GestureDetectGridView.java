@@ -103,7 +103,7 @@ public class GestureDetectGridView extends GridView {
 
     public void setGame(SlidingTileGame slidingTileGame) {
         this.slidingTileGame = slidingTileGame;
-        mController.setSlidingTileGame(slidingTileGame);
+        mController.setGame(slidingTileGame);
     }
 
     public MovementController getMController(){return mController;}

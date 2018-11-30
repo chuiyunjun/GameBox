@@ -5,16 +5,19 @@ import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.widget.Toast;
 
+import fall2018.csc207_project.Interfaces.Game;
+import fall2018.csc207_project.Interfaces.Controller;
 
-public class MovementController {
+
+public class MovementController implements Controller {
 
     private SlidingTileGame slidingTileGame = null;
 
     MovementController() {
     }
 
-    public void setSlidingTileGame(SlidingTileGame slidingTileGame) {
-        this.slidingTileGame = slidingTileGame;
+    public void setGame(Game game) {
+        this.slidingTileGame = (SlidingTileGame) game;
     }
 
     void processTapMovement(Context context, int position, boolean display) {
@@ -44,7 +47,7 @@ public class MovementController {
      * @param context game activity
      * @param message message for making toast
      */
-    private void endGame(final Context context, final String message) {
+    public void endGame(final Context context, final String message) {
         GameActivity gameActivity = (GameActivity) context;
         gameActivity.runOnUiThread(new Runnable() {
             @Override

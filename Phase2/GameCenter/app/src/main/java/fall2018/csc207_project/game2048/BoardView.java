@@ -11,7 +11,6 @@ import android.widget.FrameLayout;
 import android.widget.GridLayout;
 import android.widget.TextView;
 
-import fall2018.csc207_project.GameCenter.Game;
 import fall2018.csc207_project.R;
 
 

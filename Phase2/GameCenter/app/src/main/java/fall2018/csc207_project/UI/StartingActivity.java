@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import java.util.LinkedList;
 
-import fall2018.csc207_project.GameCenter.Game;
 import fall2018.csc207_project.GameCenter.GlobalCenter;
 import fall2018.csc207_project.GameCenter.LocalGameCenter;
 import fall2018.csc207_project.MineSweeper.MineSweeperGame;

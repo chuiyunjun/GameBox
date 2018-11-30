@@ -3,13 +3,14 @@ package fall2018.csc207_project.MineSweeper;
 import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Observable;
 
-import fall2018.csc207_project.GameCenter.Game;
+import fall2018.csc207_project.Interfaces.Game;
 
 /**
  * game data model for mine sweeper
  */
-public class MineSweeperGame extends Game implements Serializable {
+public class MineSweeperGame extends Observable implements Game, Serializable {
 
     /**
      * serial number of the game model
@@ -178,29 +179,29 @@ public class MineSweeperGame extends Game implements Serializable {
      * @param col veritical coordinator of the tile
      */
     void flipTile(int row, int col){
-        board.getTileTable()[row][col].setFliped();
+        board.getTiles()[row][col].setFliped();
         int boardSize = board.getBoardSize();
         //if the tile flipped is 0, then we can flip other tiles around, if the tile is not a bomb
-        if(board.getTileTable()[row][col].getNum() == 0){
-            if(row != 0 && !board.getTileTable()
+        if(board.getTiles()[row][col].getNum() == 0){
+            if(row != 0 && !board.getTiles()
                     [row - 1][col].isFlipped()){flipTile(row - 1,col);}
-            if(row < boardSize - 1 && !board.getTileTable()
+            if(row < boardSize - 1 && !board.getTiles()
                     [row + 1][col].isFlipped()){flipTile(row + 1,col);}
-            if(col != 0 && !board.getTileTable()
+            if(col != 0 && !board.getTiles()
                     [row][col - 1].isFlipped()){flipTile(row,col - 1);}
-            if(col < boardSize - 1 && !board.getTileTable()
+            if(col < boardSize - 1 && !board.getTiles()
                     [row][col + 1].isFlipped()){flipTile(row,col + 1);}
-            if(row != 0 && col != 0 && !board.getTileTable()
+            if(row != 0 && col != 0 && !board.getTiles()
                     [row - 1][col - 1].isFlipped()){flipTile(row - 1,col - 1);}
-            if(row != 0 && col<boardSize - 1 && !board.getTileTable()
+            if(row != 0 && col<boardSize - 1 && !board.getTiles()
                     [row - 1][col + 1].isFlipped()){flipTile(row - 1,col + 1);}
-            if(row <boardSize - 1 && col != 0 && !board.getTileTable()
+            if(row <boardSize - 1 && col != 0 && !board.getTiles()
                     [row + 1][col - 1].isFlipped()){flipTile(row + 1,col - 1);}
-            if(row <boardSize - 1 && col < boardSize - 1 && !board.getTileTable()
+            if(row <boardSize - 1 && col < boardSize - 1 && !board.getTiles()
                     [row + 1][col + 1].isFlipped()){flipTile(row + 1,col + 1);}
         }
         //lose the game if one bomb is flipped
-        if(board.getTileTable()[row][col].getNum() == 10){
+        if(board.getTiles()[row][col].getNum() == 10){
             gameOver = true;
         }
         setChanged();
@@ -242,9 +243,10 @@ public class MineSweeperGame extends Game implements Serializable {
     /**
      * notify the scoreboard to sign up the new mark
      */
-    void notifyScoreBoard() {
+    @Override
+    public void notifyScoreBoard() {
         setChanged();
-        LinkedList<Object> info = new LinkedList<>();
+        LinkedList info = new LinkedList<>();
         info.add(player);
         info.add(this.getSetting());
         notifyObservers(info);
@@ -258,16 +260,16 @@ public class MineSweeperGame extends Game implements Serializable {
      */
     void labelTile(int row, int col){
         //if the tile has been flagged
-        if (board.getTileTable()[row][col].isLabeled()) {
+        if (board.getTiles()[row][col].isLabeled()) {
             flagsLeft++;
-            board.getTileTable()
-                    [row][col].setLabeled(!board.getTileTable()[row][col].isLabeled());
+            board.getTiles()
+                    [row][col].setLabeled(!board.getTiles()[row][col].isLabeled());
             //if the tile has not been flagged and there are flags available left
-        } else if (!board.getTileTable()
+        } else if (!board.getTiles()
                 [row][col].isLabeled() && flagsLeft > 0) {
             flagsLeft--;
-            board.getTileTable()
-                    [row][col].setLabeled(!board.getTileTable()[row][col].isLabeled());
+            board.getTiles()
+                    [row][col].setLabeled(!board.getTiles()[row][col].isLabeled());
         }
         int boardSize= board.getBoardSize();
         setChanged();

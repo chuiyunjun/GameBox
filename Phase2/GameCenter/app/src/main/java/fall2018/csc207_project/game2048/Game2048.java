@@ -1,14 +1,13 @@
 package fall2018.csc207_project.game2048;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Observable;
 
-import fall2018.csc207_project.GameCenter.Game;
+import fall2018.csc207_project.Interfaces.Game;
 
-public class Game2048 extends Game implements Serializable {
+public class Game2048  extends Observable implements Game, Serializable {
 
     private static final long serialVersionUID = 772895212901L;
     public static final String GAMENAME = "game2048";
@@ -197,7 +196,8 @@ public class Game2048 extends Game implements Serializable {
         return moved;
     }
 
-    void notifyScoreBoard() {
+    @Override
+    public void notifyScoreBoard() {
         setChanged();
         LinkedList info = new LinkedList<>();
         info.add(player);

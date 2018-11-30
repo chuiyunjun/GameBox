@@ -115,15 +115,15 @@ public class Board extends Observable implements Serializable, Iterable<Tile> {
 
     @Override
     public String toString() {
-        return "Board{" +
+        return "BaseBoard{" +
                 "tiles=" + Arrays.toString(tiles) +
                 '}';
     }
 
     /**
-     * Returns an iterator for this Board.
+     * Returns an iterator for this BaseBoard.
      *
-     * @return an iterator for this Board.
+     * @return an iterator for this BaseBoard.
      */
 
     @Override

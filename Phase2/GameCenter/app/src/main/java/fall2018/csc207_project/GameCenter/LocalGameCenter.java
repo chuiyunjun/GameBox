@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import fall2018.csc207_project.Interfaces.Game;
+
 public class LocalGameCenter implements Serializable {
     private static final long serialVersionUID = 3L;
 
