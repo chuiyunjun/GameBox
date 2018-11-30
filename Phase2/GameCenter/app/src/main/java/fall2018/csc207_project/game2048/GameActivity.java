@@ -20,10 +20,24 @@ import fall2018.csc207_project.R;
 import fall2018.csc207_project.UI.ScoreBoardActivity;
 import fall2018.csc207_project.UI.StartingActivity;
 
+/**
+ * the activity to perform the game
+ */
 public class GameActivity extends AppCompatActivity implements GameActivityInterface, Observer {
 
+    /**
+     * the launch center
+     */
     private GlobalCenter globalCenter;
+
+    /**
+     * the view of the game activity
+     */
     private BoardView gameView;
+
+    /**
+     * the data model of this game
+     */
     Game2048 game;
 
     @Override
@@ -45,6 +59,9 @@ public class GameActivity extends AppCompatActivity implements GameActivityInter
         initTextView();
     }
 
+    /**
+     * autosave the game with date and time
+     */
     private void autoSave() {
         String timeStamp = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
                 .format(Calendar.getInstance().getTime());
@@ -52,6 +69,10 @@ public class GameActivity extends AppCompatActivity implements GameActivityInter
     }
 
 
+    /**
+     * activate the back button on android screen
+     * on the left bottom
+     */
     public void onBackPressed() {
         Intent tmp = new Intent(this, StartingActivity.class);
         tmp.putExtra("GlobalCenter", globalCenter);
@@ -59,6 +80,9 @@ public class GameActivity extends AppCompatActivity implements GameActivityInter
         finish();
     }
 
+    /**
+     * initialize the view of the text on the screen, like score, highest mark and undo step
+     */
     private void initTextView() {
         Game2048ScoreBoard scoreBoard = (Game2048ScoreBoard)(globalCenter.getScoreBoards().get(Game2048.GAMENAME));
         TextView score = findViewById(R.id.current_score);
@@ -70,21 +94,32 @@ public class GameActivity extends AppCompatActivity implements GameActivityInter
 
     }
 
+    /**
+     * activate undo button
+     * call the undo method on the game
+     */
     public void setUndoButtonListener() {
         Button button = findViewById(R.id.undo_button_2048);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // call undo method of the game
                 gameView.getMController().undo();
             }
         });
 
     }
+
+    /**
+     * activate the restart button
+     * call the restart method on the game data model
+     */
     public void setRestartButtonListener() {
         Button button = findViewById(R.id.restart);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //call restart method of the game
                 gameView.getMController().restart();
             }
         });

@@ -131,19 +131,6 @@ public abstract class ScoreBoard implements Observer, Serializable {
     }
 
     /**
-     * return highest scores among all users of the game
-     * @return a HashMap maps userName of users achieve top scores to their scores
-     */
-    private HashMap<String, Integer> getGameScore() {
-        HashMap<String, Integer> globalTops = new HashMap<String, Integer>();
-        for (int i = 0; i < topScores.length; i++) {
-            String user = indexList.get(i);
-            globalTops.put(user, topScores[i]);
-        }
-        return globalTops;
-    }
-
-    /**
      * Update the top scores
      * @param userScores scores of all users on the board
      */

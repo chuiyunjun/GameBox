@@ -17,12 +17,19 @@ import fall2018.csc207_project.game2048.Game2048;
 
 import java.util.Set;
 
+/**
+ * the activity of local game center
+ */
 public class LocalCenterActivity extends AppCompatActivity {
 
+    /**
+     * the global center
+     * the local game center
+     */
     private GlobalCenter globalCenter;
     private LocalGameCenter localCenter;
 
-
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(fall2018.csc207_project.R.layout.local_center);
@@ -40,6 +47,9 @@ public class LocalCenterActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * the button of load
+     */
     private void loadButtons() {
 
         Set<String> gameSet = localCenter.getGames();
@@ -82,6 +92,9 @@ public class LocalCenterActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * add the listener of adding game button
+     */
     private void addAddGameButtonListener() {
         Button button = findViewById(fall2018.csc207_project.R.id.add_game_button);
         button.setOnClickListener(new View.OnClickListener() {
@@ -92,6 +105,10 @@ public class LocalCenterActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * switch the interface of add or delete
+     * @param add whether the game has been added
+     */
     private void switchToAddDelete(boolean add) {
         Intent tmp = new Intent(this, AddDeleteGameActivity.class);
         tmp.putExtra("addGame?", add);
@@ -100,6 +117,9 @@ public class LocalCenterActivity extends AppCompatActivity {
         finish();
     }
 
+    /**
+     * add the listener of delete game button
+     */
     private void addDeleteGameButtonListener() {
         Button button = findViewById(fall2018.csc207_project.R.id.delete_game_button);
         button.setOnClickListener(new View.OnClickListener() {
@@ -111,6 +131,9 @@ public class LocalCenterActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * launch the game
+     */
     private void gameLaunch() {
         Intent tmp = new Intent(this, StartingActivity.class);
         tmp.putExtra("GlobalCenter", globalCenter);
@@ -118,6 +141,9 @@ public class LocalCenterActivity extends AppCompatActivity {
         finish();
     }
 
+    /**
+     * add the listener of log off button
+     */
     private void addLogOffButtonListener() {
         Button button = findViewById(R.id.log_off_button);
         button.setOnClickListener(new View.OnClickListener() {
@@ -135,6 +161,9 @@ public class LocalCenterActivity extends AppCompatActivity {
         globalCenter.saveAll(getApplicationContext());
     }
 
+    /**
+     * set back press
+     */
     public void onBackPressed() {
         Intent tmp = new Intent(this, GlobalActivity.class);
         tmp = tmp.putExtra("GlobalCenter", globalCenter);
