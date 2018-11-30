@@ -82,6 +82,8 @@ public class SlidingTileGame extends Game implements Serializable {
         }
         Collections.shuffle(tiles);
 
+        this.board = new Board(tiles, this.complexity);
+
         MakeSolvable converter = new MakeSolvable();
         converter.takeIn(board);
         this.board = converter.outputSolvableBoard();
@@ -235,48 +237,5 @@ public class SlidingTileGame extends Game implements Serializable {
                 }
             }
         }
-    }
-
-     private Board checkSolvable(Board board){
-        int blankTileRow =0;
-        int blankTileCol =0;
-        ArrayList<Integer>  tilesId = new ArrayList<>();
-        for(int row = 0; row != board.getNumRows();row++){
-            for(int col = 0; col != board.getNumCols(); col++){
-                if(board.getTile(row, col).getId() == complexity*complexity){
-                    blankTileCol = col;
-                    blankTileRow = row;
-                }else{
-                    tilesId.add(board.getTile(row, col).getId());
-                }
-            }
-        }
-        int inversion = 0;
-        for(int i=0; i < tilesId.size();i++){
-            for(int j=i+1;j<tilesId.size();j++){
-                if(tilesId.get(i)>tilesId.get(j)){inversion+=1;}
-            }
-        }
-        boolean solved;
-        if(board.getNumCols()%2==1){
-            if(inversion%2==0){solved = true;}else{solved = false;}
-        }else {
-            solved = ((board.getNumRows()-blankTileRow) % 2 == 1)==(inversion%2==0);
-        }
-
-        if(!solved){
-            if(blankTileRow == board.getNumRows()-1){
-                if(blankTileCol == board.getNumCols()-1){
-                    board.swapTiles(complexity-1,complexity-2,complexity-1,complexity-3);
-                } else if (blankTileCol == board.getNumCols() - 2) {
-                    board.swapTiles(complexity-1,complexity-1,complexity-1,complexity-3);
-                }
-            }else{
-                board.swapTiles(complexity-1,complexity-1,complexity-1,complexity-2);
-            }
-
-        }
-
-        return board;
     }
 }
