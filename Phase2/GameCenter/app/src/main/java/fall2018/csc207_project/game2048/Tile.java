@@ -26,7 +26,7 @@ public class Tile implements Serializable {
     /**
      * construct the tile by number
      *
-     * @param number
+     * @param number the number on the tile
      */
     Tile(int number) {
         this.num = number;
