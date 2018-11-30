@@ -16,6 +16,7 @@ import fall2018.csc207_project.UI.StartingActivity;
  * <p>
  * adapted from https://github.com/lany192/Minesweeper.git, includes this activity and XML file
  * activity_splash, logo from github above as well
+ * autoswitch activity cited from https://blog.csdn.net/wo_ha/article/details/50688296
  */
 
 public class SplashActivity extends Activity {
