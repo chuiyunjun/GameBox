@@ -72,14 +72,6 @@ public class Board implements Serializable {
         return this.blankTileList;
     }
 
-    public Tile[][] getTileTable() {
-        return this.tileTable;
-    }
-
-    public void setTileTable(Tile[][] newTiles) {
-        this.tileTable = newTiles;
-    }
-
     /**
      * get the tile by given index
      *
@@ -115,10 +107,6 @@ public class Board implements Serializable {
         }
     }
 
-    private void addTile(int num, int x, int y) {
-        tileTable[x][y].setNum(num);
-    }
-
     /**
      * set values of tiles on the board by the given list
      *
@@ -150,15 +138,6 @@ public class Board implements Serializable {
         int randomIndex = (int) (Math.random() * blankTileList.size());
         int point = blankTileList.get(randomIndex);
         tileTable[point / boardSize][point % boardSize].setNum(Math.random() > 0.1 ? 2 : 4);
-    }
-
-
-    private void clearTileTable() {
-        for (int y = 0; y < boardSize; y++) {
-            for (int x = 0; x < boardSize; x++) {
-                tileTable[x][y].setNum(0);
-            }
-        }
     }
 
     /**
