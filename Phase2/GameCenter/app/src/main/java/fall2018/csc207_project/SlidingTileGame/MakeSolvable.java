@@ -29,7 +29,7 @@ public class MakeSolvable {
     private int inversion;
 
     /**
-     *  the board taken in
+     * the board taken in
      */
     private Board board;
 
@@ -44,16 +44,16 @@ public class MakeSolvable {
     private ArrayList<Integer> tilesId = new ArrayList<>();
 
     /**
-     *  collect non-blank tiles' Id in a ArrayList in order and
-     *  find the col and row of blank tile.
+     * collect non-blank tiles' Id in a ArrayList in order and
+     * find the col and row of blank tile.
      */
-    private void recordData(){
-        for(int row = 0; row != complexity;row++){
-            for(int col = 0; col != complexity; col++){
-                if(board.getTile(row, col).getId() == complexity*complexity){
+    private void recordData() {
+        for (int row = 0; row != complexity; row++) {
+            for (int col = 0; col != complexity; col++) {
+                if (board.getTile(row, col).getId() == complexity * complexity) {
                     blankTileCol = col;
                     blankTileRow = row;
-                }else{
+                } else {
                     tilesId.add(board.getTile(row, col).getId());
                 }
             }
@@ -61,39 +61,41 @@ public class MakeSolvable {
     }
 
     /**
-     *  calculate the number of inversions of the board
+     * calculate the number of inversions of the board
      */
-    private void findInversion(){
+    private void findInversion() {
         inversion = 0;
-        for(int i=0; i < tilesId.size();i++){
-            for(int j=i+1;j<tilesId.size();j++){
-                if(tilesId.get(i)>tilesId.get(j)){inversion+=1;}
+        for (int i = 0; i < tilesId.size(); i++) {
+            for (int j = i + 1; j < tilesId.size(); j++) {
+                if (tilesId.get(i) > tilesId.get(j)) {
+                    inversion += 1;
+                }
             }
         }
     }
 
-    private void judgeSolved(){
+    private void judgeSolved() {
 
-        if(complexity%2==1){
-            solved = inversion%2==0;
-        }else {
-            solved = ((complexity-blankTileRow) % 2 == 1)==(inversion%2==0);
+        if (complexity % 2 == 1) {
+            solved = inversion % 2 == 0;
+        } else {
+            solved = ((complexity - blankTileRow) % 2 == 1) == (inversion % 2 == 0);
         }
     }
 
     /**
      * swap last two non-blank tiles if the board is unsolvable.
      */
-    private void MakeBoardSolvable(){
-        if(!solved){
-            if(blankTileRow == complexity-1){
-                if(blankTileCol == complexity-1){
-                    board.swapTiles(complexity-1,complexity-2,complexity-1,complexity-3);
+    private void MakeBoardSolvable() {
+        if (!solved) {
+            if (blankTileRow == complexity - 1) {
+                if (blankTileCol == complexity - 1) {
+                    board.swapTiles(complexity - 1, complexity - 2, complexity - 1, complexity - 3);
                 } else if (blankTileCol == board.getNumCols() - 2) {
-                    board.swapTiles(complexity-1,complexity-1,complexity-1,complexity-3);
+                    board.swapTiles(complexity - 1, complexity - 1, complexity - 1, complexity - 3);
                 }
-            }else{
-                board.swapTiles(complexity-1,complexity-1,complexity-1,complexity-2);
+            } else {
+                board.swapTiles(complexity - 1, complexity - 1, complexity - 1, complexity - 2);
             }
 
         }
@@ -101,10 +103,11 @@ public class MakeSolvable {
 
     /**
      * set the parameter board and collect relevant data from the board.
+     *
      * @param board board taken in
      */
 
-    void takeIn(Board board){
+    void takeIn(Board board) {
         this.complexity = board.getNumCols();
         this.board = board;
         recordData();
