@@ -46,6 +46,11 @@ public class MovementController {
         Toast.makeText(context, "No more undo!", Toast.LENGTH_SHORT).show();
     }
 
+    /**
+     * end the game after playing by popping up a dialog
+     * @param context game activity
+     * @param message message for making toast
+     */
     private void endGame(final Context context, final String message) {
         GameActivity gameActivity = (GameActivity) context;
         gameActivity.runOnUiThread(new Runnable() {

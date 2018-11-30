@@ -75,6 +75,11 @@ public class MovementController{
         game.restart();
     }
 
+    /**
+     * end the game after playing it by popping up a dialog
+     * @param context game activity
+     * @param message message for making toast
+     */
     private void endGame(final Context context, final String message) {
         GameActivity gameActivity = (GameActivity) context;
         gameActivity.runOnUiThread(new Runnable() {

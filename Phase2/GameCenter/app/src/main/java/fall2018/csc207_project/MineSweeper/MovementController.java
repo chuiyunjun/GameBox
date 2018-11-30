@@ -117,9 +117,16 @@ class MovementController {
         }
     }
 
+    /**
+     * auto-exit the game after playing it, different from other two because popping up
+     * an alert dialog needs another thread which makes the game lag
+     * @param context game activity
+     * @param message message for making toast
+     */
     private void endGame(final Context context, final String message) {
         Toast.makeText(context, message + "The game will exit in 5 seconds",
                 Toast.LENGTH_SHORT).show();
+        //auto exit after five seconds
         Timer timer = new Timer();
         final GameActivity gameActivity = (GameActivity) context;
         TimerTask timerTask=new TimerTask() {
