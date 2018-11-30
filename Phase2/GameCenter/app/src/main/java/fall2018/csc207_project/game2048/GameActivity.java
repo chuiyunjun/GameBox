@@ -21,6 +21,7 @@ import fall2018.csc207_project.GameCenter.GlobalCenter;
 import fall2018.csc207_project.GameCenter.LocalGameCenter;
 import fall2018.csc207_project.GameCenter.ScoreBoard;
 import fall2018.csc207_project.R;
+import fall2018.csc207_project.UI.ScoreBoardActivity;
 import fall2018.csc207_project.UI.StartingActivity;
 
 public class GameActivity extends AppCompatActivity implements Observer {
@@ -101,5 +102,12 @@ public class GameActivity extends AppCompatActivity implements Observer {
         undoStepLeft.setText("("+game.getUndoStep()+")");
         gameView.updateDisplay();
         autoSave();
+    }
+
+    public void switchToScoreBoard() {
+        Intent tmp = new Intent(this, ScoreBoardActivity.class);
+        tmp.putExtra("GlobalCenter", globalCenter);
+        startActivity(tmp);
+        finish();
     }
 }
