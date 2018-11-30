@@ -22,12 +22,10 @@ import fall2018.csc207_project.UI.ScoreBoardActivity;
 import fall2018.csc207_project.UI.StartingActivity;
 
 /**
- *
  * activity performs game
- *
+ * <p>
  * timer adapted from https://github.com/lany192/Minesweeper.git
  * resource of images for tiles from https://github.com/marcellelek/Minesweeper
- *
  */
 public class GameActivity extends AppCompatActivity implements GameActivityInterface, Observer {
 
@@ -79,7 +77,7 @@ public class GameActivity extends AppCompatActivity implements GameActivityInter
         globalCenter = (GlobalCenter) (getIntent().getSerializableExtra("GlobalCenter"));
         localCenter = globalCenter.getLocalGameCenter(globalCenter.
                 getCurrentPlayer().getUsername());
-        ScoreBoard scoreBoard = (MineSweeperScoreBoard)globalCenter.getScoreBoards().
+        ScoreBoard scoreBoard = (MineSweeperScoreBoard) globalCenter.getScoreBoards().
                 get(MineSweeperGame.GAMENAME);
 
         // find the game model from the local centre
@@ -155,7 +153,7 @@ public class GameActivity extends AppCompatActivity implements GameActivityInter
     };
 
     @Override
-    public void update(Observable o, Object arg){
+    public void update(Observable o, Object arg) {
         //change the image of the tile if flipped
         if (arg instanceof Integer)
             gameView.setTileImage((int) arg);
@@ -181,7 +179,7 @@ public class GameActivity extends AppCompatActivity implements GameActivityInter
      * call help method of the game model
      * only one help chance
      */
-    public void addHelpButtonListener(){
+    public void addHelpButtonListener() {
         Button helpButton = findViewById(R.id.help);
         helpButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -193,7 +191,7 @@ public class GameActivity extends AppCompatActivity implements GameActivityInter
                         helpLeft.setText("(0)");
                         gameView.getMController().helpPressed();
                     } else {
-                            gameView.getMController().toastHelpUsedUp(getApplicationContext());
+                        gameView.getMController().toastHelpUsedUp(getApplicationContext());
                     }
                 }
             }

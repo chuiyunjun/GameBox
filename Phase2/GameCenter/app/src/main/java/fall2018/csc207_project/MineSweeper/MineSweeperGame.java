@@ -62,13 +62,14 @@ public class MineSweeperGame extends Observable implements Game, Serializable {
 
     /**
      * construct the game
+     *
      * @param settings basic fields of the game
      */
     public MineSweeperGame(List<Object> settings) {
         //init the game if the game is not initialized
         if (settings.size() == 1)
             initWithComplexity((Integer) settings.get(0));
-        //load the saved game if the player played before
+            //load the saved game if the player played before
         else {
             this.board = new Board((Board) (settings.get(0)));
             this.secondPassed = (Integer) (settings.get(1));
@@ -104,6 +105,7 @@ public class MineSweeperGame extends Observable implements Game, Serializable {
 
     /**
      * store the time used of the game
+     *
      * @param secondPassed time used
      */
     void setSecondPassed(int secondPassed) {
@@ -121,12 +123,16 @@ public class MineSweeperGame extends Observable implements Game, Serializable {
 
     /**
      * get the board of the game used
+     *
      * @return board for the game
      */
-    Board getBoard(){return board;}
+    Board getBoard() {
+        return board;
+    }
 
     /**
      * get time used
+     *
      * @return time used
      */
     int getSecondsPassed() {
@@ -135,6 +141,7 @@ public class MineSweeperGame extends Observable implements Game, Serializable {
 
     /**
      * get number of flags left
+     *
      * @return number of flags left
      */
     int getFlagsLeft() {
@@ -143,6 +150,7 @@ public class MineSweeperGame extends Observable implements Game, Serializable {
 
     /**
      * get if the player has won
+     *
      * @return if the player has won
      */
     boolean getWin() {
@@ -151,6 +159,7 @@ public class MineSweeperGame extends Observable implements Game, Serializable {
 
     /**
      * get if the game ends
+     *
      * @return if the game ends
      */
     boolean getGameOver() {
@@ -159,6 +168,7 @@ public class MineSweeperGame extends Observable implements Game, Serializable {
 
     /**
      * get if the help has been used
+     *
      * @return if the help has been used
      */
     boolean getHelp() {
@@ -167,45 +177,63 @@ public class MineSweeperGame extends Observable implements Game, Serializable {
 
     /**
      * get if win toast has been made
+     *
      * @return if win toast has been made
      */
-    boolean hasAnnouncedInverted(){
+    boolean hasAnnouncedInverted() {
         return !this.announced;
     }
 
     /**
      * flip the tile at given location
+     *
      * @param row horizontal coordinator of the tile
      * @param col veritical coordinator of the tile
      */
-    void flipTile(int row, int col){
+    void flipTile(int row, int col) {
         board.getTiles()[row][col].setFliped();
         int boardSize = board.getBoardSize();
         //if the tile flipped is 0, then we can flip other tiles around, if the tile is not a bomb
-        if(board.getTiles()[row][col].getNum() == 0){
-            if(row != 0 && !board.getTiles()
-                    [row - 1][col].isFlipped()){flipTile(row - 1,col);}
-            if(row < boardSize - 1 && !board.getTiles()
-                    [row + 1][col].isFlipped()){flipTile(row + 1,col);}
-            if(col != 0 && !board.getTiles()
-                    [row][col - 1].isFlipped()){flipTile(row,col - 1);}
-            if(col < boardSize - 1 && !board.getTiles()
-                    [row][col + 1].isFlipped()){flipTile(row,col + 1);}
-            if(row != 0 && col != 0 && !board.getTiles()
-                    [row - 1][col - 1].isFlipped()){flipTile(row - 1,col - 1);}
-            if(row != 0 && col<boardSize - 1 && !board.getTiles()
-                    [row - 1][col + 1].isFlipped()){flipTile(row - 1,col + 1);}
-            if(row <boardSize - 1 && col != 0 && !board.getTiles()
-                    [row + 1][col - 1].isFlipped()){flipTile(row + 1,col - 1);}
-            if(row <boardSize - 1 && col < boardSize - 1 && !board.getTiles()
-                    [row + 1][col + 1].isFlipped()){flipTile(row + 1,col + 1);}
+        if (board.getTiles()[row][col].getNum() == 0) {
+            if (row != 0 && !board.getTiles()
+                    [row - 1][col].isFlipped()) {
+                flipTile(row - 1, col);
+            }
+            if (row < boardSize - 1 && !board.getTiles()
+                    [row + 1][col].isFlipped()) {
+                flipTile(row + 1, col);
+            }
+            if (col != 0 && !board.getTiles()
+                    [row][col - 1].isFlipped()) {
+                flipTile(row, col - 1);
+            }
+            if (col < boardSize - 1 && !board.getTiles()
+                    [row][col + 1].isFlipped()) {
+                flipTile(row, col + 1);
+            }
+            if (row != 0 && col != 0 && !board.getTiles()
+                    [row - 1][col - 1].isFlipped()) {
+                flipTile(row - 1, col - 1);
+            }
+            if (row != 0 && col < boardSize - 1 && !board.getTiles()
+                    [row - 1][col + 1].isFlipped()) {
+                flipTile(row - 1, col + 1);
+            }
+            if (row < boardSize - 1 && col != 0 && !board.getTiles()
+                    [row + 1][col - 1].isFlipped()) {
+                flipTile(row + 1, col - 1);
+            }
+            if (row < boardSize - 1 && col < boardSize - 1 && !board.getTiles()
+                    [row + 1][col + 1].isFlipped()) {
+                flipTile(row + 1, col + 1);
+            }
         }
         //lose the game if one bomb is flipped
-        if(board.getTiles()[row][col].getNum() == 10){
+        if (board.getTiles()[row][col].getNum() == 10) {
             gameOver = true;
         }
         setChanged();
-        notifyObservers(row*boardSize+col);
+        notifyObservers(row * boardSize + col);
     }
 
     /**
@@ -234,6 +262,7 @@ public class MineSweeperGame extends Observable implements Game, Serializable {
 
     /**
      * set the player of the game
+     *
      * @param name name of the player
      */
     void setPlayer(String name) {
@@ -255,10 +284,11 @@ public class MineSweeperGame extends Observable implements Game, Serializable {
 
     /**
      * label or unlabel the flag on the tile
+     *
      * @param row row index of the tile
      * @param col column index of the tile
      */
-    void labelTile(int row, int col){
+    void labelTile(int row, int col) {
         //if the tile has been flagged
         if (board.getTiles()[row][col].isLabeled()) {
             flagsLeft++;
@@ -271,15 +301,15 @@ public class MineSweeperGame extends Observable implements Game, Serializable {
             board.getTiles()
                     [row][col].setLabeled(!board.getTiles()[row][col].isLabeled());
         }
-        int boardSize= board.getBoardSize();
+        int boardSize = board.getBoardSize();
         setChanged();
-        notifyObservers(row*boardSize+col);
-   }
+        notifyObservers(row * boardSize + col);
+    }
 
     /**
      * help to flip one tile with number
      */
-   void help() {
+    void help() {
         int position = 0;
         for (Tile tile : board) {
             if (!tile.isFlipped() && tile.getNum() > 0 && tile.getNum() < 10) {
@@ -294,6 +324,6 @@ public class MineSweeperGame extends Observable implements Game, Serializable {
             position++;
         }
         //invalidate help chance if the help has been used
-       help = false;
-   }
+        help = false;
+    }
 }

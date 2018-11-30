@@ -8,14 +8,14 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.Set;
+
 import fall2018.csc207_project.GameCenter.GlobalCenter;
 import fall2018.csc207_project.GameCenter.LocalGameCenter;
 import fall2018.csc207_project.MineSweeper.MineSweeperGame;
 import fall2018.csc207_project.R;
 import fall2018.csc207_project.SlidingTileGame.SlidingTileGame;
 import fall2018.csc207_project.game2048.Game2048;
-
-import java.util.Set;
 
 /**
  * the activity of local game center
@@ -34,7 +34,9 @@ public class LocalCenterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(fall2018.csc207_project.R.layout.local_center);
         globalCenter = (GlobalCenter) (getIntent().getSerializableExtra("GlobalCenter"));
-        localCenter = globalCenter.getLocalGameCenter(globalCenter.getCurrentPlayer().getUsername());
+        localCenter = globalCenter.
+                getLocalGameCenter(globalCenter.getCurrentPlayer().getUsername());
+
         localCenter.setCurGame(null);
 
         TextView welcome = findViewById(fall2018.csc207_project.R.id.welcome);
@@ -53,7 +55,8 @@ public class LocalCenterActivity extends AppCompatActivity {
     private void loadButtons() {
 
         Set<String> gameSet = localCenter.getGames();
-        LinearLayout buttonLayout = findViewById(fall2018.csc207_project.R.id.local_center_button_layout);
+        LinearLayout buttonLayout =
+                findViewById(fall2018.csc207_project.R.id.local_center_button_layout);
         Button tmp;
 
         for(String s:gameSet) {
