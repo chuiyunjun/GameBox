@@ -11,6 +11,8 @@ import fall2018.csc207_project.Interfaces.Controller;
 
 /**
  * control the change of the game model from the command of the activity and view
+ * algorithm for checking win or lose is inspired by
+ * https://github.com/marcellelek/Minesweeper.git
  */
 class MovementController implements Controller {
 
