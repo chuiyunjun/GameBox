@@ -8,7 +8,7 @@ import fall2018.csc207_project.R;
 public class SplashActivityTest extends Activity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
     }
