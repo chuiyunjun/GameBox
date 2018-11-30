@@ -53,4 +53,6 @@
     <string name="help_left">(1)</string>
     <string name="game_2048_band">Welcome To 2048 \nJoining the tile and get the 2048 tile</string>
     <string name="mine_sweeper_band">Welcome To Minesweeper \nSweep all the mines and get the victory</string>
+    <string name="minesweeper_time">Time:</string>
+    <string name="minesweeper_flag">Flag:</string>
 </resources>

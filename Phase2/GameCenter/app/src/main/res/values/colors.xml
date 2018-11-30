@@ -8,4 +8,9 @@
     <color name="orange">#e99631</color>
     <color name="backgroundMain">#faf2e8</color>
     <color name="tileHolderBackground">#b4a396</color>
+    <color name="mineSweeperBackground">#c0c0c0</color>
+    <color name="blue">#1f37cf</color>
+    <color name="red">#cc2f22</color>
+    <color name="green">#007c00</color>
+    <color name="black">#0d0d0d</color>
 </resources>
