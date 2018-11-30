@@ -2,15 +2,51 @@ package fall2018.csc207_project.SlidingTileGame;
 
 import java.util.ArrayList;
 
+/**
+ * An converter that can convert a random board into a solvable board
+ */
+
 public class MakeSolvable {
+
+    /**
+     * the row of the blank tile.
+     */
     private int blankTileRow;
+
+    /**
+     * the column of the blank tile.
+     */
     private int blankTileCol;
+
+    /**
+     * complexity of the game or the size of the board.
+     */
     private int complexity;
-    private int inversion = 0;
+
+    /**
+     * the inversion of the board.
+     */
+    private int inversion;
+
+    /**
+     *  the board taken in
+     */
     private Board board;
+
+    /**
+     * whether the board can be solved
+     */
     private boolean solved;
+
+    /**
+     * the list of non-blank tiles' id in order
+     */
     private ArrayList<Integer> tilesId = new ArrayList<>();
 
+    /**
+     *  collect non-blank tiles' Id in a ArrayList in order and
+     *  find the col and row of blank tile.
+     */
     private void recordData(){
         for(int row = 0; row != complexity;row++){
             for(int col = 0; col != complexity; col++){
@@ -24,8 +60,11 @@ public class MakeSolvable {
         }
     }
 
+    /**
+     *  calculate the number of inversions of the board
+     */
     private void findInversion(){
-
+        inversion = 0;
         for(int i=0; i < tilesId.size();i++){
             for(int j=i+1;j<tilesId.size();j++){
                 if(tilesId.get(i)>tilesId.get(j)){inversion+=1;}
@@ -42,6 +81,9 @@ public class MakeSolvable {
         }
     }
 
+    /**
+     * swap last two non-blank tiles if the board is unsolvable.
+     */
     private void MakeBoardSolvable(){
         if(!solved){
             if(blankTileRow == complexity-1){
@@ -57,6 +99,11 @@ public class MakeSolvable {
         }
     }
 
+    /**
+     * set the parameter board and collect relevant data from the board.
+     * @param board board taken in
+     */
+
     void takeIn(Board board){
         this.complexity = board.getNumCols();
         this.board = board;
@@ -65,6 +112,11 @@ public class MakeSolvable {
         judgeSolved();
     }
 
+    /**
+     * if the board is unsolvable , make it is and output the board.
+     *
+     * @return board
+     */
     Board outputSolvableBoard() {
         MakeBoardSolvable();
         return board;

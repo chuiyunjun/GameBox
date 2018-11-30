@@ -23,6 +23,10 @@ import fall2018.csc207_project.R;
 import fall2018.csc207_project.UI.ScoreBoardActivity;
 import fall2018.csc207_project.UI.StartingActivity;
 
+/**
+ * the game activity of sliding tiles game
+ */
+
 public class GameActivity extends AppCompatActivity implements GameActivityInterface, Observer {
 
     /**
@@ -40,7 +44,15 @@ public class GameActivity extends AppCompatActivity implements GameActivityInter
      */
     // Grid View and calculated column height and width based on device size
     private GestureDetectGridView gridView;
+
+    /**
+     * the width and the height of the column
+     */
     private static int columnWidth, columnHeight;
+
+    /**
+     * the global center passed from the last activity
+     */
     private GlobalCenter globalCenter;
 
 
@@ -94,6 +106,9 @@ public class GameActivity extends AppCompatActivity implements GameActivityInter
 
     }
 
+    /**
+     * listen to the undo button
+     */
     public void addUndoButtonListener() {
         Button button = findViewById(R.id.undo_button);
         button.setOnClickListener(new View.OnClickListener() {
@@ -154,12 +169,19 @@ public class GameActivity extends AppCompatActivity implements GameActivityInter
         autoSave();
     }
 
+    /**
+     * auto-save the game data without press save button
+     */
+
     private void autoSave() {
         String timeStamp = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
                 .format(Calendar.getInstance().getTime());
         globalCenter.getLocalGameCenter(globalCenter.getCurrentPlayer().getUsername()).autoSave(timeStamp);
     }
 
+    /**
+     * if the back button is pressed,  return the last interface.
+     */
     public void onBackPressed() {
         Intent tmp = new Intent(this, StartingActivity.class);
         tmp.putExtra("GlobalCenter", globalCenter);

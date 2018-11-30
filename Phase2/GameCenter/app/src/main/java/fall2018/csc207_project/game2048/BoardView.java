@@ -48,6 +48,7 @@ public class BoardView extends GridLayout {
 
     /**
      * consruct the board view
+     *
      * @param context game activity
      */
     public BoardView(Context context) {
@@ -57,8 +58,9 @@ public class BoardView extends GridLayout {
 
     /**
      * construct the view of the board
+     *
      * @param context the game activity
-     * @param attrs attribute set
+     * @param attrs   attribute set
      */
     public BoardView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -67,8 +69,9 @@ public class BoardView extends GridLayout {
 
     /**
      * construct the view of the board
-     * @param context the game activity
-     * @param attrs attribute set
+     *
+     * @param context      the game activity
+     * @param attrs        attribute set
      * @param defStyleAttr attribute set
      */
     public BoardView(Context context, AttributeSet attrs, int defStyleAttr) {
@@ -78,17 +81,19 @@ public class BoardView extends GridLayout {
 
     /**
      * make the label of text view on each tile
+     *
      * @param label text view on each tile
      */
     private void formatTextView(TextView label) {
         label.setTextSize(35);
-        label.setTypeface(null,Typeface.BOLD);
+        label.setTypeface(null, Typeface.BOLD);
         label.setTextColor(getResources().getColor(R.color.default2048TextColor));
         label.setGravity(Gravity.CENTER);
     }
 
     /**
      * set the game data model
+     *
      * @param game game data model
      */
     public void setGame(Game2048 game) {
@@ -99,6 +104,7 @@ public class BoardView extends GridLayout {
 
     /**
      * return the movement controller of the view
+     *
      * @return the movement controller of the view
      */
     public MovementController getMController() {
@@ -107,12 +113,13 @@ public class BoardView extends GridLayout {
 
     /**
      * make the label of text view on each tile by the number on the tile
+     *
      * @param label text view on each tile by the number on the tile
-     * @param num the number on the tile
+     * @param num   the number on the tile
      */
     private void setTextViewLabel(TextView label, int num) {
         String n = num + "";
-        if(num <= 0)
+        if (num <= 0)
             label.setText("");
         else
             label.setText(n);
@@ -124,18 +131,18 @@ public class BoardView extends GridLayout {
     private void initViewTable() {
         //initialize the width of the grid
         Board board = mController.getGame().getBoard();
-        FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(-1,-1);
-        params.setMargins(10,10,0,0);
+        FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(-1, -1);
+        params.setMargins(10, 10, 0, 0);
 
         //put tiles on the board
-        for(int y = 0;y < complexity; y++){
-            for(int x = 0; x < complexity; x++){
+        for (int y = 0; y < complexity; y++) {
+            for (int x = 0; x < complexity; x++) {
                 tileLabel[x][y] = new TextView(getContext());
                 FrameLayout fl = new FrameLayout(getContext());
                 formatTextView(tileLabel[x][y]);
-                setTileColor(tileLabel[x][y], board.getTile(x,y).getNum());
+                setTileColor(tileLabel[x][y], board.getTile(x, y).getNum());
                 fl.addView(tileLabel[x][y], params);
-                setTextViewLabel(tileLabel[x][y],board.getTile(x,y).getNum());
+                setTextViewLabel(tileLabel[x][y], board.getTile(x, y).getNum());
                 addView(fl, DEFAULT_WIDTH, DEFAULT_WIDTH);
             }
         }
@@ -146,10 +153,10 @@ public class BoardView extends GridLayout {
      */
     public void updateDisplay() {
         Board board = mController.getGame().getBoard();
-        for(int y = 0; y < complexity; y++) {
-            for(int x = 0; x < complexity; x++) {
-                setTextViewLabel(tileLabel[x][y],board.getTile(x,y).getNum());
-                setTileColor(tileLabel[x][y], board.getTile(x,y).getNum());
+        for (int y = 0; y < complexity; y++) {
+            for (int x = 0; x < complexity; x++) {
+                setTextViewLabel(tileLabel[x][y], board.getTile(x, y).getNum());
+                setTileColor(tileLabel[x][y], board.getTile(x, y).getNum());
             }
         }
     }
@@ -157,8 +164,9 @@ public class BoardView extends GridLayout {
 
     /**
      * set the text color by the number of the tile
+     *
      * @param label the coloured text on the tile
-     * @param num the number on the tile
+     * @param num   the number on the tile
      */
     private void setTileColor(TextView label, int num) {
         switch (num) {
@@ -208,6 +216,7 @@ public class BoardView extends GridLayout {
     /**
      * initialize the view on the board and
      * process the touch of the player
+     *
      * @param context game activity
      */
     private void initBoardView(final Context context) {
@@ -218,8 +227,8 @@ public class BoardView extends GridLayout {
         mController = new MovementController(game);
 
         //react based on the user's touch
-        setOnTouchListener(new View.OnTouchListener(){
-            private float startX,startY,offsetX,offsetY;
+        setOnTouchListener(new View.OnTouchListener() {
+            private float startX, startY, offsetX, offsetY;
             private boolean hasMoved;
 
             @Override
@@ -232,7 +241,7 @@ public class BoardView extends GridLayout {
                     case MotionEvent.ACTION_UP:
                         offsetX = event.getX() - startX;
                         offsetY = event.getY() - startY;
-                        hasMoved = mController.processMovement(getContext(), getTouchDirection(offsetX,offsetY));
+                        hasMoved = mController.processMovement(getContext(), getTouchDirection(offsetX, offsetY));
                         if (hasMoved)
                             updateDisplay();
                         break;
@@ -244,25 +253,23 @@ public class BoardView extends GridLayout {
 
     /**
      * get the direction the player move, which should be a vector
+     *
      * @param offsetX horizontal coordinate of the move
      * @param offsetY vertical coordinate of the move
      * @return the vector of the movement (2D)
      */
     private int getTouchDirection(float offsetX, float offsetY) {
         int direction = 0;
-        if(Math.abs(offsetX)>Math.abs(offsetY)) {
-            if(offsetX<-THRESHOLD) {
+        if (Math.abs(offsetX) > Math.abs(offsetY)) {
+            if (offsetX < -THRESHOLD) {
                 direction = 3;
-            }
-            else if(offsetX> THRESHOLD) {
+            } else if (offsetX > THRESHOLD) {
                 direction = 4;
             }
-        }
-        else {
-            if (offsetY<-THRESHOLD) {
+        } else {
+            if (offsetY < -THRESHOLD) {
                 direction = 1;
-            }
-            else if (offsetY> THRESHOLD) {
+            } else if (offsetY > THRESHOLD) {
                 direction = 2;
             }
         }

@@ -33,11 +33,13 @@ public class Board implements Serializable {
 
     /**
      * construct the board by input complexity
+     *
      * @param complexity the size of the board
      */
-    Board(int complexity){
+    Board(int complexity) {
         this.boardSize = complexity;
-        tileTable = new Tile[boardSize][boardSize];;
+        tileTable = new Tile[boardSize][boardSize];
+        ;
         addTiles();
         addRandomTile();
         addRandomTile();
@@ -45,14 +47,15 @@ public class Board implements Serializable {
 
     /**
      * construct the board by an existing board
+     *
      * @param board existing board
      */
     Board(Board board) {
         this.boardSize = board.getBoardSize();
         tileTable = new Tile[boardSize][boardSize];
-        for(int y=0;y<boardSize;y++) {
-            for(int x=0;x<boardSize;x++) {
-                tileTable[x][y] = new Tile(board.getTile(x,y).getNum());
+        for (int y = 0; y < boardSize; y++) {
+            for (int x = 0; x < boardSize; x++) {
+                tileTable[x][y] = new Tile(board.getTile(x, y).getNum());
             }
         }
         blankTileList = new LinkedList<>();
@@ -60,24 +63,26 @@ public class Board implements Serializable {
         blankTileList.addAll(board.getBlankTileList());
     }
 
-    public void setTileTable(Tile[][] newTiles){
-        this.tileTable = newTiles;
-    }
-
     /**
      * return the linked list of numbers of all all tiles
+     *
      * @return the linked list of numbers of all all tiles
      */
     private List<Integer> getBlankTileList() {
         return this.blankTileList;
     }
 
-    public Tile[][] getTileTable(){
+    public Tile[][] getTileTable() {
         return this.tileTable;
+    }
+
+    public void setTileTable(Tile[][] newTiles) {
+        this.tileTable = newTiles;
     }
 
     /**
      * get the tile by given index
+     *
      * @param x horizontal coordinator
      * @param y vertical coordinator
      * @return the tile by given horizontal and vertical indices
@@ -86,24 +91,25 @@ public class Board implements Serializable {
         return tileTable[x][y];
     }
 
-    public void setBoardSize(int size){
-        this.boardSize = size;
-    }
-
     /**
      * get the board size
+     *
      * @return the board size
      */
-    int getBoardSize(){
+    int getBoardSize() {
         return this.boardSize;
+    }
+
+    public void setBoardSize(int size) {
+        this.boardSize = size;
     }
 
     /**
      * set merge state of all tiles to false
      */
-    void clearMerged(){
-        for(int y=0;y<boardSize;y++) {
-            for(int x=0;x<boardSize;x++) {
+    void clearMerged() {
+        for (int y = 0; y < boardSize; y++) {
+            for (int x = 0; x < boardSize; x++) {
                 tileTable[x][y].setMergedState();
             }
         }
@@ -115,14 +121,15 @@ public class Board implements Serializable {
 
     /**
      * set values of tiles on the board by the given list
+     *
      * @param list list of numbers
      */
     void syncBoard(List<Integer> list) {
         int count = 0;
-        for(int y=0;y<boardSize;y++) {
-            for (int x=0;x<boardSize;x++) {
+        for (int y = 0; y < boardSize; y++) {
+            for (int x = 0; x < boardSize; x++) {
                 tileTable[x][y].setNum(list.get(count));
-                count+=1;
+                count += 1;
             }
         }
     }
@@ -135,18 +142,18 @@ public class Board implements Serializable {
         blankTileList.clear();
 
         //check empty spots
-        for(int i=0;i < boardSize*boardSize;i++) {
-            if(tileTable[i/boardSize][i%boardSize].getNum() <= 0)
+        for (int i = 0; i < boardSize * boardSize; i++) {
+            if (tileTable[i / boardSize][i % boardSize].getNum() <= 0)
                 blankTileList.add(i);
         }
         //add a tile randomly to the board
-        int randomIndex = (int)(Math.random()*blankTileList.size());
+        int randomIndex = (int) (Math.random() * blankTileList.size());
         int point = blankTileList.get(randomIndex);
-        tileTable[point/boardSize][point%boardSize].setNum(Math.random()>0.1?2:4);
+        tileTable[point / boardSize][point % boardSize].setNum(Math.random() > 0.1 ? 2 : 4);
     }
 
 
-    private  void clearTileTable() {
+    private void clearTileTable() {
         for (int y = 0; y < boardSize; y++) {
             for (int x = 0; x < boardSize; x++) {
                 tileTable[x][y].setNum(0);
@@ -157,7 +164,7 @@ public class Board implements Serializable {
     /**
      * add tiles to the board
      */
-    private void addTiles(){
+    private void addTiles() {
         Tile tile;
         for (int y = 0; y < boardSize; y++) {
             for (int x = 0; x < boardSize; x++) {

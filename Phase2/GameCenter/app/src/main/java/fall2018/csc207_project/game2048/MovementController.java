@@ -11,38 +11,83 @@ import fall2018.csc207_project.Interfaces.Game;
 import fall2018.csc207_project.Interfaces.Controller;
 
 
+/**
+ * the controller of the game data model, connect between the view and the game data model
+ */
 public class MovementController implements Controller {
 
+    /**
+     * the data model of the game
+     */
     private Game2048 game;
+
+    /**
+     * upwards movement index
+     */
     private static final int UP = 1;
+
+    /**
+     * downwards movement index
+     */
     private static final int DOWN = 2;
+
+    /**
+     * leftwards movement index
+     */
     private static final int LEFT = 3;
+
+    /**
+     * rightwards movement index
+     */
     private static final int RIGHT = 4;
+
+    /**
+     * target to win the game
+     */
     private static final int TARGET = 2048;
 
 
-    MovementController(Game2048 game){
+    /**
+     * construct the move controller
+     *
+     * @param game
+     */
+    MovementController(Game2048 game) {
         this.game = game;
     }
 
-    public Game2048 getGame(){
+    /**
+     * return the game from the movement controller
+     *
+     * @return the game from the movement controller
+     */
+    public Game2048 getGame() {
         return this.game;
     }
-    boolean processMovement(Context context, int direction){
-        System.out.println(game.getPlayer());
+
+    /**
+     * process each movement from the data model
+     * and give feedback to the game activity
+     *
+     * @param context   game activity
+     * @param direction direction of movement
+     * @return if the movement is realizable
+     */
+    boolean processMovement(Context context, int direction) {
         boolean hasMoved = false;
-        if(direction == UP){
+        // check the direction by checking the index of the movement
+        if (direction == UP) {
             hasMoved = game.touchUp();
-        }else if(direction == DOWN){
+        } else if (direction == DOWN) {
             hasMoved = game.touchDown();
-        }else if(direction == LEFT){
+        } else if (direction == LEFT) {
             hasMoved = game.touchLeft();
-        }else if(direction == RIGHT){
+        } else if (direction == RIGHT) {
             hasMoved = game.touchRight();
         }
 
-        if(!hasMoved){
-            if(!game.movesAvailable()){
+        if (!hasMoved) {
+            if (!game.movesAvailable()) {
                 String message = "GAME OVER!";
                 Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
                 game.notifyScoreBoard();
@@ -52,7 +97,7 @@ public class MovementController implements Controller {
 
         boolean has2048 = game.getHighestTile() >= TARGET;
 
-        if(has2048){
+        if (has2048) {
             String message = "YOU WIN!";
             Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
             game.notifyScoreBoard();
@@ -61,20 +106,32 @@ public class MovementController implements Controller {
         return hasMoved;
     }
 
+    /**
+     * set the game data model
+     *
+     * @param game the game will be set
+     */
     public void setGame(Game game) {
         this.game = (Game2048) game;
     }
 
-    void undo(){
+    /**
+     * perform undo method by the movement controller
+     */
+    void undo() {
         game.undo();
     }
 
-    public void restart(){
+    /**
+     * perform restart method by the movement controller
+     */
+    public void restart() {
         game.restart();
     }
 
     /**
      * end the game after playing it by popping up a dialog
+     *
      * @param context game activity
      * @param message message for making toast
      */

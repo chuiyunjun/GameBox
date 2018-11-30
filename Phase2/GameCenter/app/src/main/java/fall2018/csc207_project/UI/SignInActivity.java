@@ -10,10 +10,14 @@ import android.widget.Toast;
 
 import fall2018.csc207_project.GameCenter.GlobalCenter;
 
+/**
+ * The activity of the sign in page of game center.
+ */
 public class SignInActivity extends AppCompatActivity {
 
     private GlobalCenter globalCenter;
 
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(fall2018.csc207_project.R.layout.signin_page);
@@ -21,6 +25,9 @@ public class SignInActivity extends AppCompatActivity {
         addLoginButtonListener();
     }
 
+    /**
+     * Add a login in button listener and link it to the button.
+     */
     private void addLoginButtonListener() {
         Button loginButton = findViewById(fall2018.csc207_project.R.id.signin_button);
 
@@ -32,6 +39,9 @@ public class SignInActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Check the sign in state of the current user operation.
+     */
     private void checkSignIn() {
         EditText User = findViewById(fall2018.csc207_project.R.id.signin_username);
         EditText Password = findViewById(fall2018.csc207_project.R.id.signin_password);
@@ -45,6 +55,9 @@ public class SignInActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Switch to local center activity page.
+     */
     private void localCenter(){
         Intent tmp = new Intent(this, LocalCenterActivity.class);
         tmp = tmp.putExtra("GlobalCenter", globalCenter);
@@ -58,6 +71,7 @@ public class SignInActivity extends AppCompatActivity {
         globalCenter.saveAll(getApplicationContext());
     }
 
+    @Override
     public void onBackPressed() {
         Intent tmp = new Intent(this, GlobalActivity.class);
         startActivity(tmp);
