@@ -120,6 +120,7 @@ public class LocalCenterActivity extends AppCompatActivity {
 
     private void addLogOffButtonListener() {
         Button button = findViewById(R.id.log_off_button);
+        globalCenter.signOut();
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

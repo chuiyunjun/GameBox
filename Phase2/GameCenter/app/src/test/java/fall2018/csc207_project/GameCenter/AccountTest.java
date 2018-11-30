@@ -1,4 +1,4 @@
-package fall2018.myapplication;
+package fall2018.csc207_project.GameCenter;
 
 import org.junit.Test;
 
@@ -9,9 +9,11 @@ import static org.junit.Assert.*;
  *
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
-public class ExampleUnitTest {
+public class AccountTest {
+
     @Test
-    public void addition_isCorrect() {
-        assertEquals(4, 2 + 2);
+    public void testSignIn() {
+        Account account = new Account("ee", "1234");
+        assertEquals(true, account.signIn("1234"));
     }
 }

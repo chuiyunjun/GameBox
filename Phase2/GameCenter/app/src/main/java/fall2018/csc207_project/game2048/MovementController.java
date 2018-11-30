@@ -6,9 +6,14 @@ import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.widget.Toast;
 
-import java.io.Serializable;
 
-
+/**
+ * the controller of each move for game2048, connect between game data model and view
+ *
+ * dialog adapted from
+ * https://stackoverflow.com/questions/2115758/how-do-i-display-an-alert-dialog-on-android
+ *
+ */
 public class MovementController{
 
     private Game2048 game;
@@ -27,7 +32,6 @@ public class MovementController{
         return this.game;
     }
     boolean processMovement(Context context, int direction){
-        System.out.println(game.getPlayer());
         boolean hasMoved = false;
         if(direction == UP){
             hasMoved = game.touchUp();
@@ -56,6 +60,7 @@ public class MovementController{
             game.notifyScoreBoard();
             endGame(context, message);
         }
+
         return hasMoved;
     }
 

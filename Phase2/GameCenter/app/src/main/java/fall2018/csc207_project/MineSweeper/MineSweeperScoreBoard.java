@@ -37,6 +37,7 @@ public class MineSweeperScoreBoard extends ScoreBoard implements Serializable {
     @Override
     public void update(Observable o, Object arg) {
         if(arg instanceof LinkedList) {
+            //add scores to the text board
             LinkedList<Object> temp = (LinkedList<Object>)arg;
             int score = calculateScore((List<Object>)(temp.getLast()));
             this.addNewScore((String)temp.getFirst(),score);
