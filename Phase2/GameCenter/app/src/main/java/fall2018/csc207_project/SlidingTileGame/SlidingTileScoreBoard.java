@@ -15,8 +15,14 @@ import fall2018.csc207_project.GameCenter.ScoreBoard;
  */
 
 public class SlidingTileScoreBoard extends ScoreBoard implements Serializable {
+    /**
+     * unique id for serialization
+     */
     private static final long serialVersionUID = 8271927480642L;
 
+    /**
+     * constructor that same as its parent class "ScoreBoard"
+     */
     public SlidingTileScoreBoard() {
         super();
     }

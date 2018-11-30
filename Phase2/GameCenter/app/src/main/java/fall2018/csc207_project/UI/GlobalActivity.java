@@ -15,10 +15,17 @@ import java.io.ObjectInputStream;
 import fall2018.csc207_project.GameCenter.GlobalCenter;
 import fall2018.csc207_project.R;
 
+/**
+ * the global activity
+ */
 public class GlobalActivity extends AppCompatActivity {
 
+    /**
+     * the global center
+     */
     private GlobalCenter globalCenter;
 
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.gamecenter_main);
@@ -31,6 +38,9 @@ public class GlobalActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * switch to SignIn interface
+     */
     public void switchToSignIn() {
         Intent tmp = new Intent(this, SignInActivity.class);
         tmp = tmp.putExtra("GlobalCenter", globalCenter);
@@ -38,6 +48,9 @@ public class GlobalActivity extends AppCompatActivity {
         finish();
     }
 
+    /**
+     * switch to SignUp interface
+     */
     public void switchToSignUp() {
         Intent tmp = new Intent(this, SignUpActivity.class);
         tmp = tmp.putExtra("GlobalCenter", globalCenter);
@@ -45,6 +58,9 @@ public class GlobalActivity extends AppCompatActivity {
         finish();
     }
 
+    /**
+     * add the listener for SignIn button
+     */
     private void addSignInButtonListener() {
         Button startButton = findViewById(R.id.global_signin);
         startButton.setOnClickListener(new View.OnClickListener() {
@@ -55,6 +71,9 @@ public class GlobalActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * add the listener fot SignUp button
+     */
     private void addSignUPButtonListener() {
         Button startButton = findViewById(R.id.global_signup);
         startButton.setOnClickListener(new View.OnClickListener() {
@@ -65,6 +84,9 @@ public class GlobalActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * load GlobalCenter interface
+     */
     private void loadGlobalCenter(){
         ObjectInputStream in = null;
         try {
@@ -96,6 +118,9 @@ public class GlobalActivity extends AppCompatActivity {
         globalCenter.saveAll(getApplicationContext());
     }
 
+    /**
+     * set back press
+     */
     public void onBackPressed() {
         finish();
     }
