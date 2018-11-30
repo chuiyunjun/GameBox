@@ -2,6 +2,7 @@ package fall2018.csc207_project.game2048;
 
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.MotionEvent;
@@ -39,8 +40,9 @@ public class BoardView extends GridLayout {
     }
 
     private void formatTextView(TextView label) {
-        label.setTextSize(32);
-        label.setBackgroundColor(getResources().getColor(R.color.tileHolder));
+        label.setTextSize(35);
+        label.setTypeface(null,Typeface.BOLD);
+        label.setTextColor(getResources().getColor(R.color.default2048TextColor));
         label.setGravity(Gravity.CENTER);
     }
 
@@ -72,6 +74,7 @@ public class BoardView extends GridLayout {
                 tileLabel[x][y] = new TextView(getContext());
                 FrameLayout fl = new FrameLayout(getContext());
                 formatTextView(tileLabel[x][y]);
+                setTileColor(tileLabel[x][y], board.getTile(x,y).getNum());
                 fl.addView(tileLabel[x][y], params);
                 setTextViewLabel(tileLabel[x][y],board.getTile(x,y).getNum());
                 addView(fl, DEFAULT_WIDTH, DEFAULT_WIDTH);
@@ -84,8 +87,55 @@ public class BoardView extends GridLayout {
         for(int y = 0; y < complexity; y++) {
             for(int x = 0; x < complexity; x++) {
                 setTextViewLabel(tileLabel[x][y],board.getTile(x,y).getNum());
+                setTileColor(tileLabel[x][y], board.getTile(x,y).getNum());
             }
         }
+    }
+
+
+    private void setTileColor(TextView label, int num) {
+        switch (num) {
+            case 0:
+                label.setBackgroundColor(getResources().getColor(R.color.tileHolder));
+                break;
+            case 2:
+                label.setBackgroundColor(getResources().getColor(R.color.tile_2));
+                break;
+            case 4:
+                label.setBackgroundColor(getResources().getColor(R.color.tile_4));
+                break;
+            case 8:
+                label.setBackgroundColor(getResources().getColor(R.color.tile_8));
+                break;
+            case 16:
+                label.setBackgroundColor(getResources().getColor(R.color.tile_16));
+                break;
+            case 32:
+                label.setBackgroundColor(getResources().getColor(R.color.tile_32));
+                break;
+            case 64:
+                label.setBackgroundColor(getResources().getColor(R.color.tile_64));
+                break;
+            case 128:
+                label.setBackgroundColor(getResources().getColor(R.color.tile_128));
+                break;
+            case 256:
+                label.setBackgroundColor(getResources().getColor(R.color.tile_256));
+                break;
+            case 512:
+                label.setBackgroundColor(getResources().getColor(R.color.tile_512));
+                break;
+            case 1024:
+                label.setBackgroundColor(getResources().getColor(R.color.tile_1024));
+                break;
+            case 2048:
+                label.setBackgroundColor(getResources().getColor(R.color.tile_2048));
+                break;
+        }
+        if (num > 4)
+            label.setTextColor(getResources().getColor(R.color.white));
+        else
+            label.setTextColor(getResources().getColor(R.color.default2048TextColor));
     }
 
     private void initBoardView(final Context context) {

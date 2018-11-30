@@ -207,4 +207,10 @@ public class GameActivity extends AppCompatActivity implements Observer {
         startActivity(tmp);
         finish();
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        globalCenter.saveAll(getApplicationContext());
+    }
 }

@@ -26,13 +26,13 @@
             android:layout_height="match_parent"
             android:textSize="45sp"
             android:textStyle="bold"
-            android:text="2048"
+            android:text="@string/_2048_topper"
             />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="40dp"
             android:layout_height="wrap_content"
-            android:layout_weight="2"/>
+            />
 
         <Button
             android:id="@+id/current_score"
@@ -40,7 +40,6 @@
             android:layout_height="match_parent"
             android:background="@color/tileHolderBackground"
             android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
             android:textSize="20sp"
             android:textStyle="bold"
             android:clickable="false"
@@ -73,13 +72,13 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="Join the number and get to the"
+            android:text="@string/instruction_2048"
             android:textSize="18sp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="2048 tile!"
+            android:text="@string/_2048_goal"
             android:textStyle="bold"
             android:textSize="18sp"/>
     </LinearLayout>
@@ -95,13 +94,13 @@
             android:layout_height="match_parent"
             android:textSize="22sp"
             android:gravity="center"
-            android:background="@color/backgroundMain"
+            android:background="#00000000"
             android:textColor="@color/orange"
             android:textStyle="bold"
-            android:text="Restart"/>
+            android:text="@string/restart"/>
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             />
@@ -114,10 +113,10 @@
             android:layout_height="match_parent"
             android:textSize="22sp"
             android:gravity="center"
-            android:background="@color/backgroundMain"
+            android:background="#00000000"
             android:textColor="@color/orange"
             android:textStyle="bold"
-            android:text="Undo" />
+            android:text="@string/undo" />
 
         <TextView
             android:id="@+id/undo_step_left_2048"
@@ -127,7 +126,7 @@
             android:gravity="center"
             android:textColor="@color/orange"
             android:textStyle="bold"
-            android:text="(0)"
+            android:text="@string/undo_remain"
 
             />
 

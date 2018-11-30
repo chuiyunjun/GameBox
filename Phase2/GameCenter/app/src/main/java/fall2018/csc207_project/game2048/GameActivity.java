@@ -102,4 +102,10 @@ public class GameActivity extends AppCompatActivity implements Observer {
         gameView.updateDisplay();
         autoSave();
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        globalCenter.saveAll(getApplicationContext());
+    }
 }

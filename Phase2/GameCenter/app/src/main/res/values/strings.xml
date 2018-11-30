@@ -55,4 +55,11 @@
     <string name="mine_sweeper_band">Welcome To Minesweeper \nSweep all the mines and get the victory</string>
     <string name="minesweeper_time">Time:</string>
     <string name="minesweeper_flag">Flag:</string>
+    <string name="log_off">Log off</string>
+    <string name="_2048_topper">2048</string>
+    <string name="instruction_2048">Join the number and get to the</string>
+    <string name="_2048_goal">2048 tile!</string>
+    <string name="restart">Restart</string>
+    <string name="undo">Undo</string>
+    <string name="undo_remain">(0)</string>
 </resources>

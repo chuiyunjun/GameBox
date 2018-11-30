@@ -11,6 +11,7 @@ import android.widget.TextView;
 import fall2018.csc207_project.GameCenter.GlobalCenter;
 import fall2018.csc207_project.GameCenter.LocalGameCenter;
 import fall2018.csc207_project.MineSweeper.MineSweeperGame;
+import fall2018.csc207_project.R;
 import fall2018.csc207_project.SlidingTileGame.SlidingTileGame;
 import fall2018.csc207_project.game2048.Game2048;
 
@@ -35,6 +36,7 @@ public class LocalCenterActivity extends AppCompatActivity {
 
         addAddGameButtonListener();
         addDeleteGameButtonListener();
+        addLogOffButtonListener();
 
     }
 
@@ -114,6 +116,16 @@ public class LocalCenterActivity extends AppCompatActivity {
         tmp.putExtra("GlobalCenter", globalCenter);
         startActivity(tmp);
         finish();
+    }
+
+    private void addLogOffButtonListener() {
+        Button button = findViewById(R.id.log_off_button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
     }
 
 
