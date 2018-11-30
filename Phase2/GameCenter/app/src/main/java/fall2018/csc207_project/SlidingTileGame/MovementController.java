@@ -8,18 +8,31 @@ import android.widget.Toast;
 import fall2018.csc207_project.Interfaces.Game;
 import fall2018.csc207_project.Interfaces.Controller;
 
-
+/**
+ * the Controller of the Sliding tiles game
+ */
 public class MovementController implements Controller {
 
+    /**
+     * sliding tiles game that taken in
+     */
     private SlidingTileGame slidingTileGame = null;
 
-    MovementController() {
-    }
-
+    /**
+     * set the game
+     * @param game the game taken in
+     */
     public void setGame(Game game) {
         this.slidingTileGame = (SlidingTileGame) game;
     }
 
+    /**
+     * According the input event from view, change the data model of the game.
+     * Let tiles swap each other and toast message if necessary.
+     * @param context current context
+     * @param position the position that the player's finger touched
+     * @param display the boolean display
+     */
     void processTapMovement(Context context, int position, boolean display) {
         if (slidingTileGame.isValidTap(position)) {
             slidingTileGame.touchMove(position);
@@ -34,9 +47,18 @@ public class MovementController implements Controller {
             Toast.makeText(context, "Invalid Tap", Toast.LENGTH_SHORT).show();
         }
     }
+
+    /**
+     *  change the data model when the player wants to undo.
+     */
     void undo(){
         slidingTileGame.undo();
     }
+
+    /**
+     * toast the message "No more undo"
+     * @param context current context
+     */
 
     void toastNoMoreUndo(Context context){
         Toast.makeText(context, "No more undo!", Toast.LENGTH_SHORT).show();
