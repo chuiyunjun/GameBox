@@ -24,12 +24,21 @@ import fall2018.csc207_project.R;
 import fall2018.csc207_project.SlidingTileGame.SlidingTileGame;
 import fall2018.csc207_project.game2048.Game2048;
 
+/**
+ * activity of load or save
+ */
 public class LoadOrSaveGameActivity extends AppCompatActivity {
 
+    /**
+     * the global center
+     * the local game center
+     * the state of game
+     */
     private GlobalCenter globalCenter;
     private LocalGameCenter localCenter;
     private boolean state;
 
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
@@ -42,6 +51,9 @@ public class LoadOrSaveGameActivity extends AppCompatActivity {
         addSlotButton();
     }
 
+    /**
+     * init TextView
+     */
     private void initTextView() {
         if(state) {
             TextView addDeleteBand = findViewById(R.id.save_load_band);
@@ -52,7 +64,9 @@ public class LoadOrSaveGameActivity extends AppCompatActivity {
         }
     }
 
-
+    /**
+     * add slot Button
+     */
     private void addSlotButton() {
         final LinkedList<List<Object>> slots = localCenter.getSavingSlots();
         LinearLayout ll = findViewById(R.id.save_load_slot);
@@ -90,6 +104,9 @@ public class LoadOrSaveGameActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * add view of AutoSave
+     */
     private void addAutoSaveView() {
         LinearLayout ll = findViewById(R.id.save_load_slot);
         TextView tv = new TextView(this);
@@ -110,6 +127,10 @@ public class LoadOrSaveGameActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * switch to the specific game
+     * @param game one of the game which user chooses
+     */
     private void switchToGame(Game game) {
 
         if(game instanceof SlidingTileGame) {
@@ -132,6 +153,11 @@ public class LoadOrSaveGameActivity extends AppCompatActivity {
         finish();
     }
 
+    /**
+     * init the label of button
+     * @param button the button which will be click
+     * @param slot the slot which the button will be put in
+     */
     private void initButtonLabel(Button button, List<Object> slot) {
         if(slot.size() == 0) {
             button.setText("(Blank Slot)");
@@ -152,6 +178,9 @@ public class LoadOrSaveGameActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * set back press
+     */
     public void onBackPressed() {
         Intent tmp = new Intent(this, StartingActivity.class);
         tmp.putExtra("GlobalCenter", globalCenter);
