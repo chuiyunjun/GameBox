@@ -49,42 +49,45 @@ public class MovementController implements Controller {
 
     /**
      * construct the move controller
+     *
      * @param game
      */
-    MovementController(Game2048 game){
+    MovementController(Game2048 game) {
         this.game = game;
     }
 
     /**
      * return the game from the movement controller
+     *
      * @return the game from the movement controller
      */
-    public Game2048 getGame(){
+    public Game2048 getGame() {
         return this.game;
     }
 
     /**
      * process each movement from the data model
      * and give feedback to the game activity
-     * @param context game activity
+     *
+     * @param context   game activity
      * @param direction direction of movement
      * @return if the movement is realizable
      */
-    boolean processMovement(Context context, int direction){
+    boolean processMovement(Context context, int direction) {
         boolean hasMoved = false;
         // check the direction by checking the index of the movement
-        if(direction == UP){
+        if (direction == UP) {
             hasMoved = game.touchUp();
-        }else if(direction == DOWN){
+        } else if (direction == DOWN) {
             hasMoved = game.touchDown();
-        }else if(direction == LEFT){
+        } else if (direction == LEFT) {
             hasMoved = game.touchLeft();
-        }else if(direction == RIGHT){
+        } else if (direction == RIGHT) {
             hasMoved = game.touchRight();
         }
 
-        if(!hasMoved){
-            if(!game.movesAvailable()){
+        if (!hasMoved) {
+            if (!game.movesAvailable()) {
                 String message = "GAME OVER!";
                 Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
                 game.notifyScoreBoard();
@@ -94,7 +97,7 @@ public class MovementController implements Controller {
 
         boolean has2048 = game.getHighestTile() >= TARGET;
 
-        if(has2048){
+        if (has2048) {
             String message = "YOU WIN!";
             Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
             game.notifyScoreBoard();
@@ -105,6 +108,7 @@ public class MovementController implements Controller {
 
     /**
      * set the game data model
+     *
      * @param game the game will be set
      */
     public void setGame(Game game) {
@@ -114,19 +118,20 @@ public class MovementController implements Controller {
     /**
      * perform undo method by the movement controller
      */
-    void undo(){
+    void undo() {
         game.undo();
     }
 
     /**
      * perform restart method by the movement controller
      */
-    public void restart(){
+    public void restart() {
         game.restart();
     }
 
     /**
      * end the game after playing it by popping up a dialog
+     *
      * @param context game activity
      * @param message message for making toast
      */
