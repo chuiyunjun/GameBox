@@ -31,12 +31,12 @@ public class Game2048ScoreBoard extends ScoreBoard implements Serializable {
 
     @Override
     public int calculateScore(List<Object> setting) {
-        return (int)setting.get(SCOREINDEX);
+        return (int) setting.get(SCOREINDEX);
     }
 
     @Override
     public void update(Observable o, Object arg) {
-        if(arg instanceof LinkedList) {
+        if (arg instanceof LinkedList) {
             LinkedList<Object> temp = (LinkedList<Object>) arg;
             int score = calculateScore((List<Object>) (temp.getLast()));
             this.addNewScore((String) temp.getFirst(), score);

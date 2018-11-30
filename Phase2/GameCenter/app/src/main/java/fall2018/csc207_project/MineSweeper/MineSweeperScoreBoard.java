@@ -24,11 +24,11 @@ public class MineSweeperScoreBoard extends ScoreBoard implements Serializable {
 
     @Override
     public int calculateScore(List<Object> setting) {
-        if ((boolean)setting.get(5)) {
+        if ((boolean) setting.get(5)) {
             Board board = new Board((Board) (setting.get(0)));
             //I am so kind that I give you one mark for bonus
-            return (int)((BASECOUNT - (Integer) (setting.get(1))) *
-                    (1 + (float)board.getBombNum() / 20)) + 1;
+            return (int) ((BASECOUNT - (Integer) (setting.get(1))) *
+                    (1 + (float) board.getBombNum() / 20)) + 1;
         } else {
             return 0;
         }
@@ -36,10 +36,10 @@ public class MineSweeperScoreBoard extends ScoreBoard implements Serializable {
 
     @Override
     public void update(Observable o, Object arg) {
-        if(arg instanceof LinkedList) {
-            LinkedList<Object> temp = (LinkedList<Object>)arg;
-            int score = calculateScore((List<Object>)(temp.getLast()));
-            this.addNewScore((String)temp.getFirst(),score);
+        if (arg instanceof LinkedList) {
+            LinkedList<Object> temp = (LinkedList<Object>) arg;
+            int score = calculateScore((List<Object>) (temp.getLast()));
+            this.addNewScore((String) temp.getFirst(), score);
         }
     }
 

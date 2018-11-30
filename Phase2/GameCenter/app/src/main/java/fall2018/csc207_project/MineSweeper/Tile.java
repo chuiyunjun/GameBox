@@ -37,12 +37,16 @@ class Tile implements Serializable {
 
     /**
      * construct the tile by its number
+     *
      * @param num number on the tile
      */
-    Tile(int num){this.num = num;}
+    Tile(int num) {
+        this.num = num;
+    }
 
     /**
      * construct the tile by an existing tile
+     *
      * @param tile an existing tile
      */
     Tile(Tile tile) {
@@ -54,6 +58,7 @@ class Tile implements Serializable {
 
     /**
      * get if the tile has been flipped
+     *
      * @return if the tile has been flipped
      */
     private boolean getFliped() {
@@ -62,6 +67,7 @@ class Tile implements Serializable {
 
     /**
      * get if the tile has been labeled to a flag
+     *
      * @return if the tile has been labeled to a flag
      */
     private boolean getLabeled() {
@@ -70,6 +76,7 @@ class Tile implements Serializable {
 
     /**
      * get if the tile has been exploded if it is a bomb
+     *
      * @return if the tile has been exploded if it is a bomb
      */
     private boolean getBoom() {
@@ -78,6 +85,7 @@ class Tile implements Serializable {
 
     /**
      * set the number of the tile
+     *
      * @param num number of the tile
      */
     void setNum(int num) {
@@ -86,6 +94,7 @@ class Tile implements Serializable {
 
     /**
      * set the if the tile has been flagged
+     *
      * @param labeled the tile has been flagged
      */
     void setLabeled(boolean labeled) {
@@ -102,10 +111,13 @@ class Tile implements Serializable {
     /**
      * set the bomb exploded to be true
      */
-    void setBoom() {this.boom = true;}
+    void setBoom() {
+        this.boom = true;
+    }
 
     /**
      * get the number labeled on the tile
+     *
      * @return the number labeled on the tile
      */
     int getNum() {
@@ -114,6 +126,7 @@ class Tile implements Serializable {
 
     /**
      * get if the tile has been labelled as a flag
+     *
      * @return if the tile has been labelled
      */
     boolean isLabeled() {
@@ -122,6 +135,7 @@ class Tile implements Serializable {
 
     /**
      * get if the tile has been flipped
+     *
      * @return if the tile has been flipped
      */
     boolean isFlipped() {
@@ -130,25 +144,37 @@ class Tile implements Serializable {
 
     /**
      * get the corresponding image of the tile
+     *
      * @return the corresponding image of the tile
      */
-    int getTileImage(){
+    int getTileImage() {
         int ret;
-        if(!isFlipped()){
-            if(isLabeled()){
-                ret = R.drawable.flag;}
-            else{
-                ret = R.drawable.button;}}
-        else{
-            if(num == 0){ret = R.drawable.number_0;}
-            else if(num == 1){ret = R.drawable.number_1;}
-            else if(num == 2){ret = R.drawable.number_2;}
-            else if(num == 3){ret = R.drawable.number_3;}
-            else if(num ==4){ret = R.drawable.number_4;}
-            else if(num == 5){ret = R.drawable.number_5;}
-            else if(num == 6){ret = R.drawable.number_6;}
-            else if(num == 7){ret = R.drawable.number_7;}
-            else if(num == 8){ret = R.drawable.number_8;}
+        if (!isFlipped()) {
+            if (isLabeled()) {
+                ret = R.drawable.flag;
+            } else {
+                ret = R.drawable.button;
+            }
+        } else {
+            if (num == 0) {
+                ret = R.drawable.number_0;
+            } else if (num == 1) {
+                ret = R.drawable.number_1;
+            } else if (num == 2) {
+                ret = R.drawable.number_2;
+            } else if (num == 3) {
+                ret = R.drawable.number_3;
+            } else if (num == 4) {
+                ret = R.drawable.number_4;
+            } else if (num == 5) {
+                ret = R.drawable.number_5;
+            } else if (num == 6) {
+                ret = R.drawable.number_6;
+            } else if (num == 7) {
+                ret = R.drawable.number_7;
+            } else if (num == 8) {
+                ret = R.drawable.number_8;
+            }
             // num >= 10
             else {
                 // if this is a bomb and exploded

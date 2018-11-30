@@ -2,6 +2,7 @@ package fall2018.csc207_project.GameCenter;
 
 import android.app.Activity;
 import android.content.Context;
+
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -11,11 +12,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
+
 /**
  * The GlobalCenter for Application
  */
 
-public class GlobalCenter implements Serializable, Observer{
+public class GlobalCenter implements Serializable, Observer {
 
     /**
      * the serial number of global center
@@ -36,23 +38,25 @@ public class GlobalCenter implements Serializable, Observer{
 
     /**
      * get the scoreboard
+     *
      * @return scoreboard
      */
-    public Map getScoreBoards(){
+    public Map getScoreBoards() {
         return scoreboards;
     }
 
     /**
      * check the username and password
+     *
      * @param username the username which user input
      * @param password the password which user input
      * @return whether the username and password is matched
      */
-    public Boolean signIn(String username, String password){
+    public Boolean signIn(String username, String password) {
 
-        if (accounts.containsKey(username)){
+        if (accounts.containsKey(username)) {
             Account user = accounts.get(username);
-            if (user.signIn(password)){
+            if (user.signIn(password)) {
                 currentPlayer = user;
                 return true;
             } else {
@@ -64,22 +68,21 @@ public class GlobalCenter implements Serializable, Observer{
 
     /**
      * sign up a nwe user
-     * @param username the username which user input
+     *
+     * @param username  the username which user input
      * @param password1 the password which user input
      * @param password2 the password which user confirmed
      * @return Sign in the game use the new account
      * @throws Exception username exist or password not match or user does not exist
      */
-    public boolean signUp(String username, String password1, String password2) throws Exception{
+    public boolean signUp(String username, String password1, String password2) throws Exception {
         if (username.equals("") || password1.equals("") || password2.equals(""))
             throw new EmptyFieldException();
-        else if (accounts.containsKey(username)){
+        else if (accounts.containsKey(username)) {
             throw new UsernameExistException();
-        }
-        else if (!password1.equals(password2)){
+        } else if (!password1.equals(password2)) {
             throw new PasswordNotMatchingException();
-        }
-        else {
+        } else {
             Account newAccount = new Account(username, password1);
             accounts.put(username, newAccount);
             addLocalGameCenter(username);
@@ -89,6 +92,7 @@ public class GlobalCenter implements Serializable, Observer{
 
     /**
      * add the local game center for each user
+     *
      * @param username the username which the user log in
      */
     private void addLocalGameCenter(String username) {
@@ -98,14 +102,16 @@ public class GlobalCenter implements Serializable, Observer{
 
     /**
      * get the information of current player
+     *
      * @return current player
      */
-    public Account getCurrentPlayer(){
+    public Account getCurrentPlayer() {
         return currentPlayer;
     }
 
     /**
      * get the local game center for each user
+     *
      * @param username the user which user log in
      * @return local game center
      */
@@ -115,20 +121,22 @@ public class GlobalCenter implements Serializable, Observer{
 
     /**
      * add game to scoreboard
-     * @param gameName the name of game which will be added to scoreboard
+     *
+     * @param gameName   the name of game which will be added to scoreboard
      * @param scoreboard the scoreboard that the score will be added to
      */
-    public void addScoreBoard(String gameName, ScoreBoard scoreboard){
-        if (!scoreboards.containsKey(gameName)){
+    public void addScoreBoard(String gameName, ScoreBoard scoreboard) {
+        if (!scoreboards.containsKey(gameName)) {
             scoreboards.put(gameName, scoreboard);
         }
     }
 
     /**
      * save all the data of this application
+     *
      * @param context the global game center
      */
-    public void saveAll(Context context){
+    public void saveAll(Context context) {
         ObjectOutputStream out = null;
         try {
             FileOutputStream fileOut = context.openFileOutput("dataBase10.ser", Activity.MODE_PRIVATE);

@@ -59,8 +59,9 @@ public abstract class ScoreBoard implements Observer, Serializable {
 
     /**
      * initialize a ScoreBoard with custom length
+     *
      * @param totalLength numbers of highest scores to keep among all users
-     * @param perUser numbers of highest scores per user
+     * @param perUser     numbers of highest scores per user
      */
     ScoreBoard(int totalLength, int perUser) {
         this.totalLength = totalLength;
@@ -74,8 +75,9 @@ public abstract class ScoreBoard implements Observer, Serializable {
      * Add a new score to the per user scoreboard.
      * Create the array of scores if this is the first score of the user
      * The score will only be added if its among the highest scores that user achieve
+     *
      * @param userName which user the score belongs to
-     * @param score the score needed to be add
+     * @param score    the score needed to be add
      */
     protected void addNewScore(String userName, Integer score) {
         if (topUserScores.containsKey(userName)) {
@@ -95,7 +97,7 @@ public abstract class ScoreBoard implements Observer, Serializable {
             Arrays.sort(userScores, Collections.<Integer>reverseOrder());
         } else {
             Integer[] scoreArray = new Integer[perUser];
-            for(int i=0;i<scoreArray.length;i++) {
+            for (int i = 0; i < scoreArray.length; i++) {
                 scoreArray[i] = 0;
             }
             scoreArray[0] = score;
@@ -107,6 +109,7 @@ public abstract class ScoreBoard implements Observer, Serializable {
 
     /**
      * return an integer array of scores for particular user
+     *
      * @param userName user name of the player
      * @return array of userScores
      */
@@ -123,6 +126,7 @@ public abstract class ScoreBoard implements Observer, Serializable {
 
     /**
      * return the highest score of for specific user
+     *
      * @param name the name of the user
      * @return the highest score
      */
@@ -132,25 +136,25 @@ public abstract class ScoreBoard implements Observer, Serializable {
 
     /**
      * Update the top scores
+     *
      * @param userScores scores of all users on the board
      */
-    private void updateTopScores(HashMap<String, Integer[]> userScores){
+    private void updateTopScores(HashMap<String, Integer[]> userScores) {
         Comparator<String> comparator = new MapValueComparator(userScores);
         TreeMap<String, Integer[]> sorted = new TreeMap<String, Integer[]>(comparator);
         sorted.putAll(userScores);
         int count = 0;
         indexList.clear();
-        for (Map.Entry<String, Integer[]> entry: sorted.entrySet()) {
+        for (Map.Entry<String, Integer[]> entry : sorted.entrySet()) {
             if (count >= topScores.length) break;
             topScores[count] = entry.getValue()[0];
             indexList.put(count, entry.getKey());
-            count ++;
+            count++;
         }
 
     }
 
     /**
-     *
      * @param setting information needed for calculate socres
      * @return scores based on setting
      */
@@ -159,7 +163,7 @@ public abstract class ScoreBoard implements Observer, Serializable {
     /**
      * comparator for map values
      */
-    class MapValueComparator implements Comparator<String>{
+    class MapValueComparator implements Comparator<String> {
         /**
          * map that needed to be sorted
          */
@@ -167,27 +171,27 @@ public abstract class ScoreBoard implements Observer, Serializable {
 
         /**
          * input for comparator
+         *
          * @param map the map input for sorting
          */
-        MapValueComparator(HashMap<String, Integer[]> map){
+        MapValueComparator(HashMap<String, Integer[]> map) {
             this.inputMap.putAll(map);
         }
 
         /**
-         *  Comparator for descending order.
+         * Comparator for descending order.
+         *
          * @param o1 userName1
          * @param o2 userName2
          * @return int that shows result of comparison
          */
         @Override
         public int compare(String o1, String o2) {
-            if(inputMap.get(o1)[0] > inputMap.get(o2)[0]){
+            if (inputMap.get(o1)[0] > inputMap.get(o2)[0]) {
                 return -1;
-            }
-            else if (inputMap.get(o1)[0] <= inputMap.get(o2)[0]) {
+            } else if (inputMap.get(o1)[0] <= inputMap.get(o2)[0]) {
                 return 1;
-            }
-            else {
+            } else {
                 return 0;
             }
         }

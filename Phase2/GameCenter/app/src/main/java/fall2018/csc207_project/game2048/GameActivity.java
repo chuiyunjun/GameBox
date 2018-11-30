@@ -46,13 +46,15 @@ public class GameActivity extends AppCompatActivity implements GameActivityInter
 
         setContentView(R.layout.game_2048_activity);
         globalCenter = (GlobalCenter) (getIntent().getSerializableExtra("GlobalCenter"));
-        LocalGameCenter localGameCenter = globalCenter.getLocalGameCenter(globalCenter.getCurrentPlayer().getUsername());
+        LocalGameCenter localGameCenter = globalCenter.getLocalGameCenter(globalCenter.
+                getCurrentPlayer().getUsername());
         gameView = findViewById(R.id.gameView);
         game = (Game2048) localGameCenter.getCurGame();
         game.setPlayer(globalCenter.getCurrentPlayer().getUsername());
         gameView.setGame(game);
         game.addObserver(this);
-        game.addObserver((Game2048ScoreBoard)(globalCenter.getScoreBoards().get(Game2048.GAMENAME)));
+        game.addObserver((Game2048ScoreBoard) (globalCenter.getScoreBoards().
+                get(Game2048.GAMENAME)));
 
         setUndoButtonListener();
         setRestartButtonListener();
@@ -65,7 +67,8 @@ public class GameActivity extends AppCompatActivity implements GameActivityInter
     private void autoSave() {
         String timeStamp = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
                 .format(Calendar.getInstance().getTime());
-        globalCenter.getLocalGameCenter(globalCenter.getCurrentPlayer().getUsername()).autoSave(timeStamp);
+        globalCenter.getLocalGameCenter(globalCenter.getCurrentPlayer().
+                getUsername()).autoSave(timeStamp);
     }
 
 
@@ -84,13 +87,15 @@ public class GameActivity extends AppCompatActivity implements GameActivityInter
      * initialize the view of the text on the screen, like score, highest mark and undo step
      */
     private void initTextView() {
-        Game2048ScoreBoard scoreBoard = (Game2048ScoreBoard)(globalCenter.getScoreBoards().get(Game2048.GAMENAME));
+        Game2048ScoreBoard scoreBoard = (Game2048ScoreBoard) (globalCenter.getScoreBoards().
+                get(Game2048.GAMENAME));
         TextView score = findViewById(R.id.current_score);
         TextView highest = findViewById(R.id.highest_score);
         TextView undoStepLeft = findViewById(R.id.undo_step_left_2048);
-        score.setText("Score\n"+game.getScore());
-        highest.setText("Best\n"+scoreBoard.getPlayerTopScore(globalCenter.getCurrentPlayer().getUsername()));
-        undoStepLeft.setText("("+game.getUndoStep()+")");
+        score.setText("Score\n" + game.getScore());
+        highest.setText("Best\n" + scoreBoard.getPlayerTopScore(globalCenter.getCurrentPlayer().
+                getUsername()));
+        undoStepLeft.setText("(" + game.getUndoStep() + ")");
 
     }
 
@@ -127,11 +132,11 @@ public class GameActivity extends AppCompatActivity implements GameActivityInter
     }
 
     @Override
-    public void update(Observable o,Object arg) {
+    public void update(Observable o, Object arg) {
         TextView score = findViewById(R.id.current_score);
         TextView undoStepLeft = findViewById(R.id.undo_step_left_2048);
-        score.setText("Score\n"+game.getScore());
-        undoStepLeft.setText("("+game.getUndoStep()+")");
+        score.setText("Score\n" + game.getScore());
+        undoStepLeft.setText("(" + game.getUndoStep() + ")");
         gameView.updateDisplay();
         autoSave();
     }

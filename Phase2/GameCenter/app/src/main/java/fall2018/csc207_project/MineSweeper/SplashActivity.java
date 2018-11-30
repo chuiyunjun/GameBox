@@ -12,12 +12,10 @@ import fall2018.csc207_project.R;
 import fall2018.csc207_project.UI.StartingActivity;
 
 /**
- *
  * a welcome page
- *
+ * <p>
  * adapted from https://github.com/lany192/Minesweeper.git, includes this activity and XML file
  * activity_splash, logo from github above as well
- *
  */
 
 public class SplashActivity extends Activity {
@@ -28,13 +26,13 @@ public class SplashActivity extends Activity {
     private GlobalCenter globalCenter;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         globalCenter = (GlobalCenter) (getIntent().getSerializableExtra("GlobalCenter"));
 
         Timer timer = new Timer();
-        TimerTask timerTask=new TimerTask() {
+        TimerTask timerTask = new TimerTask() {
             @Override
             public void run() {
                 Intent intent = new Intent(SplashActivity.this,
@@ -44,7 +42,7 @@ public class SplashActivity extends Activity {
                 SplashActivity.this.finish();
             }
         };
-        timer.schedule(timerTask, 1000*2);
+        timer.schedule(timerTask, 1000 * 2);
     }
 
     @Override
