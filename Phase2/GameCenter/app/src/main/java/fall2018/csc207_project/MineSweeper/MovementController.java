@@ -3,6 +3,9 @@ package fall2018.csc207_project.MineSweeper;
 import android.content.Context;
 import android.widget.Toast;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 /**
  * control the change of the game model from the command of the activity and view
  */
@@ -51,7 +54,8 @@ class MovementController {
                         game.flipTile(rowNum, colNum);
                     }
                 }
-                Toast.makeText(context, "GAME OVER!", Toast.LENGTH_SHORT).show();
+                String message = "GAME OVER!";
+                endGame(context, message);
             }
         }
         checkIfEnd(context);
@@ -103,9 +107,31 @@ class MovementController {
         //if the user wins and win toast has been made
         //if win toast has been made, then it will not be made
         if (game.getWin() && game.hasAnnouncedInverted()) {
-            Toast.makeText(context, "YOU WIN!", Toast.LENGTH_SHORT).show();
+            String message = "YOU WIN!";
             game.setAnnounced();
             game.notifyScoreBoard();
+            endGame(context, message);
         }
+    }
+
+    /**
+     * auto-exit the game after playing it, different from other two because popping up
+     * an alert dialog needs another thread which makes the game lag
+     * @param context game activity
+     * @param message message for making toast
+     */
+    private void endGame(final Context context, final String message) {
+        Toast.makeText(context, message + "The game will exit in 3 seconds",
+                Toast.LENGTH_SHORT).show();
+        //auto exit after five seconds
+        Timer timer = new Timer();
+        final GameActivity gameActivity = (GameActivity) context;
+        TimerTask timerTask=new TimerTask() {
+            @Override
+            public void run() {
+                gameActivity.switchToScoreBoard();
+            }
+        };
+        timer.schedule(timerTask, 1000 * 3);
     }
 }
