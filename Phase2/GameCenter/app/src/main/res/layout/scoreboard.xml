@@ -21,9 +21,9 @@
 
         <TextView
             android:id="@+id/score_board_band"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:text="Player Score:"
+            android:text="@string/player_score"
             android:textStyle="bold"
             android:textSize="22sp"
             android:gravity="center"
@@ -44,12 +44,12 @@
             android:gravity="center"
             android:textStyle="bold"
             android:layout_weight="1.5"
-            android:text="#"/>
+            android:text="@string/rank"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="Player"
+            android:text="@string/player"
             android:textStyle="bold"
             android:textSize="22sp"
             android:gravity="center"
@@ -62,7 +62,7 @@
             android:gravity="center"
             android:textStyle="bold"
             android:layout_weight="1"
-            android:text="Score" />
+            android:text="@string/score" />
 
 
     </LinearLayout>

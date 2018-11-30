@@ -62,4 +62,8 @@
     <string name="restart">Restart</string>
     <string name="undo">Undo</string>
     <string name="undo_remain">(0)</string>
+    <string name="player_score">Player Score:</string>
+    <string name="rank">#</string>
+    <string name="player">Player</string>
+    <string name="score">Score</string>
 </resources>
