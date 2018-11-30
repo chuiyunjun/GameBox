@@ -17,11 +17,12 @@ import fall2018.csc207_project.GameCenter.GlobalCenter;
 import fall2018.csc207_project.GameCenter.LocalGameCenter;
 import fall2018.csc207_project.GameCenter.ScoreBoard;
 import fall2018.csc207_project.R;
+import fall2018.csc207_project.UI.ScoreBoardActivity;
 import fall2018.csc207_project.UI.StartingActivity;
 
 /**
  *
- * activity performs game
+ * activity performs this game
  *
  * timer adapted from https://github.com/lany192/Minesweeper.git
  * resource of images for tiles from https://github.com/marcellelek/Minesweeper
@@ -213,5 +214,12 @@ public class GameActivity extends AppCompatActivity implements Observer {
         super.onPause();
         //save information of the gakme
         globalCenter.saveAll(getApplicationContext());
+    }
+
+    public void switchToScoreBoard() {
+        Intent tmp = new Intent(this, ScoreBoardActivity.class);
+        tmp.putExtra("GlobalCenter", globalCenter);
+        startActivity(tmp);
+        finish();
     }
 }

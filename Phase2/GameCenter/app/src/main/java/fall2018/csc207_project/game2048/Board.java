@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * board of game 2048
+ * board of game 2048, store tiles
  */
 class Board implements Serializable {
 

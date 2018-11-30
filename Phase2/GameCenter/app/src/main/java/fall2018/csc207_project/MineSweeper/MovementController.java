@@ -1,7 +1,6 @@
 package fall2018.csc207_project.MineSweeper;
 
 import android.content.Context;
-import android.content.Intent;
 import android.widget.Toast;
 
 import java.util.Timer;
@@ -132,7 +131,7 @@ class MovementController {
         TimerTask timerTask=new TimerTask() {
             @Override
             public void run() {
-                gameActivity.switchToScoreboard();
+                gameActivity.switchToScoreBoard();
             }
         };
         timer.schedule(timerTask, 1000 * 5);
