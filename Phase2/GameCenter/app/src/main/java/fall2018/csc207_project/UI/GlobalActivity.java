@@ -90,7 +90,7 @@ public class GlobalActivity extends AppCompatActivity {
     private void loadGlobalCenter(){
         ObjectInputStream in = null;
         try {
-            FileInputStream fileIn = getApplicationContext().openFileInput("dataBase10.ser");
+            FileInputStream fileIn = getApplicationContext().openFileInput("dataBase_0172.ser");
             in = new ObjectInputStream(fileIn);
             globalCenter = (GlobalCenter) in.readObject();
 

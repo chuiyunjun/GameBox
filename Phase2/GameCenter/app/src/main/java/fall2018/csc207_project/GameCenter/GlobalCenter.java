@@ -17,7 +17,7 @@ import java.util.Observer;
  * The GlobalCenter for Application
  */
 
-public class GlobalCenter implements Serializable, Observer {
+public class GlobalCenter implements Serializable {
 
     /**
      * the serial number of global center
@@ -139,7 +139,7 @@ public class GlobalCenter implements Serializable, Observer {
     public void saveAll(Context context) {
         ObjectOutputStream out = null;
         try {
-            FileOutputStream fileOut = context.openFileOutput("dataBase10.ser", Activity.MODE_PRIVATE);
+            FileOutputStream fileOut = context.openFileOutput("dataBase_0172.ser", Activity.MODE_PRIVATE);
             out = new ObjectOutputStream(fileOut);
             out.writeObject(this);
             fileOut.getFD().sync();
@@ -157,10 +157,5 @@ public class GlobalCenter implements Serializable, Observer {
                 }
             }
         }
-    }
-
-    @Override
-    public void update(Observable o, Object arg) {
-
     }
 }

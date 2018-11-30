@@ -124,6 +124,16 @@ class MovementController implements Controller {
             game.setAnnounced();
             game.notifyScoreBoard();
             endGame(context, message);
+
+            Timer timer = new Timer();
+            final GameActivity gameActivity = (GameActivity) context;
+            TimerTask timerTask = new TimerTask() {
+                @Override
+                public void run() {
+                    gameActivity.switchToScoreBoard();
+                }
+            };
+            timer.schedule(timerTask, 1000 * 2);
         }
     }
 
@@ -137,13 +147,13 @@ class MovementController implements Controller {
     public void endGame(final Context context, final String message) {
         Toast.makeText(context, message + "The game will exit in 2 seconds",
                 Toast.LENGTH_SHORT).show();
-        //auto exit after five seconds
+        //auto exit after two seconds
         Timer timer = new Timer();
         final GameActivity gameActivity = (GameActivity) context;
         TimerTask timerTask = new TimerTask() {
             @Override
             public void run() {
-                gameActivity.switchToScoreBoard();
+                gameActivity.onBackPressed();
             }
         };
         timer.schedule(timerTask, 1000 * 2);

@@ -53,7 +53,7 @@ public class ScoreBoardActivity extends AppCompatActivity {
         for (int x = 0; x < playerScorers.length; x++) {
             scoreColumnView((x+1)+"",
                     globalCenter.getCurrentPlayer().getUsername(),
-                    playerScorers[x] == null? "-":playerScorers[x]+"");
+                    playerScorers[x] == null || playerScorers[x] == 0 ? "-":playerScorers[x]+"");
 
         }
     }
@@ -70,6 +70,7 @@ public class ScoreBoardActivity extends AppCompatActivity {
                     indexList.get(x) == null ? "-" : indexList.get(x),
                     topScores[x] == 0 ? "-" : topScores[x] + "");
         }
+
     }
 
     /**

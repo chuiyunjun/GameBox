@@ -14,7 +14,6 @@ import java.util.Observer;
 
 import fall2018.csc207_project.GameCenter.GlobalCenter;
 import fall2018.csc207_project.GameCenter.LocalGameCenter;
-import fall2018.csc207_project.GameCenter.ScoreBoard;
 import fall2018.csc207_project.Interfaces.GameActivityInterface;
 import fall2018.csc207_project.R;
 import fall2018.csc207_project.UI.ScoreBoardActivity;

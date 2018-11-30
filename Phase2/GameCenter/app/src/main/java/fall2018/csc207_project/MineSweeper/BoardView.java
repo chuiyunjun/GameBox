@@ -112,23 +112,6 @@ public class BoardView extends GridLayout {
 
     }
 
-    public void initViewTable() {
-        Board board = movementController.getGame().getBoard();
-        int boardSize = board.getBoardSize();
-        FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(-1, -1);
-        params.setMargins(10, 10, 0, 0);
-
-        for (int y = 0; y < boardSize; y++) {
-            for (int x = 0; x < boardSize; x++) {
-                tileTable[x][y] = new Button(getContext());
-                FrameLayout fl = new FrameLayout(getContext());
-                tileTable[x][y].setBackgroundResource(R.drawable.button);
-                fl.addView(tileTable[x][y], params);
-                addView(fl, DEFAULT_WIDTH, DEFAULT_WIDTH);
-            }
-        }
-    }
-
     /**
      * set the view of each tile
      */

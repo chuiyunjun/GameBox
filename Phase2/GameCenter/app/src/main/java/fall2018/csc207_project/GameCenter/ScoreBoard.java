@@ -1,7 +1,5 @@
 package fall2018.csc207_project.GameCenter;
 
-import android.support.annotation.NonNull;
-
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Collections;
@@ -9,7 +7,6 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Observable;
 import java.util.Observer;
 import java.util.TreeMap;
 
@@ -152,8 +149,10 @@ public abstract class ScoreBoard implements Observer, Serializable {
         indexList.clear();
         for (Map.Entry<String, Integer[]> entry : sorted.entrySet()) {
             if (count >= topScores.length) break;
-            topScores[count] = entry.getValue()[0];
+            if (topScores[count] < entry.getValue()[0])
+                topScores[count] = entry.getValue()[0];
             indexList.put(count, entry.getKey());
+
             count++;
         }
 

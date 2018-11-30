@@ -111,7 +111,6 @@ public class MineSweeperGame extends Observable implements Game, Serializable {
     void setSecondPassed(int secondPassed) {
         this.secondPassed = secondPassed;
         setChanged();
-        notifyScoreBoard();
     }
 
     /**
