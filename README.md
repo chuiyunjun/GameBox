@@ -1,6 +1,6 @@
 # GameBox
 
-## An android cellphone game platform, containing 3 games inside: slidingtiles, 2048 and minesweeper.
+An android cellphone game platform, containing 3 games inside: slidingtiles, 2048 and minesweeper.
 
 ## Functionality
 
